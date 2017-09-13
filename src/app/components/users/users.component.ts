@@ -3,10 +3,12 @@ import { ActivatedRoute } from '@angular/router';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
+
+
 //========================================================= REDUX
 import { NgRedux } from 'ng2-redux';
 interface IAppState {
-	counter: number
+    counter: number
 };
 
 //=========================================================
@@ -18,19 +20,19 @@ interface IAppState {
 })
 export class UsersComponent implements OnInit {
 
-	result:any = "aaa"
-	foobar:Array<number> = [1,2,3];
-	foobar2:number[] = [1,2,3];
+    result:any = "aaa"
+    foobar:Array<number> = [1,2,3];
+    foobar2:number[] = [1,2,3];
 
-	// string, number, boolean, any, object
+    // string, number, boolean, any, object
 
 
-	
+    
 
   constructor(
-  	private activatedRoute: ActivatedRoute, 
-  	private http: Http,
-  	private ngRedux: NgRedux<IAppState> //======================================== REDUX
+    private activatedRoute: ActivatedRoute, 
+    private http: Http,
+    private ngRedux: NgRedux<IAppState> //======================================== REDUX
   ){
 
   }
@@ -39,21 +41,39 @@ export class UsersComponent implements OnInit {
   }
 
   getParams(){
-  	// alert(this.activatedRoute.snapshot.params.id)
+    // alert(this.activatedRoute.snapshot.params.id)
 
-  	this.http.get("http://localhost:5000/api/foo")
-  	.map(res => res.json())
-  	.subscribe(res => {
-  		console.log(res)
-  		this.result = res
-  	})
+    this.http.get("http://localhost:5000/api/foo")
+    .map(res => res.json())
+    .subscribe(res => {
+        console.log(res)
+        this.result = res
+    })
 
-  	//========================================================= REDUX
-  	this.ngRedux.dispatch({type: 'FOO', payload: 5})
-  	//=========================================================
+    //========================================================= REDUX
+    this.ngRedux.dispatch({type: 'FOO', payload: 5})
+    //=========================================================
 
-  	let state = this.ngRedux.getState()
-  	console.log(state)
+    let state = this.ngRedux.getState()
+    console.log(state)
+  }
+
+  generatepasswordHash(){
+    this.http.get("http://localhost:5000/api/pass")
+    .map(res => res.json())
+    .subscribe(res => {
+        console.log(res)
+        this.result = res
+    })
+  }
+
+  checkpasswordHash(){
+    this.http.get("http://localhost:5000/api/checkpass")
+    .map(res => res.json())
+    .subscribe(res => {
+        console.log(res)
+        this.result = res
+    })
   }
 
 }

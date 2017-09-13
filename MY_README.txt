@@ -4,11 +4,12 @@ $ git remote add origin https://github.com/user/repo.git
 # display remotes
 $ git remote show origin
 
-
+//====================================================
 github.com/designcourse/mean4plus
 
+https://codahale.com/how-to-safely-store-a-password/
 
-
+//====================================================
 $ ng serve --prod --watch
 
 $ npm i -g nodemon
@@ -25,8 +26,18 @@ child routes
 app folders: actions, reducers, constants, routes
 express folders: routes
 
+//==================================================== TEST
+- test user gets proper data
+- test user does not get data that does not belong to him
+- test things that should NOT happen
 
-------------------------------------- git stash
+
+//====================================================
+
+$ npm i bcrypt # for hashing passwords
+
+
+//==================================================== git stash
 
 # GIT STASH
 
