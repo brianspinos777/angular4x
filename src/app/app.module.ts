@@ -14,7 +14,12 @@ import { AuthGuard } from './guards/auth.guard';
 
 //========================================================= REDUX
 import { NgRedux, NgReduxModule } from 'ng2-redux';
-// import reduxLogger from 'redux-logger';
+
+
+// Logger with default options 
+import logger from 'redux-logger' // npm i redux-logger
+
+
 interface IAppState {
     counter: number;
     users: object[];
@@ -85,7 +90,7 @@ const appRoutes:Routes = [
 export class AppModule {
   //========================================================= REDUX
   constructor(ngRedux: NgRedux<IAppState>) {
-    ngRedux.configureStore(rootReducer, INITIAL_STATE);
+    ngRedux.configureStore(rootReducer, INITIAL_STATE, [ logger ]);
   }
   //=========================================================
 }
