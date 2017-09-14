@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { environment } from '../../../environments/environment'; // for ENV
 
 
 
@@ -26,6 +27,8 @@ export class UsersComponent implements OnInit {
 
     // string, number, boolean, any, object
 
+    apiUrl = environment.apiUrl;
+
 
     
 
@@ -43,7 +46,7 @@ export class UsersComponent implements OnInit {
   getParams(){
     // alert(this.activatedRoute.snapshot.params.id)
 
-    this.http.get("http://localhost:5000/api/foo")
+    this.http.get(this.apiUrl + "foo")
     .map(res => res.json())
     .subscribe(res => {
         console.log(res)
@@ -59,7 +62,7 @@ export class UsersComponent implements OnInit {
   }
 
   generatepasswordHash(){
-    this.http.get("http://localhost:5000/api/pass")
+    this.http.get(this.apiUrl + "pass")
     .map(res => res.json())
     .subscribe(res => {
         console.log(res)
@@ -68,12 +71,16 @@ export class UsersComponent implements OnInit {
   }
 
   checkpasswordHash(){
-    this.http.get("http://localhost:5000/api/checkpass")
+    this.http.get(this.apiUrl + "checkpass")
     .map(res => res.json())
     .subscribe(res => {
         console.log(res)
         this.result = res
     })
+  }
+
+  logEnv(){
+      console.log(environment); // {production: true} 
   }
 
 }

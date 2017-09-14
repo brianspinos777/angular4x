@@ -14,6 +14,7 @@ import { AuthGuard } from './guards/auth.guard';
 
 //========================================================= REDUX
 import { NgRedux, NgReduxModule } from 'ng2-redux';
+import { combineReducers } from 'redux';
 
 
 // Logger with default options 
@@ -28,16 +29,50 @@ const INITIAL_STATE: IAppState = {
     counter: 0,
     users: []
 };
-function rootReducer(state: IAppState, action): IAppState {
-    switch(action.type){
-        case 'FOO': return {
-            ...INITIAL_STATE, 
-            counter: state.counter + action.payload 
-        }
-    }
 
-    return state;
+// reducer
+function firstReducer(state = INITIAL_STATE, action){
+    switch(action.type){
+        case 'FOO': 
+            return {
+                ...INITIAL_STATE, 
+                counter: state.counter + action.payload 
+            }
+        case 'BAR': 
+            return {
+                ...INITIAL_STATE, 
+                counter: state.counter + action.payload 
+            }
+        default:
+            return state;
+    }
 };
+
+function todos(state = [], action) {
+  switch (action.type) {
+    case 'ADD_TODO':
+      return state.concat([action.text])
+    default:
+      return state
+  }
+}
+
+function counter(state = 0, action) {
+  switch (action.type) {
+    case 'INCREMENT':
+      return state + 1
+    case 'DECREMENT':
+      return state - 1
+    default:
+      return state
+  }
+}
+
+let rootReducer = <any>combineReducers({
+    todos,
+    counter,
+    firstReducer
+})
 //=========================================================
 
 const appRoutes:Routes = [
@@ -90,7 +125,9 @@ const appRoutes:Routes = [
 export class AppModule {
   //========================================================= REDUX
   constructor(ngRedux: NgRedux<IAppState>) {
-    ngRedux.configureStore(rootReducer, INITIAL_STATE, [ logger ]);
+    let middlewares = [logger];
+    let enhancers = [];
+    ngRedux.configureStore(rootReducer, INITIAL_STATE, middlewares, enhancers); 
   }
   //=========================================================
 }
