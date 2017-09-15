@@ -31,7 +31,7 @@ const INITIAL_STATE: IAppState = {
 };
 
 // reducer
-function firstReducer(state = INITIAL_STATE, action){
+function firstReducer(state: IAppState = INITIAL_STATE, action): IAppState{
     switch(action.type){
         case 'FOO': 
             return {
@@ -68,7 +68,7 @@ function counter(state = 0, action) {
   }
 }
 
-let rootReducer = <any>combineReducers({
+let rootReducer = combineReducers<IAppState>({ 
     todos,
     counter,
     firstReducer

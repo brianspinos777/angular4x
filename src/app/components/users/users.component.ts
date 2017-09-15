@@ -9,7 +9,7 @@ import { environment } from '../../../environments/environment'; // for ENV
 //========================================================= REDUX
 import { NgRedux } from 'ng2-redux';
 interface IAppState {
-    counter: number
+    counterABC: number
 };
 
 //=========================================================
@@ -81,6 +81,12 @@ export class UsersComponent implements OnInit {
 
   logEnv(){
       console.log(environment); // {production: true} 
+  }
+
+  getUsersFromState(){
+    let {counterABC} = this.ngRedux.getState();
+
+    console.log(counterABC);
   }
 
 }
