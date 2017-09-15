@@ -30,6 +30,7 @@ var path = require('path');
 
 
 //------------------------------------------ mongo
+// https://github.com/mschwarzmueller/nodejs-basics-tutorial/blob/master/09-mongodb/routes/index.js
 // // npm i mongodb
 // var MongoClient = require('mongodb').MongoClient
  
@@ -82,6 +83,7 @@ var path = require('path');
 
 
 //--------------------------------------- mongoose
+// https://github.com/mschwarzmueller/nodejs-basics-tutorial/blob/master/11-mongoose/routes/index.js
 
 // npm i mongoose
 var mongoose = require('mongoose');
