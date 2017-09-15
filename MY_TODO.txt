@@ -1,0 +1,5 @@
+- add state to localStorage
+- use redux to fetch data from the api
+
+- reducers: are handlers
+- actions: are functions that use .dispatch in them ???

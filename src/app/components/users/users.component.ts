@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { environment } from '../../../environments/environment'; // for ENV
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 
 
 //========================================================= REDUX
