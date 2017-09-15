@@ -7,8 +7,14 @@
 <button (click)="checkpasswordHash()">checkpasswordHash</button>
 <button (click)="logEnv()">logEnv</button>
 <button (click)="getUsersFromState()">getUsersFromState</button>
+<button (click)="onClick()">Clicked {{ counter | async }}</button>
 
 
+<button (click)="addUser()">addUser</button>
+
+<p>USERS:</p>
+<!-- The async pipe gets the latest value of an Observable variable! -->
+<p *ngFor="let user of users | async">{{ user.name }}</p> 
 
 
 <p>result: {{result.name}}</p> 

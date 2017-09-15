@@ -24,54 +24,78 @@ import logger from 'redux-logger' // npm i redux-logger
 interface IAppState {
     counter: number;
     users: object[];
+    groups: object[];
+    todos: object[];
 };
+
+// Initial whole app state
+// these values are what the app will see initially!
 const INITIAL_STATE: IAppState = {
-    counter: 0,
-    users: []
+    counter: 67,
+    users: [{name: 'brian'}],
+    groups: [],
+    todos: [],
 };
 
-// reducer
-function firstReducer(state: IAppState = INITIAL_STATE, action): IAppState{
-    switch(action.type){
-        case 'FOO': 
-            return {
-                ...INITIAL_STATE, 
-                counter: state.counter + action.payload 
-            }
-        case 'BAR': 
-            return {
-                ...INITIAL_STATE, 
-                counter: state.counter + action.payload 
-            }
-        default:
-            return state;
-    }
-};
+//
+// reducers
+//
 
-function todos(state = [], action) {
-  switch (action.type) {
+
+// The `state` variable here is a key in the APP STATE.
+// the `state` variable here does not matter, but it needs to be there?
+function todosReducer(state = [], action){
+  switch (action.type){
     case 'ADD_TODO':
-      return state.concat([action.text])
+      return state.concat([action.payload])
     default:
       return state
   }
 }
 
-function counter(state = 0, action) {
-  switch (action.type) {
+// The `state` variable here is a key in the APP STATE.
+// the `state` variable here does not matter, but it needs to be there?
+function usersReducer(state = [], action){
+  switch (action.type){
+    case 'ADD_USER':
+      return state.concat([action.payload])
+    default:
+      return state
+  }
+}
+
+// The `state` variable here is a key in the APP STATE.
+// the `state` variable here does not matter, but it needs to be there?
+function groupsReducer(state = [], action){
+  switch (action.type){
+    case 'ADD_GROUP':
+      return state.concat([action.payload])
+    default:
+      return state
+  }
+}
+
+// The `state` variable here is a key in the APP STATE.
+// the `state` variable here does not matter, but it needs to be there?
+function counterReducer(state = 45, action){
+  switch (action.type){
     case 'INCREMENT':
-      return state + 1
+        return state + 1
     case 'DECREMENT':
-      return state - 1
+        return state - 1
+    case 'INCREMENT_5':
+        return state + 5
     default:
       return state
   }
 }
 
-let rootReducer = combineReducers<IAppState>({ 
-    todos,
-    counter,
-    firstReducer
+let rootReducer = combineReducers<IAppState>({  
+    // keys and values for the whole app state
+    todos: todosReducer,
+    users: usersReducer,
+    groups: groupsReducer,
+    counter: counterReducer
 })
 //=========================================================
 
@@ -124,10 +148,15 @@ const appRoutes:Routes = [
 })
 export class AppModule {
   //========================================================= REDUX
-  constructor(ngRedux: NgRedux<IAppState>) {
+  constructor(ngRedux: NgRedux<IAppState>){
     let middlewares = [logger];
     let enhancers = [];
-    ngRedux.configureStore(rootReducer, INITIAL_STATE, middlewares, enhancers); 
+    ngRedux.configureStore(
+        rootReducer, 
+        INITIAL_STATE, 
+        middlewares, 
+        enhancers
+    ); 
   }
   //=========================================================
 }

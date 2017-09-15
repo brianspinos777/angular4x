@@ -40,7 +40,7 @@ router.route('/pass')
     // .post(...)
 
 router.route('/checkpass')
-    .get((req, res) => {
+    .get((req, resp) => {
 
         const myPlaintextPassword = 's0m3P4$$w0rD';
         const someOtherPlaintextPassword = 'not_bacon';
@@ -55,17 +55,24 @@ router.route('/checkpass')
         //     console.log('hash', {success: res, pass: myPlaintextPassword});
         // });
 
+        var myObj = {};
+
         bcrypt.compare(someOtherPlaintextPassword, hash, function(err, res) {
             // res == false
             // res.json({success: res, pass: someOtherPlaintextPassword});
-            console.log('hash', {
+
+            myObj = {
                 success: res, 
                 pass: someOtherPlaintextPassword,
                 hash: hash
-            });
+            };
+
+            console.log('hash', myObj);
+
+            resp.json({test: true, myObj: myObj})
         }); 
 
-        res.json({test: true})
+        // resp.json({test: true, myObj: myObj})
 
             
     })

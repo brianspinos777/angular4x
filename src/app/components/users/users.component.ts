@@ -3,12 +3,17 @@ import { ActivatedRoute } from '@angular/router';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { environment } from '../../../environments/environment'; // for ENV
-
+import { Observable } from 'rxjs';
 
 
 //========================================================= REDUX
-import { NgRedux } from 'ng2-redux';
+import { NgRedux, select } from 'ng2-redux';
+
 interface IAppState {
+    counter: number;
+    users: object[];
+    groups: object[];
+    todos: object[];
     counterABC: number
 };
 
@@ -21,15 +26,16 @@ interface IAppState {
 })
 export class UsersComponent implements OnInit {
 
+    // keys of the state object!
+    @select() counter: Observable<number>; //========================= REDUX
+    @select() users: Observable<Array<object>>; //========================= REDUX
+
     result:any = "aaa"
     foobar:Array<number> = [1,2,3];
     foobar2:number[] = [1,2,3];
-
     // string, number, boolean, any, object
 
     apiUrl = environment.apiUrl;
-
-
     
 
   constructor(
@@ -54,7 +60,7 @@ export class UsersComponent implements OnInit {
     })
 
     //========================================================= REDUX
-    this.ngRedux.dispatch({type: 'FOO', payload: 5})
+    this.ngRedux.dispatch({type: 'INCREMENT_5', payload: 5})
     //=========================================================
 
     let state = this.ngRedux.getState()
@@ -84,9 +90,20 @@ export class UsersComponent implements OnInit {
   }
 
   getUsersFromState(){
-    let {counterABC} = this.ngRedux.getState();
+    let {users} = this.ngRedux.getState();
 
-    console.log(counterABC);
+    console.log(users);
+  }
+
+  onClick() {
+    this.ngRedux.dispatch({ type: 'INCREMENT' });
+  }
+
+  addUser(){
+      this.ngRedux.dispatch({
+          type: 'ADD_USER', 
+          payload: {name: 'erich'}
+      });
   }
 
 }
