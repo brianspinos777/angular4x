@@ -101,11 +101,53 @@ var userSchema = new Schema({
 var User = mongoose.model('User', userSchema);
 
 
+app.get('/hello', function(req, res, next) {
+    console.log('HEY');
+    res.json("HEY");
+});
+
 app.get('/getUsers', function(req, res, next) {
   User.find()
       .then(function(doc) {
         res.json(doc);
       });
+});
+
+app.post('/insertUser', function(req, res, next) {
+    console.log('insertUser');
+  var item = {
+    name: "dude", //req.body.name,
+    address: "foobar 123" //req.body.address
+  };
+
+  console.log(item);
+
+  var data = new User(item);
+  data.save();
+
+  console.log(data);
+
+  // res.redirect('/');
+});
+
+app.post('/updateUser', function(req, res, next) {
+  var id = '59bc1c0f22be482adcbcbe00'; //req.body.id;
+
+  User.findById(id, function(err, doc) {
+    if (err) {
+      console.error('error, no entry found');
+    }
+    doc.name = "dude2", //req.body.name;
+    doc.address = "foobar2 456" //req.body.address;
+    doc.save();
+  })
+  res.redirect('/');
+});
+
+app.post('/deleteUser', function(req, res, next) {
+  var id = '59bc1c0f22be482adcbcbe00'; //req.body.id;
+  User.findByIdAndRemove(id).exec();
+  res.redirect('/');
 });
 
 
