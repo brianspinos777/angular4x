@@ -1,14 +1,55 @@
 var express = require('express');
 var app = express();
 var path = require('path');
+var bodyParser = require('body-parser');
 //------------------------------------------ postgres
-// // var pg = require('pg');
+// $ npm i pg
+
+// github
+// https://github.com/brianc/node-postgres
+
+// depricated:
+// https://www.youtube.com/watch?v=ijSzX3S5Qco&list=PLillGF-RfqbaEmlPcX5e_ejaK7Y5MydkW&index=3
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extend: false}));
 
 
-// // // $ npm i pg
+
+// https://node-postgres.com/features/connecting
+const { Pool, Client } = require('pg')
+const connectionString = 'postgresql://prg:password@localhost:5432/briandb2'
+
+const pool = new Pool({
+  connectionString: connectionString,
+})
+
+pool.query('SELECT NOW()', (err, res) => {
+  console.log(err, res)
+  pool.end()
+})
+
+app.get('/pg', function(req, res){
+  console.log("--------------------- PG:");
+
+  const client = new Client({
+    connectionString: connectionString,
+  })
+  client.connect()
+
+  client.query('SELECT * FROM users', (err, res) => {
+    // console.log(err, res)
+    console.log(res.rows)
+    client.end()
+  })
+
+})
+
+
+
 // // // psql> $ CREATE DATABASE briandb;
 // // // psql> $ \c briandb;
-// // var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/briandb';
+// // var connectionString = process.env.DATABASE_URL || 'postgres://username:password@localhost:5432/briandb';
 
 // // var client = new pg.Client(connectionString);
 // // client.connect();
