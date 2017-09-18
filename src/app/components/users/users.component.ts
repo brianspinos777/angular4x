@@ -33,6 +33,14 @@ export class UsersComponent implements OnInit {
     result:any = "aaa"
     foobar:Array<number> = [1,2,3];
     foobar2:number[] = [1,2,3];
+    initialData = {
+        test: false,
+        myObj: {
+            hash: "",
+            pass: "",
+            success:false
+        }
+    };
     // string, number, boolean, any, object
 
     apiUrl = environment.apiUrl;
@@ -47,6 +55,16 @@ export class UsersComponent implements OnInit {
   }
 
   ngOnInit() {
+      console.log("ngOnInit() called");
+      
+      // make http calls here to get data for component initialization,
+      // and set class fields from the result of the http call.
+      this.http.get(this.apiUrl + "checkpass")
+        .map(res => res.json())
+        .subscribe(res => {
+            console.log(res)
+            this.initialData = res
+        })
   }
 
   getParams(){
