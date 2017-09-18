@@ -1,0 +1,9 @@
+
+- reducers: are handlers
+    -> reducres must be pure functions (an input should always generate the same output, always)
+    -> it deals with a slice of the state
+    -> the functions that takes the prev state, an action, and returns a new state
+
+
+- actions: are functions that use .dispatch in them ???
+    -> {type: ADD_TODO, payload: 'wash dishes'}
