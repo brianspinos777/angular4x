@@ -48,61 +48,61 @@ const INITIAL_STATE: IAppState = {
 // The `state` variable here is a key in the APP STATE.
 // the `state` variable here does not matter, but it needs to be there?
 function todosReducer(state = INITIAL_STATE.todos, action){
-  switch (action.type){
-    case 'ADD_TODO':
-      return state.concat([action.payload])
-    default:
-      return state
-  }
+    switch (action.type){
+        case 'ADD_TODO':
+            return state.concat([action.payload])
+        default:
+            return state
+    }
 }
 
 // The `state` variable here is a key in the APP STATE.
 // the `state` variable here does not matter, but it needs to be there?
 function usersReducer(state = INITIAL_STATE.users, action){
-  switch (action.type){
-    case 'ADD_USER':
-      return state.concat([action.payload])
-    default:
-      return state
-  }
+    switch (action.type){
+        case 'ADD_USER':
+            return state.concat([action.payload])
+        default:
+            return state
+    }
 }
 
 // The `state` variable here is a key in the APP STATE.
 // the `state` variable here does not matter, but it needs to be there?
 function groupsReducer(state = INITIAL_STATE.groups, action){
-  switch (action.type){
-    case 'ADD_GROUP':
-      return state.concat([action.payload])
-    default:
-      return state
-  }
+    switch (action.type){
+        case 'ADD_GROUP':
+            return state.concat([action.payload])
+        default:
+            return state
+    }
 }
 
 // The `state` variable here is a key in the APP STATE.
 // the `state` variable here does not matter, but it needs to be there?
 function counterReducer(state = INITIAL_STATE.counter, action){
-  switch (action.type){
-    case 'INCREMENT':
-        return state + 1
-    case 'DECREMENT':
-        return state - 1
-    case 'INCREMENT_5':
-        return state + 5
-    default:
-      return state
-  }
+    switch (action.type){
+        case 'INCREMENT':
+            return state + 1
+        case 'DECREMENT':
+            return state - 1
+        case 'INCREMENT_5':
+            return state + 5
+        default:
+            return state
+    }
 }
 
 
 // The `state` variable here is a key in the APP STATE.
 // the `state` variable here does not matter, but it needs to be there?
 function myHttpReducer(state = INITIAL_STATE.httpResults, action){
-  switch (action.type){
-    case 'GET_FOO':
-        return state.concat(['111'])
-    default:
-      return state
-  }
+    switch (action.type){
+        case 'GET_FOO':
+            return state.concat(['111'])
+        default:
+            return state
+    }
 }
 
 let rootReducer = combineReducers<IAppState>({  
@@ -143,36 +143,36 @@ const appRoutes:Routes = [
 ]
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    HomeComponent,
-    UsersComponent,
-    GroupsComponent
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpModule,
-    RouterModule.forRoot(appRoutes),
-    NgReduxModule  //========================================================= REDUX
-  ],
-  providers: [
-      AuthGuard
-  ],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        LoginComponent,
+        HomeComponent,
+        UsersComponent,
+        GroupsComponent
+    ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        HttpModule,
+        RouterModule.forRoot(appRoutes),
+        NgReduxModule  //========================================================= REDUX
+    ],
+    providers: [
+        AuthGuard
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule {
-  //========================================================= REDUX
-  constructor(ngRedux: NgRedux<IAppState>){
-    let middlewares = [logger, thunk];
-    let enhancers = [];
-    ngRedux.configureStore(
-        rootReducer, 
-        INITIAL_STATE, 
-        middlewares, 
-        enhancers
-    ); 
-  }
-  //=========================================================
+    //========================================================= REDUX
+    constructor(ngRedux: NgRedux<IAppState>){
+        let middlewares = [logger, thunk];
+        let enhancers = [];
+        ngRedux.configureStore(
+            rootReducer, 
+            INITIAL_STATE, 
+            middlewares, 
+            enhancers
+        ); 
+    }
+    //=========================================================
 }
