@@ -15,6 +15,7 @@ import { AuthGuard } from './guards/auth.guard';
 //========================================================= REDUX
 import { NgRedux, NgReduxModule } from 'ng2-redux';
 import { combineReducers } from 'redux';
+import thunk from 'redux-thunk';
 
 
 // Logger with default options 
@@ -26,6 +27,7 @@ interface IAppState {
     users: object[];
     groups: object[];
     todos: object[];
+    httpResults: string[];
 };
 
 // Initial whole app state
@@ -35,6 +37,7 @@ const INITIAL_STATE: IAppState = {
     users: [{name: 'brian'}],
     groups: [],
     todos: [],
+    httpResults: ['xxx', 'yyy', 'zzz']
 };
 
 //
@@ -90,12 +93,25 @@ function counterReducer(state = INITIAL_STATE.counter, action){
   }
 }
 
+
+// The `state` variable here is a key in the APP STATE.
+// the `state` variable here does not matter, but it needs to be there?
+function myHttpReducer(state = INITIAL_STATE.httpResults, action){
+  switch (action.type){
+    case 'GET_FOO':
+        return state.concat(['111'])
+    default:
+      return state
+  }
+}
+
 let rootReducer = combineReducers<IAppState>({  
     // keys and values for the whole app state
     todos: todosReducer,
     users: usersReducer,
     groups: groupsReducer,
-    counter: counterReducer
+    counter: counterReducer,
+    httpResults: myHttpReducer
 })
 //=========================================================
 
@@ -149,7 +165,7 @@ const appRoutes:Routes = [
 export class AppModule {
   //========================================================= REDUX
   constructor(ngRedux: NgRedux<IAppState>){
-    let middlewares = [logger];
+    let middlewares = [logger, thunk];
     let enhancers = [];
     ngRedux.configureStore(
         rootReducer, 

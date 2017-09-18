@@ -1,23 +1,121 @@
-<p>
-  users works!
-</p>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- content -->
+            <h1>Users</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <!-- content -->
+            <hr>
+            <p>initialData.myObj.hash: {{initialData.myObj.hash}}</p>
+        </div>
+        <div class="col-md-4">
+            <!-- content -->
+            <hr>
+            <p>URL example: http://localhost:5000/users/123</p>
+            <button class="btn btn-sm btn-default" (click)="getParams()">getParams</button>
+            <p>myVarA: {{myVarA}}</p>
+        </div>
+        <div class="col-md-4">
+            <!-- content -->
+            <hr>
+            <button class="btn btn-sm btn-default" (click)="makeHttpGetCall()">makeHttpGetCall</button>
+            <p>myVarB: {{myVarB}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <!-- content -->
+            <hr>
+            <button class="btn btn-sm btn-default" (click)="increment_5()">increment_5</button>
+            <p>counter | async: {{counter | async}}</p> 
+        </div>
+        <div class="col-md-4">
+            <!-- content -->
+            <hr>
+            <button class="btn btn-sm btn-default" (click)="getStateFromRedux()">getStateFromRedux</button> 
+            <p>myVarC: {{myVarC}}</p> 
+        </div>
+        <div class="col-md-4">
+            <!-- content -->
+            <hr>
+            <button class="btn btn-sm btn-default" (click)="generatepasswordHash()">generatepasswordHash</button>
+            <p>myVarD: {{myVarD}}</p> 
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <!-- content -->
+            <hr>
+            <button class="btn btn-sm btn-default" (click)="checkpasswordHash()">checkpasswordHash</button>
+            <p>myVarE: {{myVarE}}</p>
+        </div>
+        <div class="col-md-4">
+            <!-- content -->
+            <hr>
+            <button class="btn btn-sm btn-default" (click)="logEnv()">logEnv</button>
+            <p>myVarF: {{myVarF}}</p> 
+        </div>
+        <div class="col-md-4">
+            <!-- content -->
+            <hr>
+            <button class="btn btn-sm btn-default" (click)="getUsersFromState()">getUsersFromState</button>
+            <p>myVarG: {{myVarG}}</p> 
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <!-- content -->
+            <hr>
+            <button class="btn btn-sm btn-default" (click)="addUser()">addUser</button>
+            <p>Users from state:</p>
+            <!-- The async pipe gets the latest value of an Observable variable! -->
+            <p *ngFor="let user of users | async">{{ user.name }}</p>
+        </div>
+        <div class="col-md-4">
+            <!-- content -->
+            <hr>
+            <button class="btn btn-sm btn-default" (click)="useReduxWithHttp()">useReduxWithHttp</button>
+            <p>httpResults:</p>
+            <!-- The async pipe gets the latest value of an Observable variable! -->
+            <p *ngFor="let x of httpResults | async">{{ x }}</p> 
+        </div>
+        <div class="col-md-4">
+            <!-- content --> 
+            <hr>
+            <button class="btn btn-sm btn-default" (click)="increment_1()">increment_1</button>
+            <p>counter | async: {{counter | async}}</p> 
 
-<button (click)="getParams()">getParams</button>
-<button (click)="generatepasswordHash()">generatepasswordHash</button>
-<button (click)="checkpasswordHash()">checkpasswordHash</button>
-<button (click)="logEnv()">logEnv</button>
-<button (click)="getUsersFromState()">getUsersFromState</button>
-<button (click)="onClick()">Clicked {{ counter | async }}</button>
-
-
-<button (click)="addUser()">addUser</button>
-
-<p>USERS:</p>
-<!-- The async pipe gets the latest value of an Observable variable! -->
-<p *ngFor="let user of users | async">{{ user.name }}</p> 
-
-
-<p>result: {{result.name}}</p>
-
-
-<p>initialData.myObj.hash: {{initialData.myObj.hash}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <!-- content -->
+            <hr>
+        </div>
+        <div class="col-md-4">
+            <!-- content -->
+            <hr>
+        </div>
+        <div class="col-md-4">
+            <!-- content -->
+            <hr>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <!-- content -->
+            <hr>
+        </div>
+        <div class="col-md-4">
+            <!-- content -->
+            <hr>
+        </div>
+        <div class="col-md-4">
+            <!-- content -->
+            <hr>
+        </div>
+    </div>
+</div>

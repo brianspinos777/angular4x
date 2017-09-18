@@ -14,23 +14,32 @@ interface IAppState {
     users: object[];
     groups: object[];
     todos: object[];
-    counterABC: number
+    httpResults: string[];
 };
 
 //=========================================================
 
 @Component({
-  selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css']
+    selector: 'app-users',
+    templateUrl: './users.component.html',
+    styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
 
     // keys of the state object!
     @select() counter: Observable<number>; //========================= REDUX
     @select() users: Observable<Array<object>>; //========================= REDUX
+    @select() httpResults: Observable<Array<string>>; //========================= REDUX
 
-    result:any = "aaa"
+    
+    myVarA:any = ""
+    myVarB:any = ""
+    myVarC:any = ""
+    myVarD:any = ""
+    myVarE:any = ""
+    myVarF:any = ""
+    myVarG:any = ""
+
     foobar:Array<number> = [1,2,3];
     foobar2:number[] = [1,2,3];
     initialData = {
@@ -46,82 +55,96 @@ export class UsersComponent implements OnInit {
     apiUrl = environment.apiUrl;
     
 
-  constructor(
-    private activatedRoute: ActivatedRoute, 
-    private http: Http,
-    private ngRedux: NgRedux<IAppState> //======================================== REDUX
-  ){
+    constructor(
+        private activatedRoute: ActivatedRoute, 
+        private http: Http,
+        private ngRedux: NgRedux<IAppState> //======================================== REDUX
+    ){
+        //...
+    }
 
-  }
+    ngOnInit() {
+        console.log("ngOnInit() called");
 
-  ngOnInit() {
-      console.log("ngOnInit() called");
-      
-      // make http calls here to get data for component initialization,
-      // and set class fields from the result of the http call.
-      this.http.get(this.apiUrl + "checkpass")
+        // make http calls here to get data for component initialization,
+        // and set class fields from the result of the http call.
+        this.http.get(this.apiUrl + "checkpass")
+            .map(res => res.json())
+            .subscribe(res => {
+                console.log(res)
+                this.initialData = res
+            })
+    }
+
+    getParams(){
+        let id = this.activatedRoute.snapshot.params.id
+        this.myVarA = id
+    }
+
+    makeHttpGetCall(){
+        this.http.get(this.apiUrl + "foo")
         .map(res => res.json())
         .subscribe(res => {
             console.log(res)
-            this.initialData = res
+            this.myVarB = res
         })
-  }
+    }
 
-  getParams(){
-    // alert(this.activatedRoute.snapshot.params.id)
+    increment_5(){
+        //========================================================= REDUX
+        this.ngRedux.dispatch({type: 'INCREMENT_5', payload: 5})
+        //=========================================================
+    }
 
-    this.http.get(this.apiUrl + "foo")
-    .map(res => res.json())
-    .subscribe(res => {
-        console.log(res)
-        this.result = res
-    })
+    getStateFromRedux(){
+        let state = this.ngRedux.getState()
+        console.log(state)
+        this.myVarC = state
+    }
 
-    //========================================================= REDUX
-    this.ngRedux.dispatch({type: 'INCREMENT_5', payload: 5})
-    //=========================================================
+    generatepasswordHash(){
+        this.http.get(this.apiUrl + "pass") 
+        .map(res => res.json())
+        .subscribe(res => {
+            console.log(res)
+            this.myVarD = res
+        })
+    }
 
-    let state = this.ngRedux.getState()
-    console.log(state)
-  }
+    checkpasswordHash(){
+        this.http.get(this.apiUrl + "checkpass")
+        .map(res => res.json())
+        .subscribe(res => {
+            console.log(res)
+            this.myVarE = res
+        })
+    }
 
-  generatepasswordHash(){
-    this.http.get(this.apiUrl + "pass")
-    .map(res => res.json())
-    .subscribe(res => {
-        console.log(res)
-        this.result = res
-    })
-  }
-
-  checkpasswordHash(){
-    this.http.get(this.apiUrl + "checkpass")
-    .map(res => res.json())
-    .subscribe(res => {
-        console.log(res)
-        this.result = res
-    })
-  }
-
-  logEnv(){
-      console.log(environment); // {production: true} 
-  }
+    logEnv(){
+        console.log(environment); // {production: true} 
+        this.myVarF = environment
+    }
 
   getUsersFromState(){
     let {users} = this.ngRedux.getState();
 
     console.log(users);
+    this.myVarG = users
   }
 
-  onClick() {
-    this.ngRedux.dispatch({ type: 'INCREMENT' });
-  }
+    addUser(){
+        this.ngRedux.dispatch({
+            type: 'ADD_USER', 
+            payload: {name: 'erich'}
+        });
+    }
 
-  addUser(){
-      this.ngRedux.dispatch({
-          type: 'ADD_USER', 
-          payload: {name: 'erich'}
-      });
-  }
+    useReduxWithHttp(){
+        this.ngRedux.dispatch({type: 'GET_FOO'});
+    }
+
+    increment_1() {
+        this.ngRedux.dispatch({ type: 'INCREMENT' });
+    }
 
 }

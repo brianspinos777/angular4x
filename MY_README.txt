@@ -65,3 +65,25 @@ $ git stash list  # see all entries
 # (but dont worry, you will be able to restore them!)
 
 $ git stash show stash@{0}
+
+
+#==================================================== THUNK (NOT WORKING YET)
+
+npm i redux-thunk
+
+import thunk from 'redux-thunk';
+
+// add thunk to list of middlewares
+
+
+function incrementIfOdd() {
+  return (dispatch, getState) => {
+    const { counter } = getState();
+
+    if (counter % 2 === 0) {
+      return;
+    }
+
+    dispatch(increment());
+  };
+}
