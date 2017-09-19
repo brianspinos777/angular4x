@@ -12,7 +12,7 @@ var bodyParser = require('body-parser');
 // https://www.youtube.com/watch?v=ijSzX3S5Qco&list=PLillGF-RfqbaEmlPcX5e_ejaK7Y5MydkW&index=3
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extend: false}));
+app.use(bodyParser.urlencoded({extended: true}));
 
 
 
@@ -192,6 +192,8 @@ app.post('/deleteUser', function(req, res, next) {
 });
 
 
+
+
 //---------------------------------------
 
 app.set('port', (process.env.PORT || 5000));
@@ -204,6 +206,7 @@ var apiRoute = require('./server/routes/api');
 app.use('/api', apiRoute)
 // curl -i http://localhost:5000/api/
 // curl -i http://localhost:5000/api/foo
+
 
 
 app.get('*', function(request, response) {

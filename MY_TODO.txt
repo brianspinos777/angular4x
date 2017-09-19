@@ -1,6 +1,9 @@
 ================================ TODO:
-- add CRUD for a collection: 'animals'
+- add CRUD for a collection: 'Items'
+- create models for data
+- data associations
 - add state to localStorage
 - use redis for caching
+- add api version: /api/v1/items
 ================================ DONE:
 - use redux to fetch data from the api with thunk-middleware

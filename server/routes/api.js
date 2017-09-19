@@ -78,6 +78,120 @@ router.route('/checkpass')
     })
     // .post(...)
 
+    //======================================================= Items
+
+
+    // https://node-postgres.com/features/connecting
+    const { Pool, Client } = require('pg')
+    const connectionString = 'postgresql://prg:password@localhost:5432/briandb2'
+
+    const pool = new Pool({
+      connectionString: connectionString,
+    })
+
+ 
+
+    // index - show list of items                     GET /items  - view
+    // show - show single item                        GET /items/1  - view
+    // new - show form for new item                   GET /items/new  - view
+    // edit - show form for editing existing item     GET /items/1/edit  - view
+    // create - create item                           POST /items
+    // update - update item                           PUT /items/1
+    // destroy - delete item                          DELETE /items/1
+
+    router.route('/items')
+    .get((req, resp) => {
+        console.log("--------------------- GET /api/items:");
+
+        const client = new Client({
+            connectionString: connectionString,
+        })
+        client.connect()
+
+        client.query('SELECT * FROM items', (err, res) => {
+            if(err){
+                //error
+                console.log("ERROR:", err)
+                resp.json({data: null, success: false});
+            }else{
+                // console.log(res.rows)
+                resp.json({data: res.rows, success: true});
+            }
+            client.end()
+        })
+    })
+
+    router.route('/items/:id')
+    .get((req, resp) => {
+        console.log("--------------------- GET /api/items/:id:");
+
+        var id = req.params.id;
+
+        const client = new Client({
+            connectionString: connectionString,
+        })
+        client.connect()
+
+        client.query("SELECT * FROM items WHERE id = $1", [id], (err, res) => {
+            if(err){
+                //error
+                console.log("ERROR:", err)
+                resp.json({data: null, success: false});
+            }else{
+                // console.log(res.rows)
+                resp.json({data: res.rows, success: true});
+            }
+            client.end()
+        })
+    })
+    .put((req, resp) => {
+        console.log("--------------------- PUT /api/items/:id:");
+    })
+    .delete((req, resp) => {
+        console.log("--------------------- DELETE /api/items/:id:");
+    })
+
+    router.route('/items/new')
+    .get((req, resp) => {
+        //...
+    })
+
+    router.route('/items/:id/edit')
+    .get((req, resp) => {
+        //...
+    })
+
+
+    // create
+    router.route('/itemx')
+    .get((req, resp) => {
+        console.log("--------------------- GET /api/items/:id:");
+
+        var id = req.params.id;
+
+        const client = new Client({
+            connectionString: connectionString,
+        })
+        client.connect()
+
+        client.query('INSERT INTO items(text, is_done) values($1, $2)', ["aaa", false], (err, res) => {
+            if(err){
+                //error
+                console.log("ERROR:", err)
+                resp.json({data: null, success: false});
+            }else{
+                // console.log(res.rows)
+                resp.json({data: res.rows, success: true});
+            }
+            client.end()
+        })
+    })
+
+
+
+
+    //=======================================================
+
 
 
 

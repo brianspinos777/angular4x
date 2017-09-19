@@ -35,6 +35,7 @@ https://codahale.com/how-to-safely-store-a-password/
 $ npm i -g nodemon
 $ npm i nodemailer
 $ npm i bcrypt # for hashing passwords
+$ npm i node-uuid # for ids
 
 //==================================================== What to implement
 @ViewChild @Input @Output
@@ -42,9 +43,27 @@ $ npm i bcrypt # for hashing passwords
 child routes
 
 //==================================================== folders:
-app folders: routes, components, constants, guards, models, pages, redux, services
-redux folders: actions, reducers, constants
-express folders: routes, middlewares
+
+- server
+    - routes
+    - middlewares
+- dist
+- src
+    - routes
+    - components
+    - constants
+    - models
+    - guards
+    - models
+    - pages
+    - redux
+    - services
+    - pages
+    - redux 
+        - actions
+        - reducers
+        - constants
+
 
 //====================================================
 $ ng serve --prod --watch # serves the src folder?
@@ -106,3 +125,26 @@ function incrementIfOdd() {
     dispatch(increment());
   };
 }
+
+
+===================================================== CRUD
+
+// Item crud
+
+
+index - show list of items                     GET /items  - view
+show - show single item                        GET /items/1  - view
+new - show form for new item                   GET /items/new  - view
+edit - show form for editing existing item     GET /items/1/edit  - view
+create - create item                           POST /items
+update - update item                           PUT /items/1
+destroy - delete item                          DELETE /items/1
+
+
+-> add endpoint in express
+
+-> create component: 
+    page/items/IndexItemComponent - list
+    page/items/ShowItemComponent - singe item
+    page/items/NewItemComponent - form
+    page/items/EditItemComponent - form
