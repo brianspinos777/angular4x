@@ -1,4 +1,4 @@
-
+====================================================================
 - reducers: are handlers
     -> reducres must be pure functions (an input should always generate the same output, always)
     -> it deals with a slice of the state
@@ -17,16 +17,92 @@
 
 async actions (http requests):
     -> 
+====================================================================
 
 
 
+# Add a remote:
+$ git remote add origin https://github.com/user/repo.git
+
+# display remotes
+$ git remote show origin
+
+//==================================================== Links
+github.com/designcourse/mean4plus
+https://codahale.com/how-to-safely-store-a-password/
+
+//==================================================== Libs
+$ npm i -g nodemon
+$ npm i nodemailer
+$ npm i bcrypt # for hashing passwords
+
+//==================================================== What to implement
+@ViewChild @Input @Output
+
+child routes
+
+//==================================================== folders:
+app folders: routes, components, constants, guards, models, pages, redux, services
+redux folders: actions, reducers, constants
+express folders: routes, middlewares
+
+//====================================================
+$ ng serve --prod --watch # serves the src folder?
+
+
+//==================================================== TEST
+- test user gets proper data
+- test user does not get data that does not belong to him
+- test things that should NOT happen
+- complex calculations in services
+
+
+//==================================================== git stash
+
+# GIT STASH
+
+
+# stash some changes
+$ git stash save -u "msg"  # the -u keeps untracked files! awesome! (same as --include-untracked)
+
+# now you should have a clean state
+
+
+# reapply saved stash
+git stash apply stash@{0}
+
+
+# now drop the stash (it is NOT automatically deleted)
+$ git stash drop stash@{0}
+
+
+$ git stash list  # see all entries
 
 
 
-start the app:
+# it seems you cant see the untracked files content 
+# (but dont worry, you will be able to restore them!)
 
-$ cd /c/Users/prg/Desktop/BRIAN/PROJECTS/ANGULAR_4/second_app/blog
-$ mongod
-$mongo
-$ nodemon app.js
-$  ng build --prod --watch
+$ git stash show stash@{0}
+
+
+#==================================================== THUNK (NOT WORKING YET)
+
+npm i redux-thunk
+
+import thunk from 'redux-thunk';
+
+// add thunk to list of middlewares
+
+
+function incrementIfOdd() {
+  return (dispatch, getState) => {
+    const { counter } = getState();
+
+    if (counter % 2 === 0) {
+      return;
+    }
+
+    dispatch(increment());
+  };
+}

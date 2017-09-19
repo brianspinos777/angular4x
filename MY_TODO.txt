@@ -1,3 +1,6 @@
+================================ TODO:
+- add CRUD for a collection: 'animals'
 - add state to localStorage
-- use redux to fetch data from the api
 - use redis for caching
+================================ DONE:
+- use redux to fetch data from the api with thunk-middleware

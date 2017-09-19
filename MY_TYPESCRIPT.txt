@@ -19,9 +19,7 @@ let x70:undefined = undefined;
 let x80:Array<number> = [1,2,3]
 let x90:object  = {foo:1, bar:2}
 
-//---------------------------------------------------------------------
-
-// function return type
+//--------------------------------------------------------------------- function return type
 
 class Greeting { 
    greet():number { 
@@ -29,11 +27,7 @@ class Greeting {
    } 
 } 
 
-
-
-//---------------------------------------------------------------------
-
-// function parameter type
+//--------------------------------------------------------------------- function parameter type
 
 class Person { 
     getWeight<T>(weight:T) { 
@@ -44,41 +38,51 @@ class Person {
 let brian = new Person();
 let x = 123.45
 brian.getWeight<number>(x); // expect x as a number
-//---------------------------------------------------------------------
+//--------------------------------------------------------------------- type assertion
 
-// type casting?
-
-let x = <number>'123';
-//---------------------------------------------------------------------
-
+// This is NOT type casting, because we cannot change the type, only assert it!
+let x = 123;
+let y = <number>x;
 
 
-class Person { 
-    static population = 1000000
-}
+// These are the same:
 
-Person.population // 1000000
+let square = <Square>{};
+let square = {} as Square;
 
-//---------------------------------------------------------------------
+var msg:any = 'hello';
+var msg2 = <string> msg; // msg2 is now of type "string"
 
-// Array Destructuring
+//--------------------------------------------------------------------- static fields and functions
+
+class Person {  
+   static num:number; 
+   
+   static funcB():void { 
+      console.log("The value of num is"+ Person.num) 
+   } 
+} 
+
+Person.num = 12     // initialize the static variable 
+Person.funcB()      // invoke the static method
+
+//--------------------------------------------------------------------- Array destructuring
 
 var arr:number[] = [12,13] 
 var[x,y] = arr 
 console.log(x) 
 console.log(y)
-//---------------------------------------------------------------------
+
+//--------------------------------------------------------------------- tuples
 
 var mytuple = [10,"Hello"];
-//---------------------------------------------------------------------
 
-//union
+//--------------------------------------------------------------------- union
 
 let x1:number | string = "abc"
 let x2:number | string = 123
-//---------------------------------------------------------------------
 
-// interface
+//--------------------------------------------------------------------- interfaces
 
 interface IPerson { 
    firstName:string, 
@@ -108,9 +112,7 @@ function area(shape : Shape) {
 console.log( area( {name: "rectangle", width: 30, height: 15} ) );
 console.log( area( {name: "square", width: 30, height: 30, color: "blue"} ) );
 
-//---------------------------------------------------------------------
-
-// interfaces and classes
+//--------------------------------------------------------------------- interfaces and classes
 
 interface ILoan { 
    interest:number 
@@ -130,9 +132,7 @@ var obj = new AgriLoan(10,1)
 console.log("Interest is : "+obj.interest+" Rebate is : "+obj.rebate )
 
 
-//---------------------------------------------------------------------
-
-//class 
+//--------------------------------------------------------------------- classes
 
 class Car { 
    engine:string; 
@@ -146,9 +146,7 @@ class Car {
    } 
 }
 
-//---------------------------------------------------------------------
-
-// Inheritance 
+//--------------------------------------------------------------------- Inheritance
 
 class Shape { 
    Area:number 
@@ -167,46 +165,23 @@ class Circle extends Shape {
 var obj = new Circle(123); 
 obj.disp()
 
-//---------------------------------------------------------------------
-
-// static 
-
-class StaticMem {  
-   static num:number; 
-   
-   static disp():void { 
-      console.log("The value of num is"+ StaticMem.num) 
-   } 
-} 
-
-StaticMem.num = 12     // initialize the static variable 
-StaticMem.disp()      // invoke the static method
 
 
-//---------------------------------------------------------------------
-
-// namespace
+//--------------------------------------------------------------------- namespace
 
 namespace MyNamespace { 
     class Person { 
         draw() { return 1}; 
    }
 } 
-//---------------------------------------------------------------------
-//Type Assertion or casting.
 
-//These are the same:
 
-let square = <Square>{};
-let square = {} as Square;
 
-var foo: any = '123';
-var bar = <string> foo; // bar is now of type "string"
-
-//---------------------------------------------------------------------
+//--------------------------------------------------------------------- spread operator
 
 let copy = { ...original };
 let merged = { ...foo, ...bar, ...baz };
+
 //--------------------------------------------------------------------- generics
 
 class Greeter<T> {
@@ -231,31 +206,19 @@ let msg = `Hello ${user}`
 
 //--------------------------------------------------------------------- imports
 
-import * as types from '../constants'
+import * as types from '../someFile'
+import { ADD_TODO, DELETE_TODO } from '../someFile'  
+import Foo from '../someFile'  
 
 export function addTodo(text) {  
   return { type: types.ADD_TODO, text }
 }
 
-
-import { ADD_TODO, DELETE_TODO } from '../constants'  
-//---------------------------------------------------------------------
-
-
-//---------------------------------------------------------------------
+export const foo = function add(a, b){
+  return a + b;
+}
 
 
 //---------------------------------------------------------------------
-
-
 //---------------------------------------------------------------------
-
-
 //---------------------------------------------------------------------
-
-
-//---------------------------------------------------------------------
-
-
-//---------------------------------------------------------------------
-
