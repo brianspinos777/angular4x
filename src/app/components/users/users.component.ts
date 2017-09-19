@@ -140,15 +140,16 @@ export class UsersComponent implements OnInit {
         });
     }
 
+    // Using Thunk middleware!
     useReduxWithHttp(){
         this.ngRedux.dispatch<any>((dispatch) => {
-            dispatch({ type: 'FOO_PENDING', payload: 'p' });
+            dispatch({type: 'FOO_PENDING', payload: 'p'});
 
             this.http.get(this.apiUrl + "checkpass")
             .map(res => res.json())
             .subscribe(
                 res => {
-                    console.log(res)
+                    // console.log(res)
                     dispatch({
                         type: 'FOO_FULFILLED',
                         payload: res
