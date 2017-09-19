@@ -15,7 +15,9 @@ import { AuthGuard } from './guards/auth.guard';
 //========================================================= REDUX
 import { NgRedux, NgReduxModule } from 'ng2-redux';
 import { combineReducers } from 'redux';
-import thunk from 'redux-thunk';
+import thunkMiddleware from 'redux-thunk' // for dispatching functions! (dispatch)=>{...}
+// import thunk from 'redux-thunk';
+// import promiseMiddleware from 'redux-promise-middleware';
 
 
 // Logger with default options 
@@ -99,7 +101,15 @@ function counterReducer(state = INITIAL_STATE.counter, action){
 function myHttpReducer(state = INITIAL_STATE.httpResults, action){
     switch (action.type){
         case 'GET_FOO':
-            return state.concat(['111'])
+            // return state.concat(['111'])
+            return state.concat(action.payload)
+        case 'FOO_PENDING':
+            return state.concat(action.payload)
+        case 'FOO_FULFILLED':
+            return state.concat(action.payload)
+        case 'FOO_REJECTED':
+            return state.concat(action.payload)
+
         default:
             return state
     }
@@ -165,7 +175,7 @@ const appRoutes:Routes = [
 export class AppModule {
     //========================================================= REDUX
     constructor(ngRedux: NgRedux<IAppState>){
-        let middlewares = [logger, thunk];
+        let middlewares = [logger, thunkMiddleware];
         let enhancers = [];
         ngRedux.configureStore(
             rootReducer, 

@@ -78,7 +78,9 @@
             <!-- content -->
             <hr>
             <button class="btn btn-sm btn-default" (click)="useReduxWithHttp()">useReduxWithHttp</button>
-            <p>httpResults:</p>
+            <p>httpResults: {{httpResults | async}}</p>
+
+            <p>---</p>
             <!-- The async pipe gets the latest value of an Observable variable! -->
             <p *ngFor="let x of httpResults | async">{{ x }}</p> 
         </div>

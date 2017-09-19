@@ -1,4 +1,4 @@
-# Typescript
+// Typescript
 
 // Each line of instruction is called a statement. Semicolons are optional in TypeScript.
 
@@ -8,16 +8,16 @@ var message:string = "Hello World"  // string type
 
 //--------------------------------------------------------------------- types:
 
-let x1:number = 123;
-let x2:string = "aaa";
-let x3:void = null;
-let x3:void = undefined;
-let x4:boolean = true;
-let x5:any = 123;
-let x6:null = null;
-let x7:undefined = undefined;
-let x8:Array<number> = [1,2,3]
-let x9:object  = {foo:1, bar:2}
+let x10:number = 123;
+let x20:string = "aaa";
+let x30:void = null;
+let x100:void = undefined;
+let x40:boolean = true;
+let x50:any = 123;
+let x60:null = null;
+let x70:undefined = undefined;
+let x80:Array<number> = [1,2,3]
+let x90:object  = {foo:1, bar:2}
 
 //---------------------------------------------------------------------
 
@@ -108,6 +108,27 @@ function area(shape : Shape) {
 console.log( area( {name: "rectangle", width: 30, height: 15} ) );
 console.log( area( {name: "square", width: 30, height: 30, color: "blue"} ) );
 
+//---------------------------------------------------------------------
+
+// interfaces and classes
+
+interface ILoan { 
+   interest:number 
+} 
+
+class AgriLoan implements ILoan { 
+   interest:number 
+   rebate:number 
+   
+   constructor(interest:number,rebate:number) { 
+      this.interest = interest 
+      this.rebate = rebate 
+   } 
+} 
+
+var obj = new AgriLoan(10,1) 
+console.log("Interest is : "+obj.interest+" Rebate is : "+obj.rebate )
+
 
 //---------------------------------------------------------------------
 
@@ -160,26 +181,7 @@ class StaticMem {
 
 StaticMem.num = 12     // initialize the static variable 
 StaticMem.disp()      // invoke the static method
-//---------------------------------------------------------------------
 
-// interfaces and classes
-
-interface ILoan { 
-   interest:number 
-} 
-
-class AgriLoan implements ILoan { 
-   interest:number 
-   rebate:number 
-   
-   constructor(interest:number,rebate:number) { 
-      this.interest = interest 
-      this.rebate = rebate 
-   } 
-} 
-
-var obj = new AgriLoan(10,1) 
-console.log("Interest is : "+obj.interest+" Rebate is : "+obj.rebate )
 
 //---------------------------------------------------------------------
 
@@ -227,9 +229,16 @@ let user = "Brian"
 let msg = `Hello ${user}`
 
 
-//---------------------------------------------------------------------
+//--------------------------------------------------------------------- imports
+
+import * as types from '../constants'
+
+export function addTodo(text) {  
+  return { type: types.ADD_TODO, text }
+}
 
 
+import { ADD_TODO, DELETE_TODO } from '../constants'  
 //---------------------------------------------------------------------
 
 

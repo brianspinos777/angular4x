@@ -141,7 +141,28 @@ export class UsersComponent implements OnInit {
     }
 
     useReduxWithHttp(){
-        this.ngRedux.dispatch({type: 'GET_FOO'});
+        this.ngRedux.dispatch<any>((dispatch) => {
+            dispatch({ type: 'FOO_PENDING', payload: 'p' });
+
+            this.http.get(this.apiUrl + "checkpass")
+            .map(res => res.json())
+            .subscribe(
+                res => {
+                    console.log(res)
+                    dispatch({
+                        type: 'FOO_FULFILLED',
+                        payload: res
+                    });
+                },
+                error =>{
+                    // console.log(error)
+                    dispatch({
+                        type: 'FOO_REJECTED', 
+                        payload: 'r'
+                    });
+                }
+            )
+        });
     }
 
     increment_1() {
