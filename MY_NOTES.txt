@@ -7,3 +7,26 @@
 
 - actions: are functions that use .dispatch in them ???
     -> {type: ADD_TODO, payload: 'wash dishes'}
+
+- container components: smart components that know about redux
+- dumb components: 
+    -> are presentational components, they are concern with how things look.
+    -> they should be highly configurable/reusable
+    -> they do NOT dispatch actions
+
+
+async actions (http requests):
+    -> 
+
+
+
+
+
+
+start the app:
+
+$ cd /c/Users/prg/Desktop/BRIAN/PROJECTS/ANGULAR_4/second_app/blog
+$ mongod
+$mongo
+$ nodemon app.js
+$  ng build --prod --watch

@@ -39,6 +39,7 @@ export class UsersComponent implements OnInit {
     myVarE:any = ""
     myVarF:any = ""
     myVarG:any = ""
+    myVarH:any = ""
 
     foobar:Array<number> = [1,2,3];
     foobar2:number[] = [1,2,3];
