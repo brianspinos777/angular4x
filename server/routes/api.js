@@ -95,13 +95,16 @@ router.route('/checkpass')
     // show - show single item                        GET /items/1  - view
     // new - show form for new item                   GET /items/new  - view
     // edit - show form for editing existing item     GET /items/1/edit  - view
-    // create - create item                           POST /items
-    // update - update item                           PUT /items/1
-    // destroy - delete item                          DELETE /items/1
+    // create - create item                           POST /items - form
+    // update - update item                           PUT /items/1 - form
+    // destroy - delete item                          DELETE /items/1 - form
 
     router.route('/items')
     .get((req, resp) => {
         console.log("--------------------- GET /api/items:");
+
+        console.log("PARAMS", req.params)
+        console.log("BODY", req.body)
 
         const client = new Client({
             connectionString: connectionString,
@@ -120,12 +123,46 @@ router.route('/checkpass')
             client.end()
         })
     })
+    .post((req, resp) => {
+        console.log("--------------------- POST /api/items:");
+
+        // var id = req.body.id;
+        var text = req.body.text;
+        var is_done = req.body.is_done;
+
+        console.log("PARAMS", req.params)
+        console.log("BODY", req.body)
+
+        const client = new Client({
+            connectionString: connectionString,
+        })
+        client.connect()
+
+        client.query(
+            'INSERT INTO items(text, is_done) values($1, $2)', 
+            [text, is_done], 
+            (err, res) => {
+
+            if(err){
+                //error
+                console.log("ERROR:", err)
+                resp.json({data: null, success: false});
+            }else{
+                // console.log(res.rows)
+                resp.json({data: res.rows, success: true});
+            }
+            client.end()
+        })
+    })
 
     router.route('/items/:id')
     .get((req, resp) => {
         console.log("--------------------- GET /api/items/:id:");
 
         var id = req.params.id;
+
+        console.log("PARAMS", req.params)
+        console.log("BODY", req.body)
 
         const client = new Client({
             connectionString: connectionString,
@@ -144,37 +181,50 @@ router.route('/checkpass')
             client.end()
         })
     })
-    .put((req, resp) => {
-        console.log("--------------------- PUT /api/items/:id:");
-    })
-    .delete((req, resp) => {
-        console.log("--------------------- DELETE /api/items/:id:");
-    })
-
-    router.route('/items/new')
-    .get((req, resp) => {
-        //...
-    })
-
-    router.route('/items/:id/edit')
-    .get((req, resp) => {
-        //...
-    })
-
-
-    // create
-    router.route('/itemx')
-    .get((req, resp) => {
-        console.log("--------------------- GET /api/items/:id:");
-
+    .put((req, resp) => { // I still need to test this endpoint
+        console.log("--------------------- PUT /api/items/:id:"); // update item
         var id = req.params.id;
+        var text = req.body.text;
+        var is_done = req.body.is_done;
+
+        console.log("PARAMS", req.params)
+        console.log("BODY", req.body)
 
         const client = new Client({
             connectionString: connectionString,
         })
         client.connect()
 
-        client.query('INSERT INTO items(text, is_done) values($1, $2)', ["aaa", false], (err, res) => {
+        client.query(
+            `UPDATE items
+             SET text = $1, is_done = $2
+             WHERE id = $3;`, 
+            [text, is_done, id], (err, res) => {
+            if(err){
+                //error
+                console.log("ERROR:", err)
+                resp.json({data: null, success: false});
+            }else{
+                // console.log(res.rows)
+                resp.json({data: res.rows, success: true});
+            }
+            client.end()
+        })
+    })
+    .delete((req, resp) => {
+        console.log("--------------------- DELETE /api/items/:id:"); // delete item
+
+        var id = req.params.id;
+
+        console.log("PARAMS", req.params)
+        console.log("BODY", req.body)
+
+        const client = new Client({
+            connectionString: connectionString,
+        })
+        client.connect()
+
+        client.query("DELETE FROM items WHERE id = $1", [id], (err, res) => {
             if(err){
                 //error
                 console.log("ERROR:", err)
@@ -187,7 +237,18 @@ router.route('/checkpass')
         })
     })
 
+    // // THIS IS JUST FOR THE FRONT END
+    // router.route('/items/new')
+    // .get((req, resp) => {
+    //     //...
+    // })
 
+
+    // // THIS IS JUST FOR THE FRONT END
+    // router.route('/items/:id/edit')
+    // .get((req, resp) => {
+    //     //...
+    // })
 
 
     //=======================================================

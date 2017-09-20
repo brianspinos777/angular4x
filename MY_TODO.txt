@@ -5,5 +5,6 @@
 - add state to localStorage
 - use redis for caching
 - add api version: /api/v1/items
+- use an ORM
 ================================ DONE:
 - use redux to fetch data from the api with thunk-middleware
