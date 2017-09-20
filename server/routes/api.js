@@ -89,8 +89,6 @@ router.route('/checkpass')
       connectionString: connectionString,
     })
 
- 
-
     // index - show list of items                     GET /items  - view
     // show - show single item                        GET /items/1  - view
     // new - show form for new item                   GET /items/new  - view
@@ -102,7 +100,6 @@ router.route('/checkpass')
     router.route('/items')
     .get((req, resp) => {
         console.log("--------------------- GET /api/items:");
-
         console.log("PARAMS", req.params)
         console.log("BODY", req.body)
 
@@ -115,23 +112,22 @@ router.route('/checkpass')
             if(err){
                 //error
                 console.log("ERROR:", err)
-                resp.json({data: null, success: false});
+                resp.json({data: null, success: false, errors: []});
             }else{
                 // console.log(res.rows)
-                resp.json({data: res.rows, success: true});
+                resp.json({data: res.rows, success: true, errors: []});
             }
             client.end()
         })
     })
     .post((req, resp) => {
         console.log("--------------------- POST /api/items:");
+        console.log("PARAMS", req.params)
+        console.log("BODY", req.body)
 
         // var id = req.body.id;
         var text = req.body.text;
         var is_done = req.body.is_done;
-
-        console.log("PARAMS", req.params)
-        console.log("BODY", req.body)
 
         const client = new Client({
             connectionString: connectionString,
@@ -142,27 +138,26 @@ router.route('/checkpass')
             'INSERT INTO items(text, is_done) values($1, $2)', 
             [text, is_done], 
             (err, res) => {
-
-            if(err){
-                //error
-                console.log("ERROR:", err)
-                resp.json({data: null, success: false});
-            }else{
-                // console.log(res.rows)
-                resp.json({data: res.rows, success: true});
+                if(err){
+                    //error
+                    console.log("ERROR:", err)
+                    resp.json({data: null, success: false, errors: []});
+                }else{
+                    // console.log(res.rows)
+                    resp.json({data: res.rows, success: true, errors: []});
+                }
+                client.end()
             }
-            client.end()
-        })
+        )
     })
 
     router.route('/items/:id')
     .get((req, resp) => {
         console.log("--------------------- GET /api/items/:id:");
-
-        var id = req.params.id;
-
         console.log("PARAMS", req.params)
         console.log("BODY", req.body)
+
+        var id = req.params.id;
 
         const client = new Client({
             connectionString: connectionString,
@@ -173,22 +168,22 @@ router.route('/checkpass')
             if(err){
                 //error
                 console.log("ERROR:", err)
-                resp.json({data: null, success: false});
+                resp.json({data: null, success: false, errors: []});
             }else{
                 // console.log(res.rows)
-                resp.json({data: res.rows, success: true});
+                resp.json({data: res.rows, success: true, errors: []});
             }
             client.end()
         })
     })
-    .put((req, resp) => { // I still need to test this endpoint
+    .put((req, resp) => {
         console.log("--------------------- PUT /api/items/:id:"); // update item
+        console.log("PARAMS", req.params)
+        console.log("BODY", req.body)
+
         var id = req.params.id;
         var text = req.body.text;
         var is_done = req.body.is_done;
-
-        console.log("PARAMS", req.params)
-        console.log("BODY", req.body)
 
         const client = new Client({
             connectionString: connectionString,
@@ -196,45 +191,51 @@ router.route('/checkpass')
         client.connect()
 
         client.query(
-            `UPDATE items
-             SET text = $1, is_done = $2
+            `UPDATE items SET 
+                text = $1, 
+                is_done = $2
              WHERE id = $3;`, 
-            [text, is_done, id], (err, res) => {
-            if(err){
-                //error
-                console.log("ERROR:", err)
-                resp.json({data: null, success: false});
-            }else{
-                // console.log(res.rows)
-                resp.json({data: res.rows, success: true});
+            [text, is_done, id], 
+            (err, res) => {
+                if(err){
+                    //error
+                    console.log("ERROR:", err)
+                    resp.json({data: null, success: false, errors: []});
+                }else{
+                    // console.log(res.rows)
+                    resp.json({data: null, success: true, errors: []});
+                }
+                client.end()
             }
-            client.end()
-        })
+        )
     })
     .delete((req, resp) => {
         console.log("--------------------- DELETE /api/items/:id:"); // delete item
-
-        var id = req.params.id;
-
         console.log("PARAMS", req.params)
         console.log("BODY", req.body)
+
+        var id = req.params.id;
 
         const client = new Client({
             connectionString: connectionString,
         })
         client.connect()
 
-        client.query("DELETE FROM items WHERE id = $1", [id], (err, res) => {
-            if(err){
-                //error
-                console.log("ERROR:", err)
-                resp.json({data: null, success: false});
-            }else{
-                // console.log(res.rows)
-                resp.json({data: res.rows, success: true});
+        client.query(
+            "DELETE FROM items WHERE id = $1", 
+            [id], 
+            (err, res) => {
+                if(err){
+                    //error
+                    console.log("ERROR:", err)
+                    resp.json({data: null, success: false, errors: []});
+                }else{
+                    // console.log(res.rows)
+                    resp.json({data: res.rows, success: true, errors: []});
+                }
+                client.end()
             }
-            client.end()
-        })
+        )
     })
 
     // // THIS IS JUST FOR THE FRONT END
@@ -253,10 +254,5 @@ router.route('/checkpass')
 
     //=======================================================
 
-
-
-
-
-        
 
 module.exports = router;

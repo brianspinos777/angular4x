@@ -1,7 +1,42 @@
 <div class="container-fluid">
     <div class="row">
+
+        <div class="col-md-12">
+            <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a>
+            <a routerLink="/users" routerLinkActive="active">Users</a>
+            <a routerLink="/groups" routerLinkActive="active">Groups</a>
+            <a routerLink="/items" routerLinkActive="active">Items</a>
+        </div>
+
+
         <div class="col-md-12">
             <h3>Show Item</h3>
         </div>
+
+        <div class="col-md-12">
+            <!-- <p id="notice">{{ notice }}</p> -->
+            <span *ngIf="item">
+                <p>
+                  <strong>Id:</strong>
+                  {{ item.id }}
+                </p>
+
+                <p>
+                  <strong>Text:</strong>
+                  {{ item.text }}
+                </p>
+
+                <p>
+                  <strong>Is Done:</strong>
+                  {{ item.is_done }}
+                </p>
+
+                <a [routerLink]="['/items', item.id, 'edit']" routerLinkActive="active">Edit</a> |
+                <a [routerLink]="['/items']" routerLinkActive="active">Back</a>
+            </span>
+        </div>
     </div>
 </div>
+
+
+            

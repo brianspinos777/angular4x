@@ -4,6 +4,9 @@ import { FormsModule }    from '@angular/forms';
 import { HttpModule }    from '@angular/http';
 import { Routes, RouterModule }   from '@angular/router';
 
+// Services
+import { ItemService } from './services/items/item.service';
+
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
@@ -55,7 +58,8 @@ import { appRoutes } from './routes/appRoutes'
         NgReduxModule  //========================================================= REDUX
     ],
     providers: [
-        AuthGuard
+        AuthGuard,
+        ItemService
     ],
     bootstrap: [AppComponent]
 })

@@ -7,5 +7,6 @@
 - add api version: /api/v1/items
 - use an ORM
 - add CRUD forms
+- add links for CRUD
 ================================ DONE:
 - use redux to fetch data from the api with thunk-middleware

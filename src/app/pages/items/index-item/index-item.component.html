@@ -1,7 +1,48 @@
 <div class="container-fluid">
     <div class="row">
+
+        <div class="col-md-12">
+            <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a>
+            <a routerLink="/users" routerLinkActive="active">Users</a>
+            <a routerLink="/groups" routerLinkActive="active">Groups</a>
+            <a routerLink="/items" routerLinkActive="active">Items</a>
+        </div>
+
+
         <div class="col-md-12">
             <h3>Item Index</h3>
+            <hr>
+        </div>
+
+        <div class="col-md-12">
+            <table>
+              <thead>
+                <tr>
+                  <th>id</th>
+                  <th>text</th>
+                  <th>is_done</th>
+                  <th colspan="3"></th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr *ngFor="let item of items">
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.text }}</td>
+                    <td>{{ item.is_done }}</td>
+                    <td><a [routerLink]="['/items', item.id]" routerLinkActive="active">Show</a></td> |
+                    <td><a [routerLink]="['/items', item.id, 'edit']" routerLinkActive="active">Edit</a></td> |
+                    <!-- <td>link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' }</td> -->
+                    <td><a [routerLink]="['/items', item.id, 'edit']" routerLinkActive="active">Destroy</a></td>
+                </tr>
+              </tbody>
+            </table>
+
+            <br>
+
+            <!-- <p> link_to 'New Comment', new_comment_path </p> -->
         </div>
     </div>
 </div>
+
+

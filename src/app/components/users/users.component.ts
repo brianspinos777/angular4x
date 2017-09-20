@@ -4,20 +4,9 @@ import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { environment } from '../../../environments/environment'; // for ENV
 import { Observable } from 'rxjs/Observable';
+import { INITIAL_STATE, IAppState } from '../../redux/app.state'
+import { NgRedux, select } from 'ng2-redux';  //========================= REDUX
 
-
-//========================================================= REDUX
-import { NgRedux, select } from 'ng2-redux';
-
-interface IAppState {
-    counter: number;
-    users: object[];
-    groups: object[];
-    todos: object[];
-    httpResults: string[];
-};
-
-//=========================================================
 
 @Component({
     selector: 'app-users',

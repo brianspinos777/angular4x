@@ -2,3 +2,4 @@
 - MongoDB
 - Redux
 - Thunk middleware
+- custom bootstrap css
