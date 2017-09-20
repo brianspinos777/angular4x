@@ -1,20 +1,23 @@
 <div class="container-fluid">
     <div class="row">
-
         <div class="col-md-12">
             <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a>
             <a routerLink="/users" routerLinkActive="active">Users</a>
             <a routerLink="/groups" routerLinkActive="active">Groups</a>
             <a routerLink="/items" routerLinkActive="active">Items</a>
         </div>
+    </div>
 
-
+    <div class="row">
         <div class="col-md-12">
             <h3>Item Index</h3>
             <hr>
         </div>
+    </div>
 
-        <div class="col-md-12">
+    <div class="row">
+        <div class="col-md-6">
+            <!-- content -->
             <table>
               <thead>
                 <tr>
@@ -37,12 +40,19 @@
                 </tr>
               </tbody>
             </table>
-
-            <br>
-
-            <!-- <p> link_to 'New Comment', new_comment_path </p> -->
+        </div>
+        <div class="col-md-6">
+            <!-- content -->
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <!-- content -->
+            <a [routerLink]="['/items', 'new']" routerLinkActive="active">New Item</a>
+        </div>
+    </div>
+
 </div>
 
 

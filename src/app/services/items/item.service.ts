@@ -21,10 +21,7 @@ export class ItemService {
 
     // usage: this.itemService.save(item).subscribe((res)=>{...})
     save(item){
-        return this.http.post(this.apiUrl + 'items', {
-            text: 'new todo here',
-            is_done: false
-        })
+        return this.http.post(this.apiUrl + 'items', item)
         .map(res => res.json())
         // .subscribe(res => {
         //     console.log(res)

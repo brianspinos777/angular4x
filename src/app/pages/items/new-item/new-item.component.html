@@ -4,4 +4,45 @@
             <h3>New Item</h3>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <!-- content -->
+            <!-- <p id="notice">{{ notice }}</p> -->
+            <span *ngIf="item">
+                <form (ngSubmit)="saveItem(item)">
+                    <div class="form-group">
+                        <label for="text">Text</label>
+                        <input type="text" 
+                               class="form-control" 
+                               id="text" 
+                               name="text" 
+                               [(ngModel)]="item.text" 
+                               required>
+                    </div>
+
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" 
+                                   id="is_done" 
+                                   name="is_done" 
+                                   [(ngModel)]="item.is_done"> Is Done
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </form>
+            </span>
+        </div>
+        <div class="col-md-6">
+            <!-- content -->
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <!-- content -->
+            <a [routerLink]="['/items']" routerLinkActive="active">Back</a>
+        </div>
+    </div>
 </div>

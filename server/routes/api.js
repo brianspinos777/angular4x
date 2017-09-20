@@ -99,7 +99,7 @@ router.route('/checkpass')
 
     router.route('/items')
     .get((req, resp) => {
-        console.log("--------------------- GET /api/items:");
+        console.log("--------------------- GET /api/items:"); // get a collection
         console.log("PARAMS", req.params)
         console.log("BODY", req.body)
 
@@ -121,7 +121,7 @@ router.route('/checkpass')
         })
     })
     .post((req, resp) => {
-        console.log("--------------------- POST /api/items:");
+        console.log("--------------------- POST /api/items:"); // save item
         console.log("PARAMS", req.params)
         console.log("BODY", req.body)
 
@@ -144,7 +144,7 @@ router.route('/checkpass')
                     resp.json({data: null, success: false, errors: []});
                 }else{
                     // console.log(res.rows)
-                    resp.json({data: res.rows, success: true, errors: []});
+                    resp.json({data: null, success: true, errors: []});
                 }
                 client.end()
             }
