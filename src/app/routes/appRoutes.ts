@@ -6,6 +6,12 @@ import { HomeComponent } from '../components/home/home.component';
 import { UsersComponent } from '../components/users/users.component';
 import { GroupsComponent } from '../components/groups/groups.component';
 
+// Items CRUD
+import { IndexItemComponent } from '../pages/items/index-item/index-item.component';
+import { ShowItemComponent } from '../pages/items/show-item/show-item.component';
+import { NewItemComponent } from '../pages/items/new-item/new-item.component';
+import { EditItemComponent } from '../pages/items/edit-item/edit-item.component'
+
 import { AuthGuard } from '../guards/auth.guard';
 
 
@@ -33,5 +39,29 @@ export const appRoutes:Routes = [
         path: 'groups',
         canActivate: [AuthGuard],
         component: GroupsComponent
+    },
+
+    // Items CRUD
+    
+    {
+        path: 'items',
+        canActivate: [AuthGuard],
+        component: IndexItemComponent
+    },
+    {
+        path: 'items/new',
+        canActivate: [AuthGuard],
+        component: NewItemComponent 
+    },
+    {
+        path: 'items/:id',
+        canActivate: [AuthGuard],
+        component: ShowItemComponent
+    },
+    
+    {
+        path: 'items/:id/edit',
+        canActivate: [AuthGuard],
+        component: EditItemComponent
     },
 ]

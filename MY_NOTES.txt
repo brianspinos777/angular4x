@@ -131,6 +131,11 @@ function incrementIfOdd() {
 
 // Item crud
 
+$ ng g c pages/items/IndexItem
+$ ng g c pages/items/ShowItem
+$ ng g c pages/items/NewItem
+$ ng g c pages/items/EditItem
+
 
 index - show list of items                     GET /items  - view
 show - show single item                        GET /items/1  - view
@@ -148,3 +153,6 @@ destroy - delete item                          DELETE /items/1
     page/items/ShowItemComponent - singe item
     page/items/NewItemComponent - form
     page/items/EditItemComponent - form
+
+
+

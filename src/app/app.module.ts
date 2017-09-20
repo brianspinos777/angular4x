@@ -10,6 +10,13 @@ import { HomeComponent } from './components/home/home.component';
 import { UsersComponent } from './components/users/users.component';
 import { GroupsComponent } from './components/groups/groups.component';
 
+// Items CRUD
+import { IndexItemComponent } from './pages/items/index-item/index-item.component';
+import { ShowItemComponent } from './pages/items/show-item/show-item.component';
+import { NewItemComponent } from './pages/items/new-item/new-item.component';
+import { EditItemComponent } from './pages/items/edit-item/edit-item.component'
+
+
 import { AuthGuard } from './guards/auth.guard';
 
 //========================================================= REDUX
@@ -34,7 +41,11 @@ import { appRoutes } from './routes/appRoutes'
         LoginComponent,
         HomeComponent,
         UsersComponent,
-        GroupsComponent
+        GroupsComponent,
+        IndexItemComponent,
+        ShowItemComponent,
+        NewItemComponent,
+        EditItemComponent
     ],
     imports: [
         BrowserModule,
