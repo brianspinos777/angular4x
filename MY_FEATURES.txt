@@ -1,0 +1,4 @@
+- Postgresql
+- MongoDB
+- Redux
+- Thunk middleware
