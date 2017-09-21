@@ -30,7 +30,9 @@ export class UsersComponent implements OnInit {
     myVarG:any = ""
     myVarH:any = ""
     myVarI:boolean = false
-    myVarJ:string = "HELLO!!!"
+
+    toBeSentToChild:string = " P"
+    toBeSetByChild:string = " C"
 
     foobar:Array<number> = [1,2,3];
     foobar2:number[] = [1,2,3];
@@ -165,8 +167,12 @@ export class UsersComponent implements OnInit {
         this.myVarI = !this.myVarI
     }
 
-    changeMyVarJ(text){
-        this.myVarJ = this.myVarJ + text
+    changeDataSentToChildComponent(text){
+        this.toBeSentToChild += text
+    }
+
+    getDataFromChildComponent(data){
+        this.toBeSetByChild += data
     }
 
 }

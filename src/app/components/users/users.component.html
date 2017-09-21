@@ -123,9 +123,24 @@
         <div class="col-md-4">
             <!-- content -->
             <hr>
-            <p>@Input example:</p>
-            <button class="btn btn-sm btn-default" (click)="changeMyVarJ('foo')">changeMyVarJ</button>
-            <app-my-child [myChildVar]="myVarJ"></app-my-child>
+            <p><strong>@Input</strong> and <strong>@Output</strong> example:</p>
+            <div class="alert alert-info">
+
+                <p><strong>Parent var A</strong> (P -> C using @Input): {{toBeSentToChild}}</p>
+
+                <p><strong>Parent var B</strong>  (C -> P using @Output): {{toBeSetByChild}}</p>
+                
+                <button class="btn btn-sm btn-default" 
+                        (click)="changeDataSentToChildComponent(toBeSentToChild)">
+                    Change data sent to child
+                </button>
+
+                <app-my-child 
+                    [myVarFromParent]="toBeSentToChild" 
+                    (myEvent)="getDataFromChildComponent($event)">
+                </app-my-child>
+            </div>
+
         </div>
     </div>
     <div class="row">

@@ -1,1 +1,12 @@
-<p>myChildVar: {{myChildVar}}</p>
+<br><br>
+<div class="alert alert-success">
+    <h3>MyChildComponent</h3>
+
+    <p><strong>Child var A</strong> (P -> C using @Input): {{myVarFromParent}}</p>
+    <p><strong>Child Var B</strong> (C -> P using @Output): {{toBeSentToParent}}</p>
+
+    <button class="btn btn-sm btn-default" 
+            (click)="sendDataToParentComponent()">
+        Emit data to parent
+    </button>
+</div>

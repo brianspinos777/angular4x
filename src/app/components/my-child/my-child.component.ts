@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-my-child',
@@ -14,16 +14,25 @@ export class MyChildComponent implements OnInit {
 	 *
 	 * Usage:
 	 * <!-- Inside parent component -->
-	 * <app-my-child [myChildVar]="varFromParentComponent"></app-my-child>
+	 * <app-my-child [myVarFromParent]="varFromParentComponent"></app-my-child>
 	 *
 	 *
 	 * <!-- MyChildComponent view: -->
-	 * <p>myChildVar: {{myChildVar}}</p>
+	 * <p>myVarFromParent: {{myVarFromParent}}</p>
 	 */
-	@Input() myChildVar: string
+	@Input() myVarFromParent: string
+
+
+	@Output() myEvent:EventEmitter<string> = new EventEmitter()
+	toBeSentToParent:string = " C"
+    toBeSetByParent:string = "" // = myVarFromParent
 
     constructor(){}
 
     ngOnInit(){}
+
+    sendDataToParentComponent(){
+    	this.myEvent.emit(this.toBeSentToParent)
+    }
 
 }
