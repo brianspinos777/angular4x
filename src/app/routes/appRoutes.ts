@@ -64,4 +64,10 @@ export const appRoutes:Routes = [
         canActivate: [AuthGuard],
         component: EditItemComponent
     },
+
+    // {
+    //     path: '**', // the 'catch al' route!
+    //     canActivate: [AuthGuard],
+    //     component: MyPageNotFoundComponent
+    // },
 ]

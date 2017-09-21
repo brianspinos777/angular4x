@@ -35,7 +35,8 @@ import logger from 'redux-logger' // npm i redux-logger
 import { INITIAL_STATE, IAppState } from './redux/app.state'
 import { rootReducer } from './redux/reducers/rootReducer'
 //=========================================================
-import { appRoutes } from './routes/appRoutes'
+import { appRoutes } from './routes/appRoutes';
+import { MyChildComponent } from './components/my-child/my-child.component'
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { appRoutes } from './routes/appRoutes'
         IndexItemComponent,
         ShowItemComponent,
         NewItemComponent,
-        EditItemComponent
+        EditItemComponent,
+        MyChildComponent
     ],
     imports: [
         BrowserModule,

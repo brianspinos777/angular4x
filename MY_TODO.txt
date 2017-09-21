@@ -8,5 +8,6 @@
 - use an ORM
 - add CRUD forms
 - add links for CRUD
+- add form validation
 ================================ DONE:
 - use redux to fetch data from the api with thunk-middleware
