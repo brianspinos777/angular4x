@@ -29,6 +29,7 @@ export class UsersComponent implements OnInit {
     myVarF:any = ""
     myVarG:any = ""
     myVarH:any = ""
+    myVarI:boolean = false
 
     foobar:Array<number> = [1,2,3];
     foobar2:number[] = [1,2,3];
@@ -157,6 +158,10 @@ export class UsersComponent implements OnInit {
 
     increment_1() {
         this.ngRedux.dispatch({ type: 'INCREMENT' });
+    }
+
+    changeMyVarI(){
+        this.myVarI = !this.myVarI
     }
 
 }

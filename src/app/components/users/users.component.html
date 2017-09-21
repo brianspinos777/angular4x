@@ -96,6 +96,15 @@
         <div class="col-md-4">
             <!-- content -->
             <hr>
+            <p>ng-template example:</p>
+            <button class="btn btn-sm btn-default" (click)="changeMyVarI()">changeMyVarI</button>
+            <div *ngIf="myVarI; then myTemplateA else myTemplateB"></div>
+            <ng-template #myTemplateA>
+                TRUE
+            </ng-template>
+            <ng-template #myTemplateB>
+                FALSE
+            </ng-template>
         </div>
         <div class="col-md-4">
             <!-- content -->

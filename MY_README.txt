@@ -5,3 +5,4 @@ $ mongod
 $ mongo
 $ nodemon app.js  # rs   to restart
 $ ng build --prod --watch
+$ ng build --prod --watch --sourcemap=false --aot=false # for faster compilation while developing only.
