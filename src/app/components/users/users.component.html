@@ -109,6 +109,16 @@
         <div class="col-md-4">
             <!-- content -->
             <hr>
+            <p>ngSwitch example:</p>
+
+            <div [ngSwitch]="'three'"> 
+                <p *ngSwitchCase="'one'">This is one</p>
+                <p *ngSwitchCase="'two'">This is two</p>
+                <p *ngSwitchCase="'three'">This is three</p>
+                <p *ngSwitchDefault>This is four</p>
+            </div>
+
+
         </div>
         <div class="col-md-4">
             <!-- content -->
