@@ -1,6 +1,6 @@
 ====================================================================
 - reducers: are handlers
-    -> reducres must be pure functions (an input should always generate the same output, always)
+    -> reducers must be pure functions (an input should always generate the same output, always)
     -> it deals with a slice of the state
     -> the functions that takes the prev state, an action, and returns a new state
 
@@ -38,8 +38,7 @@ $ npm i bcrypt # for hashing passwords
 $ npm i node-uuid # for ids
 
 //==================================================== What to implement
-@ViewChild @Input @Output
-
+@ViewChild
 child routes
 
 //==================================================== folders:
@@ -66,7 +65,8 @@ child routes
 
 
 //====================================================
-$ ng serve --prod --watch # serves the src folder?
+$ ng serve --prod --watch # serves the dist folder
+$ ng build --prod --watch --sourcemap=false --aot=false # for faster builds on development
 
 
 //==================================================== TEST
@@ -113,17 +113,28 @@ import thunk from 'redux-thunk';
 
 // add thunk to list of middlewares
 
+getUsers(){
+    this.ngRedux.dispatch<any>((dispatch) => {
+        dispatch({type: 'GET_USERS_PENDING', payload: 'Getting users...'});
 
-function incrementIfOdd() {
-  return (dispatch, getState) => {
-    const { counter } = getState();
-
-    if (counter % 2 === 0) {
-      return;
-    }
-
-    dispatch(increment());
-  };
+        this.http.get(this.apiUrl + "checkpass")
+        .map(res => res.json())
+        .subscribe(
+            res => {
+                dispatch({
+                    type: 'GET_USERS_FULFILLED',
+                    payload: res
+                });
+            },
+            error =>{
+                // console.log(error)
+                dispatch({
+                    type: 'GET_USERS_REJECTED', 
+                    payload: 'Error!'
+                });
+            }
+        )
+    });
 }
 
 
@@ -155,6 +166,3 @@ destroy - delete item                          DELETE /items/1
     page/items/ShowItemComponent - singe item
     page/items/NewItemComponent - form
     page/items/EditItemComponent - form
-
-
-

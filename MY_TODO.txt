@@ -1,17 +1,16 @@
 ================================ TODO:
-- add CRUD for a collection: 'Items'
-- create models for data
-- data associations
+- add form validation
 - add state to localStorage
-- use redis for caching
 - add api version: /api/v1/items
 - use an ORM
+- create models for data
+- data associations
+- use redis for caching
 - add CRUD forms
-- add links for CRUD
-- add form validation
-
 - add return types to functions, and arguments
 - create a filter
 - add alerts to give users feedback
 ================================ DONE:
 - use redux to fetch data from the api with thunk-middleware
+- add CRUD for a collection: 'Items'
+- add links for CRUD
