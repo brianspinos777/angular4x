@@ -1,0 +1,212 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- content -->
+            <h3>My Form Example</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <!-- content -->
+            <hr>
+
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Form
+                </div>
+                <div class="panel-body">
+                    <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value, myForm)">
+                        <div class="form-group" 
+                            [class.has-success]="myForm.controls.firstName.valid"
+                            [class.has-error]="!myForm.controls.firstName.valid">
+                            <label for="firstName">firstName</label>
+                            <input type="text" 
+                                   name="firstName"
+                                   class="form-control input-sm"
+                                   id="firstName" 
+                                   placeholder="first name" 
+                                   formControlName="firstName">
+                        </div>
+                        <div class="form-group" 
+                             [class.has-success]="myForm.controls.lastName.valid"
+                             [class.has-error]="!myForm.controls.lastName.valid">
+                            <label for="firstName">lastName</label>
+                            <input type="text" 
+                                   name="lastName"
+                                   class="form-control input-sm"
+                                   id="lastName"  
+                                   placeholder="last name" 
+                                   formControlName="lastName">
+                        </div>
+                        <div class="form-group" 
+                             [class.has-success]="myForm.controls.languages.valid"
+                             [class.has-error]="!myForm.controls.languages.valid">
+                            <label for="languages">languages</label>
+                            <select name="languages" 
+                                    class="form-control input-sm"
+                                    id="languages" 
+                                    formControlName="languages">
+                                <option value="">--Choose--</option>
+                                <option value="javascript">javascript</option>
+                                <option value="ruby">ruby</option>
+                                <option value="PHP">PHP</option>
+                            </select>
+                        </div>
+
+                        <!-- check-box -->
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" id="checkbox_a" value="A"> Choose A
+                            </label>
+                        </div>
+
+                        <!-- check-box -->
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" id="checkbox_b" value="B"> Choose B
+                            </label>
+                        </div>
+
+                        <!-- email -->
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" 
+                                   class="form-control input-sm" 
+                                   id="email" 
+                                   placeholder="Email">
+                        </div>
+
+                        <!-- password -->
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" 
+                                   class="form-control input-sm" 
+                                   id="password" 
+                                   placeholder="Password">
+                        </div>
+
+                        <!-- file -->
+                        <div class="form-group">
+                            <label for="myFile">File</label>
+                            <input type="file" 
+                                   class="form-control input-sm" 
+                                   id="myFile" 
+                                   placeholder="Password">
+                            <p class="help-block">Help text here.</p>
+                        </div>
+
+                        <!-- radio -->
+                        <div class="radio">
+                            <label>
+                                <input type="radio" 
+                                name="myRadioOption" 
+                                id="myRadioOption1" 
+                                value="option1" 
+                                checked>
+                                Option one
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" 
+                                name="myRadioOption" 
+                                id="myRadioOption2" 
+                                value="option2">
+                                Option two
+                            </label>
+                        </div>
+                        <div class="radio disabled">
+                            <label>
+                                <input type="radio" 
+                                name="myRadioOption" 
+                                id="myRadioOption3" 
+                                value="option3" 
+                                disabled>
+                                Option three is disabled
+                            </label>
+                        </div>
+
+                        <!-- datetime -->
+                        <div class="form-group">
+                            <label for="datetime">Datetime</label>
+                            <input type="datetime" 
+                                   class="form-control input-sm" 
+                                   id="datetime" 
+                                   placeholder="Datetime">
+                        </div>
+
+                        <!-- number -->
+                        <div class="form-group">
+                            <label for="number">Number</label>
+                            <input type="number" 
+                                   class="form-control input-sm" 
+                                   id="number" 
+                                   placeholder="Number">
+                        </div>
+
+                        <!-- url -->
+                        <div class="form-group">
+                            <label for="url">URL</label>
+                            <input type="url" 
+                                   class="form-control input-sm" 
+                                   id="url" 
+                                   placeholder="URL">
+                        </div>
+
+                        <!-- time -->
+                        <div class="form-group">
+                            <label for="time">Time</label>
+                            <input type="time" 
+                                   class="form-control input-sm" 
+                                   id="time" 
+                                   placeholder="Time">
+                        </div>
+
+                        <!-- tel -->
+                        <div class="form-group">
+                            <label for="tel">Tel</label>
+                            <input type="tel" 
+                                   class="form-control input-sm" 
+                                   id="tel" 
+                                   placeholder="Tel">
+                        </div>
+
+                        <!-- color -->
+                        <div class="form-group">
+                            <label for="color">Color</label>
+                            <input type="color" 
+                                   class="form-control input-sm" 
+                                   id="color" 
+                                   placeholder="Color">
+                        </div>
+
+                        <!-- textarea -->
+                        <div class="form-group">
+                            <label for="comment">Comment:</label>
+                            <textarea class="form-control input-sm" rows="5" id="comment"></textarea>
+                        </div>
+
+                        <!-- submit -->
+                        <button type="submit" 
+                                class="btn btn-sm btn-primary"
+                                [disabled]="!myForm.valid" >
+                            Submit
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <!-- content -->
+            <hr>
+        </div>
+        <div class="col-md-4">
+            <!-- content -->
+            <hr>
+        </div>
+    </div>
+</div>
+
+
+            

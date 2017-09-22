@@ -1,0 +1,23 @@
+.ng-invalid{
+    // border: 1px solid red;
+}
+
+.ng-valid{
+    // border: 1px solid green;
+}
+
+.ng-pristine{
+    // border: 1px solid blue;
+}
+
+.ng-untouched{
+    // border: 1px solid black;
+}
+
+.ng-dirty{
+    // border: 1px solid yellow;
+}
+
+.ng-touched{
+    // border: 1px solid grey;
+}

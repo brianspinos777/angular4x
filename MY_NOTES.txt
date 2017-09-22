@@ -4,9 +4,16 @@
     -> it deals with a slice of the state
     -> the functions that takes the prev state, an action, and returns a new state
 
+-> actions: actions are plain js objects like this: 
+    -> e.g.: {action: ADD_TODO, payload: 'buy milk'}
 
-- actions: are functions that use .dispatch in them ???
-    -> {type: ADD_TODO, payload: 'wash dishes'}
+-> actions creators : are functions that return an action object
+    -> e.g.: 
+        function addTodo(desc){ 
+            return {type: ADD_TODO, payload: desc}
+        }
+
+        this.ngRedux.dispatch(addTodo('buy milk'))
 
 - container components: smart components that know about redux
 - dumb components: 

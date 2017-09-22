@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule }    from '@angular/forms';
+import { FormsModule, ReactiveFormsModule }    from '@angular/forms';
 import { HttpModule }    from '@angular/http';
 import { Routes, RouterModule }   from '@angular/router';
 
@@ -36,7 +36,8 @@ import { INITIAL_STATE, IAppState } from './redux/app.state'
 import { rootReducer } from './redux/reducers/rootReducer'
 //=========================================================
 import { appRoutes } from './routes/appRoutes';
-import { MyChildComponent } from './components/my-child/my-child.component'
+import { MyChildComponent } from './components/my-child/my-child.component';
+import { MyFormExampleComponent } from './components/my-form-example/my-form-example.component'
 
 
 @NgModule({
@@ -50,12 +51,14 @@ import { MyChildComponent } from './components/my-child/my-child.component'
         ShowItemComponent,
         NewItemComponent,
         EditItemComponent,
-        MyChildComponent
+        MyChildComponent,
+        MyFormExampleComponent
     ],
     imports: [
         BrowserModule,
         FormsModule,
         HttpModule,
+        ReactiveFormsModule,
         RouterModule.forRoot(appRoutes),
         NgReduxModule  //========================================================= REDUX
     ],

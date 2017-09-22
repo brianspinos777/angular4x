@@ -5,6 +5,7 @@ import { LoginComponent } from '../components/login/login.component';
 import { HomeComponent } from '../components/home/home.component';
 import { UsersComponent } from '../components/users/users.component';
 import { GroupsComponent } from '../components/groups/groups.component';
+import { MyFormExampleComponent } from '../components/my-form-example/my-form-example.component';
 
 // Items CRUD
 import { IndexItemComponent } from '../pages/items/index-item/index-item.component';
@@ -39,6 +40,12 @@ export const appRoutes:Routes = [
         path: 'groups',
         canActivate: [AuthGuard],
         component: GroupsComponent
+    },
+
+    {
+        path: 'myformexample',
+        canActivate: [AuthGuard],
+        component: MyFormExampleComponent
     },
 
     // Items CRUD
