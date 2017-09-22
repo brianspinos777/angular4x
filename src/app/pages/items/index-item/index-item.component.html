@@ -33,10 +33,36 @@
                     <td>{{ item.id }}</td>
                     <td>{{ item.text }}</td>
                     <td>{{ item.is_done }}</td>
-                    <td><a [routerLink]="['/items', item.id]" routerLinkActive="active">Show</a></td> |
-                    <td><a [routerLink]="['/items', item.id, 'edit']" routerLinkActive="active">Edit</a></td> |
+                    <!-- <td><a [routerLink]="['/items', item.id]" routerLinkActive="active">Show</a></td> | -->
+                    <!-- <td><a [routerLink]="['/items', item.id, 'edit']" routerLinkActive="active">Edit</a></td> | -->
                     <!-- <td>link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' }</td> -->
-                    <td><a [routerLink]="['/items', item.id, 'edit']" routerLinkActive="active">Destroy</a></td>
+                    <!-- <td><a [routerLink]="['/items', item.id, 'edit']" routerLinkActive="active">Destroy</a></td> -->
+
+
+                    <td>
+                        <button type="button" 
+                                class="btn btn-sm btn-link"
+                                [routerLink]="['/items', item.id]" 
+                                routerLinkActive="active">
+                            Show
+                        </button>
+                    </td>
+                    <td>
+                        <button type="button" 
+                                class="btn btn-sm btn-link"
+                                [routerLink]="['/items', item.id, 'edit']" 
+                                routerLinkActive="active">
+                            Edit
+                        </button>
+                    </td>
+                    <td>
+                        <button type="button" 
+                                class="btn btn-sm btn-link"
+                                [routerLink]="['/items', item.id, 'edit']" 
+                                routerLinkActive="active">
+                            Delete
+                        </button>
+                    </td>
                 </tr>
               </tbody>
             </table>
@@ -46,10 +72,15 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row top-buffer">
         <div class="col-md-12">
             <!-- content -->
-            <a [routerLink]="['/items', 'new']" routerLinkActive="active">New Item</a>
+            <button type="button" 
+                    class="btn btn-sm btn-default"
+                    [routerLink]="['/items', 'new']" 
+                    routerLinkActive="active">
+                New Item
+            </button>
         </div>
     </div>
 

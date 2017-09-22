@@ -30,7 +30,7 @@
                         </label>
                     </div>
 
-                    <button type="submit" class="btn btn-success">Submit</button>
+                    <button type="submit" class="btn btn-sm btn-success">Submit</button>
                 </form>
             </span>
         </div>
@@ -39,10 +39,15 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row top-buffer">
         <div class="col-md-12">
             <!-- content -->
-            <a [routerLink]="['/items']" routerLinkActive="active">Back</a>
+            <button type="button" 
+                    class="btn btn-sm btn-default"
+                    (click)="goBack()"
+                    routerLinkActive="active">
+                Back
+            </button>
         </div>
     </div>
 </div>

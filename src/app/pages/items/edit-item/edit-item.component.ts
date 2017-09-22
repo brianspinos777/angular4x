@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ItemService } from '../../../services/items/item.service';
 import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
     selector: 'app-edit-item',
@@ -14,6 +15,7 @@ export class EditItemComponent implements OnInit {
     constructor(
         private itemService:ItemService,
         private activatedRoute: ActivatedRoute, 
+        private location: Location, 
     ){
         //...
     }
@@ -33,6 +35,10 @@ export class EditItemComponent implements OnInit {
         this.itemService.update(item).subscribe((res)=>{
             console.log(res)
         })
+    }
+
+    goBack(){
+        this.location.back()
     }
 
 }

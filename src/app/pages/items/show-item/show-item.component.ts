@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ItemService } from '../../../services/items/item.service';
 import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-show-item',
@@ -14,6 +15,7 @@ export class ShowItemComponent implements OnInit {
     constructor(
         private itemService:ItemService,
         private activatedRoute: ActivatedRoute, 
+        private location: Location, 
     ){
         //...
     }
@@ -24,6 +26,10 @@ export class ShowItemComponent implements OnInit {
             console.log(res)
             this.item = res.data[0]
         })
+    }
+
+    goBack(){
+        this.location.back()
     }
 
 }
