@@ -55,6 +55,7 @@ export class UsersComponent implements OnInit {
         private ngRedux: NgRedux<IAppState> //======================================== REDUX
     ){
         //...
+        console.log('Hello from constructor')
     }
 
     ngOnInit() {
@@ -173,6 +174,47 @@ export class UsersComponent implements OnInit {
 
     getDataFromChildComponent(data){
         this.toBeSetByChild += data
+    }
+
+
+    //
+    // Component Lifecycle hooks
+    //
+
+    // constructor()
+
+    ngOnChanges(){
+        console.log('Hello from ngOnChanges')
+    }
+
+    // ngOnInit()
+
+    ngDoCheck(){
+        console.log('Hello from ngDoCheck')
+    }
+
+    ngAfterContentInit(){
+        console.log('Hello from ngAfterContentInit')
+    }
+
+    ngAfterContentChecked(){
+        console.log('Hello from ngAfterContentChecked')
+    }
+
+    ngAfterViewInit(){
+        console.log('Hello from ngAfterViewInit')
+    }
+
+    ngAfterViewChecked(){
+        console.log('Hello from ngAfterViewChecked')
+    }
+
+    ngOnDestroy(){
+        console.log('Hello from ngOnDestroy')
+        // Don't forget to unsubscribe()
+        // e.g.: this.subscription.unsubscribe()
+        // the async pipe unsubscribes automatically to avoid potential memory leaks.
+        alert('Bye')
     }
 
 }

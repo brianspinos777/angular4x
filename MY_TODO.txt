@@ -9,5 +9,8 @@
 - add CRUD forms
 - add links for CRUD
 - add form validation
+
+- add return types to functions, and arguments
+- create a filter
 ================================ DONE:
 - use redux to fetch data from the api with thunk-middleware
