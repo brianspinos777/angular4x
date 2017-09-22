@@ -10,7 +10,7 @@ import { Location } from '@angular/common';
 })
 export class NewItemComponent implements OnInit {
 
-    item:any = {
+    item:object = {
         id: null,
         text: "",
         is_done: false

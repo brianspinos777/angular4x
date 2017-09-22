@@ -12,5 +12,6 @@
 
 - add return types to functions, and arguments
 - create a filter
+- add alerts to give users feedback
 ================================ DONE:
 - use redux to fetch data from the api with thunk-middleware

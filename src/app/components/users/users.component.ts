@@ -211,7 +211,7 @@ export class UsersComponent implements OnInit {
 
     ngOnDestroy(){
         console.log('Hello from ngOnDestroy')
-        // Don't forget to unsubscribe()
+        // Use this hook to unsubscribe observables and detach event handlers to avoid memory leaks.
         // e.g.: this.subscription.unsubscribe()
         // the async pipe unsubscribes automatically to avoid potential memory leaks.
         alert('Bye')
