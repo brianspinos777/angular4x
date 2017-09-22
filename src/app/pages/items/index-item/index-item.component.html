@@ -18,86 +18,90 @@
     <div class="row">
         <div class="col-md-6">
             <!-- content -->
-            <table>
-              <thead>
-                <tr>
-                  <th>id</th>
-                  <th>text</th>
-                  <th>is_done</th>
-                  <th colspan="3"></th>
-                </tr>
-              </thead>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Item Index
+                </div>
+                <div class="panel-body">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>id</th>
+                                <th>text</th>
+                                <th>is_done</th>
+                                <th colspan="3"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of items">
+                                <td>{{ item.id }}</td>
+                                <td>{{ item.text }}</td>
+                                <td>{{ item.is_done }}</td>
+                                <!-- <td><a [routerLink]="['/items', item.id]" routerLinkActive="active">Show</a></td> | -->
+                                <!-- <td><a [routerLink]="['/items', item.id, 'edit']" routerLinkActive="active">Edit</a></td> | -->
+                                <!-- <td>link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' }</td> -->
+                                <!-- <td><a [routerLink]="['/items', item.id, 'edit']" routerLinkActive="active">Destroy</a></td> -->
+                                <td>
+                                    <button type="button" 
+                                        class="btn btn-sm btn-link"
+                                        [routerLink]="['/items', item.id]" 
+                                        routerLinkActive="active">
+                                    Show
+                                    </button>
+                                </td>
+                                <td>
+                                    <button type="button" 
+                                        class="btn btn-sm btn-link"
+                                        [routerLink]="['/items', item.id, 'edit']" 
+                                        routerLinkActive="active">
+                                    Edit
+                                    </button>
+                                </td>
+                                <td>
+                                    <button type="button" 
+                                        class="btn btn-sm btn-link"
+                                        [routerLink]="['/items', item.id, 'edit']" 
+                                        routerLinkActive="active">
+                                    Delete
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
 
-              <tbody>
-                <tr *ngFor="let item of items">
-                    <td>{{ item.id }}</td>
-                    <td>{{ item.text }}</td>
-                    <td>{{ item.is_done }}</td>
-                    <!-- <td><a [routerLink]="['/items', item.id]" routerLinkActive="active">Show</a></td> | -->
-                    <!-- <td><a [routerLink]="['/items', item.id, 'edit']" routerLinkActive="active">Edit</a></td> | -->
-                    <!-- <td>link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' }</td> -->
-                    <!-- <td><a [routerLink]="['/items', item.id, 'edit']" routerLinkActive="active">Destroy</a></td> -->
-
-
-                    <td>
-                        <button type="button" 
-                                class="btn btn-sm btn-link"
-                                [routerLink]="['/items', item.id]" 
-                                routerLinkActive="active">
-                            Show
-                        </button>
-                    </td>
-                    <td>
-                        <button type="button" 
-                                class="btn btn-sm btn-link"
-                                [routerLink]="['/items', item.id, 'edit']" 
-                                routerLinkActive="active">
-                            Edit
-                        </button>
-                    </td>
-                    <td>
-                        <button type="button" 
-                                class="btn btn-sm btn-link"
-                                [routerLink]="['/items', item.id, 'edit']" 
-                                routerLinkActive="active">
-                            Delete
-                        </button>
-                    </td>
-                </tr>
-              </tbody>
-            </table>
+                    <!-- pagination -->
+                    <div class="row top-buffer">
+                        <div class="col-md-12">
+                            <!-- content -->
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination">
+                                    <li>
+                                        <a href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <li><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">5</a></li>
+                                    <li>
+                                        <a href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
         </div>
         <div class="col-md-6">
             <!-- content -->
         </div>
     </div>
-
-    <!-- pagination -->
-    <div class="row top-buffer">
-        <div class="col-md-12">
-            <!-- content -->
-            <nav aria-label="Page navigation">
-                <ul class="pagination">
-                    <li>
-                        <a href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li>
-                        <a href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </div>
-
 
     <div class="row top-buffer">
         <div class="col-md-12">

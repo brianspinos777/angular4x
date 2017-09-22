@@ -19,28 +19,38 @@
             <!-- content -->
             <!-- <p id="notice">{{ notice }}</p> -->
             <span *ngIf="item">
-                <form (ngSubmit)="updateItem(item)">
-                    <div class="form-group">
-                        <label for="text">Text</label>
-                        <input type="text" 
-                               class="form-control" 
-                               id="text" 
-                               name="text" 
-                               [(ngModel)]="item.text" 
-                               required>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Edit Item
                     </div>
+                    <div class="panel-body">
+                        <form (ngSubmit)="updateItem(item)">
+                            <div class="form-group">
+                                <label for="text">Text</label>
+                                <input type="text" 
+                                       class="form-control input-sm" 
+                                       id="text" 
+                                       name="text" 
+                                       [(ngModel)]="item.text" 
+                                       required>
+                            </div>
 
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" 
-                                   id="is_done" 
-                                   name="is_done" 
-                                   [(ngModel)]="item.is_done"> Is Done
-                        </label>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" 
+                                           id="is_done" 
+                                           name="is_done" 
+                                           [(ngModel)]="item.is_done"> Is Done
+                                </label>
+                            </div>
+
+                            <!-- submit -->
+                            <button type="submit" class="btn btn-sm btn-success">
+                                Submit
+                            </button>
+                        </form>
                     </div>
-
-                    <button type="submit" class="btn btn-sm btn-success">Submit</button>
-                </form>
+                </div>
             </span>
         </div>
         <div class="col-md-6">
