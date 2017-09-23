@@ -43,5 +43,9 @@ export class MyFormExampleComponent implements OnInit {
         console.log(myForm)
     }
 
+    log(data){
+        console.log(data)
+    }
+
 
 }
