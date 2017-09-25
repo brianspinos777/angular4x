@@ -16,6 +16,10 @@ export class MyFormExampleComponent implements OnInit {
     constructor(){}
 
     ngOnInit(){
+
+        // FormGroup makes it easy to group many inputs and validate the whole form!
+        // Forms built this way are called 'Reactive forms',
+        // and simple forms that are only coded on the view are called 'Template driven forms'
         this.myForm = new FormGroup({
             firstName: new FormControl("", Validators.compose([
                 Validators.required,
@@ -28,6 +32,10 @@ export class MyFormExampleComponent implements OnInit {
                 Validators.minLength(3),
                 Validators.pattern('[\\w\\-\\s\\/]+'),
             ])),
+            checkbox_a: new FormControl("", Validators.compose([])),
+            checkbox_b: new FormControl("", Validators.compose([])),
+            email: new FormControl("", Validators.compose([])),
+            password: new FormControl("", Validators.compose([])),
         })
     }
 
@@ -40,7 +48,7 @@ export class MyFormExampleComponent implements OnInit {
     onSubmit(data, myForm){
         console.log(data) // {firstName: "brian", lastName: "spinos", languages: "PHP"}
 
-        console.log(myForm)
+        console.log(myForm) // FormGroup obj
     }
 
     log(data){

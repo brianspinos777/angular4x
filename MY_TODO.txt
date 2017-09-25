@@ -1,5 +1,6 @@
 ================================ TODO:
 - delete items
+- complete the forms
 - Guard subfolders
 - custom pipes
 - ng-template
@@ -17,8 +18,14 @@
 - add alerts to give users feedback
 - ngClass
 - ngStyle
-- custom directives
+- custom directives // example of use case: massaging input on form
 - ElementRef
+- ngModelGroup // to combine fields into a nested object within the form?
+- ngForm // example: <form #f="ngForm" (ngSubmit)="mySubmit(f)">...</form>
+
+
+  <option value="">--Choose--</option>
+- <option *ngFor="let opt in myOptions" [value]="opt.id">{{ opt.name }}</option>
 ================================ DONE:
 - use redux to fetch data from the api with thunk-middleware
 - add CRUD for a collection: 'Items'

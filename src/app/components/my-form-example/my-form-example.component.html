@@ -57,10 +57,12 @@
                         <!-- check-box -->
                         <div class="checkbox">
                             <label>
-                                <input type="checkbox" 
-                                       id="checkbox_a"
-                                       name="checkbox_a" 
-                                       value="A">
+                                <input 
+                                    type="checkbox" 
+                                    id="checkbox_a"
+                                    formControlName="checkbox_a"
+                                    name="checkbox_a" 
+                                    value="A">
                                     Choose A
                             </label>
                         </div>
@@ -70,6 +72,7 @@
                             <label>
                                 <input type="checkbox" 
                                        id="checkbox_b"
+                                       formControlName="checkbox_b"
                                        name="checkbox_b" 
                                        value="B">
                                     Choose B
@@ -81,7 +84,9 @@
                             <label for="email">Email</label>
                             <input type="email" 
                                    class="form-control input-sm" 
-                                   id="email" 
+                                   id="email"
+                                   formControlName="email"
+                                   name="email"
                                    placeholder="Email">
                         </div>
 
@@ -91,6 +96,8 @@
                             <input type="password" 
                                    class="form-control input-sm" 
                                    id="password" 
+                                   formControlName="password"
+                                   name="password"
                                    placeholder="Password">
                         </div>
 
@@ -218,7 +225,7 @@
                         border: 2px solid red;
                     } -->
                     <div class="form-group">
-                        <label for="middleName">middleName</label>
+                        <label for="middleName">middleName (no numbers allowed)</label>
                         <input 
                             ngModel
                             name="middleName"
@@ -229,7 +236,7 @@
                             type="text"
                             minlength="3" 
                             maxlength="10" 
-                            pattern="foobar"
+                            pattern="[a-zA-Z]+"
                             required>
                         <div 
                             class="alert alert-danger"
