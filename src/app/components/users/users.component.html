@@ -158,6 +158,11 @@
         <div class="col-md-4">
             <!-- content -->
             <hr>
+            <p>*ngFor with index</p>
+
+            <p *ngFor="let x of ['a', 'b', 'c']; index as i">
+                {{i}} - {{x}}
+            </p>
         </div>
         <div class="col-md-4">
             <!-- content -->
