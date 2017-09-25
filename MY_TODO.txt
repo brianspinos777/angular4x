@@ -1,9 +1,13 @@
 ================================ TODO:
+- delete items
+- Guard subfolders
+- @ViewChild
+- add api version: /api/v1/items
+- jwt
 - add form validation
 - add state to localStorage
-- add api version: /api/v1/items
 - use an ORM
-- create models for data
+- create models for data // as services?
 - data associations
 - use redis for caching
 - add CRUD forms
