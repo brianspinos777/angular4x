@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
@@ -215,6 +215,17 @@ export class UsersComponent implements OnInit {
         // e.g.: this.subscription.unsubscribe()
         // the async pipe unsubscribes automatically to avoid potential memory leaks.
         alert('Bye')
+    }
+
+    //
+    //  @ViewChild
+    //
+
+    @ViewChild('myFirstViewChildVar') _myFirstViewChildVar // a reference to a DOM element
+
+    logMyViewChildVar(){
+        let data = this._myFirstViewChildVar.nativeElement
+        alert(data.value)
     }
 
 }
