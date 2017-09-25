@@ -14,6 +14,8 @@
 - add return types to functions, and arguments
 - create a filter
 - add alerts to give users feedback
+- ngClass
+- ngStyle
 ================================ DONE:
 - use redux to fetch data from the api with thunk-middleware
 - add CRUD for a collection: 'Items'
