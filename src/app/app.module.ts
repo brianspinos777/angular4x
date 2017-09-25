@@ -41,7 +41,7 @@ import { MyFormExampleComponent } from './components/my-form-example/my-form-exa
 
 
 @NgModule({
-    declarations: [
+    declarations: [ // COmponents, Pipes, Directives
         AppComponent,
         LoginComponent,
         HomeComponent,

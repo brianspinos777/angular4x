@@ -1,6 +1,7 @@
 ================================ TODO:
 - delete items
 - Guard subfolders
+- custom pipes
 - ng-template
 - add api version: /api/v1/items
 - jwt
@@ -16,6 +17,8 @@
 - add alerts to give users feedback
 - ngClass
 - ngStyle
+- custom directives
+- ElementRef
 ================================ DONE:
 - use redux to fetch data from the api with thunk-middleware
 - add CRUD for a collection: 'Items'

@@ -18,9 +18,9 @@ export class MyChildComponent implements OnInit {
 	 *
 	 *
 	 * <!-- MyChildComponent view: -->
-	 * <p>myVarFromParent: {{myVarFromParent}}</p>
+	 * <p>myVarFromParent: {{_myVarFromParent}}</p>
 	 */
-	@Input() myVarFromParent: string
+	@Input('myVarFromParent') _myVarFromParent: string
 
 
 	@Output() myEvent:EventEmitter<string> = new EventEmitter()
