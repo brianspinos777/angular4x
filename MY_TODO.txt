@@ -1,7 +1,7 @@
 ================================ TODO:
 - delete items
 - Guard subfolders
-- @ViewChild
+- ng-template
 - add api version: /api/v1/items
 - jwt
 - add form validation
@@ -18,3 +18,4 @@
 - use redux to fetch data from the api with thunk-middleware
 - add CRUD for a collection: 'Items'
 - add links for CRUD
+- @ViewChild
