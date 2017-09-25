@@ -228,4 +228,19 @@ export class UsersComponent implements OnInit {
         alert(data.value)
     }
 
+    //
+    // *ngFor with trackBy
+    //
+
+    myCollection:Array<object> = [
+        {id: 1, name: 'Brian'},
+        {id: 2, name: 'Erich'},
+        {id: 3, name: 'Rick'},
+        {id: 4, name: 'Sandy'},
+    ]
+
+    trackCollection(id, obj){
+        return obj ? obj.id : undefined
+    }
+
 }

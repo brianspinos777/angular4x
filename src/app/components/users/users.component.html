@@ -167,6 +167,11 @@
         <div class="col-md-4">
             <!-- content -->
             <hr>
+            <p>*ngFor with trackBy (we need a function...)</p>
+
+            <p *ngFor="let user of myCollection; trackBy: trackCollection">
+                {{user.id}} - {{user.name}}
+            </p>
         </div>
     </div>
     <div class="row">
