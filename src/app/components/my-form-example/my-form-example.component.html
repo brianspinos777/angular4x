@@ -31,7 +31,12 @@
                             <div 
                                 class="alert alert-danger"
                                 *ngIf="myForm.get('firstName').touched && myForm.get('firstName').invalid">
-                                firstName is invalid
+                                <div *ngIf="myForm.get('firstName').errors.required">
+                                    firstName is required
+                                </div>
+                                <div *ngIf="myForm.get('firstName').errors.minlength">
+                                     firstName should have a minimum of {{myForm.get('firstName').errors.minlength.requiredLength}} characters
+                                 </div>
                             </div>
                         </div>
                         <div class="form-group" 
@@ -279,7 +284,7 @@
                             </div>
                             <div 
                                 *ngIf="middleName.errors.minlength">
-                                First name should has a minimum of {{middleName.errors.minlength.requiredLength}} characters
+                                First name should have a minimum of {{middleName.errors.minlength.requiredLength}} characters
                             </div>
                             <div 
                                 *ngIf="middleName.errors.pattern">
