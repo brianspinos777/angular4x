@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule }    from '@angular/forms';
-import { HttpModule }    from '@angular/http';
-import { Routes, RouterModule }   from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+import { Routes, RouterModule } from '@angular/router';
 
 // Services
 import { ItemService } from './services/items/item.service';
@@ -19,7 +19,7 @@ import { ShowItemComponent } from './pages/items/show-item/show-item.component';
 import { NewItemComponent } from './pages/items/new-item/new-item.component';
 import { EditItemComponent } from './pages/items/edit-item/edit-item.component'
 
-
+// Guards
 import { AuthGuard } from './guards/auth.guard';
 
 //========================================================= REDUX
