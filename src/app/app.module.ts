@@ -37,7 +37,8 @@ import { rootReducer } from './redux/reducers/rootReducer'
 //=========================================================
 import { appRoutes } from './routes/appRoutes';
 import { MyChildComponent } from './components/my-child/my-child.component';
-import { MyFormExampleComponent } from './components/my-form-example/my-form-example.component'
+import { MyFormExampleComponent } from './components/my-form-example/my-form-example.component';
+import { NavbarComponent } from './components/navbar/navbar.component'
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { MyFormExampleComponent } from './components/my-form-example/my-form-exa
         NewItemComponent,
         EditItemComponent,
         MyChildComponent,
-        MyFormExampleComponent
+        MyFormExampleComponent,
+        NavbarComponent
     ],
     imports: [
         BrowserModule,
