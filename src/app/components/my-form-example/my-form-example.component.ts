@@ -17,6 +17,12 @@ export class MyFormExampleComponent implements OnInit {
 
     ngOnInit(){
 
+        //================================== ATTENTION =========================
+        //
+        // FormBuilder : there is a way to write less code with 'Reactive forms', use `FormBuilder`
+        //
+        //======================================================================
+
         // FormGroup makes it easy to group many inputs and validate the whole form!
         // Forms built this way are called 'Reactive forms',
         // and simple forms that are only coded on the view are called 'Template driven forms' and they use ngModel on the view

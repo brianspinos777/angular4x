@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { Routes, RouterModule } from '@angular/router';
 
 // Services
+import { AuthService } from './services/auth.service';
 import { ItemService } from './services/items/item.service';
 
 import { AppComponent } from './app.component';
@@ -66,6 +67,7 @@ import { NavbarComponent } from './components/navbar/navbar.component'
     ],
     providers: [
         AuthGuard,
+        AuthService,
         ItemService
     ],
     bootstrap: [AppComponent]

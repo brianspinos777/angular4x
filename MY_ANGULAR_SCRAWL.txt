@@ -84,8 +84,36 @@ this.router.navigate(['/users', 123], {
     }
 }) // Router
 //----------------------------------------------------------------------------------------
+
+/*
+ POST /api/authenticate - return a JWT
+
+save JWT on localStorage
+
+- send the JWT on the headders of our other http requests
+
+- HTTP status code:  http://www.restapitutorial.com/httpstatuscodes.html
+
+this.http.post('/api/auth', JSON.stringify(credentials))
+
+
+<p (click)="authService.logout()">logout</p> // to log out, delete the token from localStorage
+
+- check if the token has expired in the client, if so, destroy the token!
+
+$ npm i angular2-jwt
+import {JwtHelper} from 'angular2-jwt'
+
+
+- for role based views, you can check if the current user has that role
+
+*/
 //----------------------------------------------------------------------------------------
 
+<form #f="ngForm" (ngSubmit)="foo(f.value)">
+    <input type="text" name="email" ngModel>
+    <input type="password" name="password" ngModel>
+</form>
 //----------------------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------------------
