@@ -24,7 +24,7 @@ export class MyFormExampleComponent implements OnInit {
 
             // keys here should match the 'formControlName' attributes in the form, in the view.
 
-            // 'someComplexObject': new FormGroup({}), // FormGroup is nestable!
+            // 'someComplexObject': new FormGroup({}), // FormGroup is nestable! remember to use 'formGroupName' in the template though.
             'firstName': new FormControl("", Validators.compose([
                 Validators.required,
                 Validators.minLength(3),

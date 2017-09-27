@@ -26,6 +26,23 @@
 
   <option value="">--Choose--</option>
 - <option *ngFor="let opt in myOptions" [value]="opt.id">{{ opt.name }}</option>
+- custom form validators
+
+- display message while async function is pending in the form:  <div *ngIf="username.pending">Pending...</div> // .pending is NOT a custom function
+
+- this.myForm.setErrors({myInvalidLogin: true}) // if the login didnt work, we can set errors on the form!
+  <div *ngIf="myForm.errors" class="alert alert-danger">ERRORS!!!</div>   
+
+- FormArray 
+- FormBuilder  (less code!)
+
+- from POST, get the object back in the response?
+- toast notifications
+- what if a user deletes an item, than another user tries to delete the same item? (since the data is cached in the client)
+- catch http errors in the service, with 'rxjs/add/operator/catch' .catch  
+  and 'rxjs/add/observable/throw' Observable.throw()  // Handling Bad Request Errors
+
+- create a DataService as a base class!
 ================================ DONE:
 - use redux to fetch data from the api with thunk-middleware
 - add CRUD for a collection: 'Items'

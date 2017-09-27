@@ -23,45 +23,30 @@ export class ItemService {
     save(item){
         return this.http.post(this.apiUrl + 'items', item)
         .map(res => res.json())
-        // .subscribe(res => {
-        //     console.log(res)
-        // })
     }
 
     // usage: this.itemService.update(item).subscribe((res)=>{...})
     update(item){
         return this.http.put(this.apiUrl + `items/${item.id}`, item)
         .map(res => res.json())
-        // .subscribe(res => {
-        //     console.log(res)
-        // })
     }
 
     // usage: this.itemService.delete(1).subscribe((res)=>{...})
     delete(id){
         return this.http.delete(this.apiUrl + `items/${id}`)
         .map(res => res.json())
-        // .subscribe(res => {
-        //     console.log(res)
-        // })
     }
 
     // usage: this.itemService.find(1).subscribe((res)=>{...})
     find(id){
         return this.http.get(this.apiUrl + `items/${id}`)
         .map(res => res.json())
-        // .subscribe(res => {
-        //     console.log(res)
-        // })
     }
 
     // usage: this.itemService.where({text: 'foo'}).subscribe((res)=>{...})
     where(attributes){
         return this.http.get(this.apiUrl + 'items')
         .map(res => res.json())
-        // .subscribe(res => {
-        //     console.log(res)
-        // })
     }
 
 
@@ -69,9 +54,6 @@ export class ItemService {
     all(){
         return this.http.get(this.apiUrl + "items")
         .map(res => res.json())
-        // .subscribe(res => {
-        //     console.log(res)
-        // })
     }
 
     order(options){

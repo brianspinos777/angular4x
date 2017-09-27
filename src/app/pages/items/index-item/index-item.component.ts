@@ -18,10 +18,16 @@ export class IndexItemComponent implements OnInit {
     }
 
     ngOnInit(){
-        this.itemService.all().subscribe((res)=>{
-            console.log(res)
-            this.items = res.data
-        })
+        this.itemService.all()
+        .subscribe(
+            (res) => {
+                console.log(res)
+                this.items = res.data
+            }, 
+            (error:Response) => {
+                console.log("ERROR:", error)
+            }
+        )
     }
 
 }

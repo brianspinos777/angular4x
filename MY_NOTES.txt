@@ -62,9 +62,7 @@ child routes
     - guards
     - models
     - pages
-    - redux
     - services
-    - pages
     - redux 
         - actions
         - reducers

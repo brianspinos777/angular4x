@@ -1,0 +1,113 @@
+//----------------------------------------------------------------------------------------
+<a routerLink="/posts" routerLinkActive="my-active-css-class">Posts</a>
+
+<a [routerLink]="['/posts', post.id]">Posts</a>
+
+<a [routerLink]="['/posts', post.id]"  [queryParams]="{page: 123}">Posts</a>
+
+
+//----------------------------------------------------------------------------------------
+this.activatedRoute.paramMap // ActivatedRoute
+.subscribe((params) => {
+    console.log(params) // an object representing the URL
+    console.log(+params.get('id')) // /users/123 -->  123 // the `+` is to cast string to integer!
+})
+
+this.activatedRoute.queryParamMap.subscribe()
+
+
+// this.activatedRoute.snapshot.paramMap.get('id') // does not get new values???
+// this.activatedRoute.snapshot.queryParamMap.get('page')  // does not get new values???
+
+//----------------------------------------------------------------------------------------
+
+
+"123" === 123 // false
++"123" === 123 // true
+
+d = new Date() // Tue Sep 26 2017 15:35:19 GMT-0700 (US Mountain Standard Time)
++d             // 1506465319859
+
+
+//----------------------------------------------------------------------------------------
+/*
+Angular - Promise vs Observable
+
+A Promise handles a single event when an async operation completes or fails.
+
+Note: There are Promise libraries out there that support cancellation, but ES6 Promise doesn't so far.
+
+An Observable is like a Stream (in many languages) and allows to pass zero or more events where the callback is called for each event.
+
+Often Observable is preferred over Promise because it provides the features of Promise and more. With Observable it doesn't matter if you want to handle 0, 1, or multiple events. You can utilize the same API in each case.
+
+Observable also has the advantage over Promise to be cancelable
+
+Observable provides operators like map, forEach, reduce, ... similar to an array
+*/
+//----------------------------------------------------------------------------------------
+
+
+//combine observables:
+
+import { Observable } from 'rxjs/Observable'
+import 'rxjs/add/observable/combineLatest'
+import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/switchMap'
+
+
+let obs = Observable.combineLatest([
+    this.activatedRoute.paramMap,
+    this.activatedRoute.queryParamMap
+])
+
+obs.switchMap((combined) => { // not .map, because it does not return what we need
+    let paramMap = combined[0]
+    let queryParamMap = combined[1]
+
+    let id = paramMap.get('id')
+    let page = queryParamMap.get('page')
+
+    return this.myService.getUser()
+})
+.subscribe((user) => {
+    
+})
+
+
+//----------------------------------------------------------------------------------------
+
+// url with query params:
+this.router.navigate(['/users', 123], {
+    queryParams: {
+        page: 123, foo: 'bar'
+    }
+}) // Router
+//----------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------------

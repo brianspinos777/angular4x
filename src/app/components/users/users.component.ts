@@ -61,7 +61,7 @@ export class UsersComponent implements OnInit {
     ngOnInit() {
         console.log("ngOnInit() called");
 
-        // make http calls here to get data for component initialization,
+        // Make http calls here to get data for component initialization,
         // and set class fields from the result of the http call.
         this.http.get(this.apiUrl + "checkpass")
             .map(res => res.json())
@@ -69,6 +69,8 @@ export class UsersComponent implements OnInit {
                 console.log(res)
                 this.initialData = res
             })
+
+        this.seeMyParamMap()
     }
 
     getParams(){
@@ -241,6 +243,18 @@ export class UsersComponent implements OnInit {
 
     trackCollection(id, obj){
         return obj ? obj.id : undefined
+    }
+
+    //
+    //
+    //
+
+    seeMyParamMap(){
+        this.activatedRoute.paramMap // ActivatedRoute
+        .subscribe((params) => {
+            console.log('this.activatedRoute.paramMap', params)
+        })
+
     }
 
 }

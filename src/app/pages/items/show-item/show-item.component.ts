@@ -22,10 +22,16 @@ export class ShowItemComponent implements OnInit {
 
     ngOnInit(){
     	let id = this.activatedRoute.snapshot.params.id
-        this.itemService.find(id).subscribe((res)=>{
-            console.log(res)
-            this.item = res.data[0]
-        })
+        this.itemService.find(id)
+        .subscribe(
+            (res) => {
+                console.log(res)
+                this.item = res.data[0]
+            }, 
+            (error:Response) => {
+                console.log("ERROR:", error)
+            }
+        )
     }
 
     goBack(){

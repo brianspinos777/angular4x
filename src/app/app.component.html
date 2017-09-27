@@ -69,13 +69,20 @@
         <div class="col-md-12">
             <!-- content -->
             <ol class="breadcrumb">
-                <li class="active">Data</li>
-                <li><a href="/">Home</a></li>
-                <li><a href="/groups">groups</a></li>
-                <li><a href="/login">login</a></li>
-                <li><a href="/myformexample">myformexample</a></li>
-                <li><a href="/users">users</a></li>
-                <li><a href="/items">items</a></li>
+
+                <!-- 
+                    ======================= IMPORTANT =======================
+                    Do NOT use href="/someUrl", 
+                    it is important to use the 'routerLink', 
+                    so that the whole JS code is NOT redowloaded! 
+                    =========================================================
+                -->
+                <li><a routerLink="/" routerLinkActive="active">Home</a></li>
+                <li><a routerLink="/groups" routerLinkActive="active">groups</a></li>
+                <li><a routerLink="/login" routerLinkActive="active">login</a></li>
+                <li><a routerLink="/myformexample" routerLinkActive="active">myformexample</a></li>
+                <li><a routerLink="/users" routerLinkActive="active">users</a></li>
+                <li><a routerLink="/items" routerLinkActive="active">items</a></li>
             </ol>
         </div>
     </div>

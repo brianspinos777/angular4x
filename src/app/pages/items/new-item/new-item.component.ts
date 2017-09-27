@@ -25,20 +25,32 @@ export class NewItemComponent implements OnInit {
     }
 
     ngOnInit(){
-        // let id = this.activatedRoute.snapshot.params.id
-        // this.itemService.find(id).subscribe((res)=>{
-        //     console.log(res)
-        //     this.item = res.data[0]
-        // })
+        let id = this.activatedRoute.snapshot.params.id
+        this.itemService.find(id)
+        .subscribe(
+            (res) => {
+                console.log(res)
+                this.item = res.data[0]
+            }, 
+            (error:Response) => {
+                console.log("ERROR:", error)
+            }
+        )
     }
 
     saveItem(item){
         console.log(item)
 
-        let id = this.activatedRoute.snapshot.params.id
-        this.itemService.save(item).subscribe((res)=>{
-            console.log(res)
-        })
+        // let id = this.activatedRoute.snapshot.params.id
+        this.itemService.save(item)
+        .subscribe(
+            (res) => {
+                console.log(res)
+            }, 
+            (error:Response) => {
+                console.log("ERROR:", error)
+            }
+        )
     }
 
     goBack(){
