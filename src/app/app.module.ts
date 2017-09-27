@@ -39,11 +39,12 @@ import { rootReducer } from './redux/reducers/rootReducer'
 import { appRoutes } from './routes/appRoutes';
 import { MyChildComponent } from './components/my-child/my-child.component';
 import { MyFormExampleComponent } from './components/my-form-example/my-form-example.component';
-import { NavbarComponent } from './components/navbar/navbar.component'
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { MyInputFormatterDirective } from './directives/my-input-formatter/my-input-formatter.directive'
 
 
 @NgModule({
-    declarations: [ // COmponents, Pipes, Directives
+    declarations: [ // Components, Pipes, Directives
         AppComponent,
         LoginComponent,
         HomeComponent,
@@ -55,7 +56,8 @@ import { NavbarComponent } from './components/navbar/navbar.component'
         EditItemComponent,
         MyChildComponent,
         MyFormExampleComponent,
-        NavbarComponent
+        NavbarComponent,
+        MyInputFormatterDirective
     ],
     imports: [
         BrowserModule,
