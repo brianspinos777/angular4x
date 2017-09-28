@@ -40,7 +40,8 @@ import { appRoutes } from './routes/appRoutes';
 import { MyChildComponent } from './components/my-child/my-child.component';
 import { MyFormExampleComponent } from './components/my-form-example/my-form-example.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { MyInputFormatterDirective } from './directives/my-input-formatter/my-input-formatter.directive'
+import { MyInputFormatterDirective } from './directives/my-input-formatter/my-input-formatter.directive';
+import { MySummaryPipe } from './pipes/my-summary/my-summary.pipe'
 
 
 @NgModule({
@@ -57,7 +58,8 @@ import { MyInputFormatterDirective } from './directives/my-input-formatter/my-in
         MyChildComponent,
         MyFormExampleComponent,
         NavbarComponent,
-        MyInputFormatterDirective
+        MyInputFormatterDirective,
+        MySummaryPipe
     ],
     imports: [
         BrowserModule,
