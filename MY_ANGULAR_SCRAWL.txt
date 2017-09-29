@@ -77,6 +77,8 @@ obs.switchMap((combined) => { // not .map, because it does not return what we ne
 
 //----------------------------------------------------------------------------------------
 
+this.router.navigate(['/'])
+
 // url with query params:
 this.router.navigate(['/users', 123], {
     queryParams: {
@@ -215,7 +217,7 @@ to find the files:  sublime text > preferences > browse packages... > User
 import { Component, Pipe, PipeTransform} from '@angular/core'
 import { Http, RequestOptions, Headers } from '@angular/http'
 import { FormGroup, FormControl, Validators } from '@angular/forms'
-
+import { Router } from '@angular/router';
 
 //---------------------------------------------------------------
 // properties in typescript:

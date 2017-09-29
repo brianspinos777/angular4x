@@ -9,8 +9,10 @@ import { AuthService } from './services/auth.service';
 import { ItemService } from './services/items/item.service';
 
 import { AppComponent } from './app.component';
-import { LoginComponent } from './components/login/login.component';
-import { HomeComponent } from './components/home/home.component';
+// import { LoginComponent } from './components/login/login.component';
+import { LoginComponent } from './pages/login/login.component';
+// import { HomeComponent } from './components/home/home.component';
+import { HomeComponent } from './pages/home/home.component';
 import { UsersComponent } from './components/users/users.component';
 import { GroupsComponent } from './components/groups/groups.component';
 

@@ -22,14 +22,14 @@ router.route('/foo')
     })
     // .post(...)
 
-router.route('/pass')
+router.route('/pass') // like a signup url
     .get((req, res) => {
 
         const saltRounds = 10;
         const myPlaintextPassword = 's0m3P4$$w0rD';
         const hash = "$2a$10$eAZroHTbos/rceLg6oPLiepu80pEEybrXiJCALw./Gsnlg3Q5yubu";
 
-        bcrypt.hash(myPlaintextPassword, saltRounds, function(err, hash) {
+        bcrypt.hash(myPlaintextPassword, saltRounds, (err, hash) => {
             // Store hash in your password DB.
             var myData = {hash: hash, password: myPlaintextPassword};
             res.json(myData);
@@ -48,7 +48,7 @@ router.route('/checkpass')
 
         // Load hash from your password DB.
        
-        // bcrypt.compare(myPlaintextPassword, hash, function(err, res) {
+        // bcrypt.compare(myPlaintextPassword, hash, (err, res) => {
         //     // res == true
         //     // res.json({success: res, pass: myPlaintextPassword});
 
@@ -57,7 +57,7 @@ router.route('/checkpass')
 
         var myObj = {};
 
-        bcrypt.compare(someOtherPlaintextPassword, hash, function(err, res) {
+        bcrypt.compare(someOtherPlaintextPassword, hash, (err, res) => {
             // res == false
             // res.json({success: res, pass: someOtherPlaintextPassword});
 
@@ -78,8 +78,8 @@ router.route('/checkpass')
     })
     // .post(...)
 
-    //======================================================= Items
 
+    //======================================================= POSTGRES
 
     // https://node-postgres.com/features/connecting
     const { Pool, Client } = require('pg')
@@ -88,6 +88,72 @@ router.route('/checkpass')
     const pool = new Pool({
       connectionString: connectionString,
     })
+
+
+    //======================================================= Login with credentials
+
+    router.route('/auth')
+    .post((req, resp) => {
+        console.log("--------------------- POST /api/auth:");
+        console.log("PARAMS", req.params)
+        console.log("BODY", req.body)
+
+        //======================================================= get credentials
+        let email = req.body.email;
+        let password = req.body.password;
+
+        // email = "brian@hotmail.com"
+        // password = "s0m3P4$$w0rD";
+        // password_digest = "$2a$10$eAZroHTbos/rceLg6oPLiepu80pEEybrXiJCALw./Gsnlg3Q5yubu";
+
+        //=========================================== Find user with email
+        const client = new Client({
+            connectionString: connectionString,
+        })
+        client.connect()
+
+        client.query(
+            'SELECT * FROM users WHERE email = $1', 
+            [email], 
+            (err, res) => {
+                if(err){
+                    //error
+                    console.log("ERROR:", err)
+                    resp.json({data: null, success: false, errors: ["Query error"]});
+                }else{
+                    // console.log(res.rows)
+
+                    let user = res.rows[0]
+
+                    if(user){
+                        let hash = user.password_digest
+
+                        //======================================================= check password
+                        bcrypt.compare(password, hash, (err, success) => {
+                            if(err){
+                                console.log("Error: ", error)
+                                resp.json({data: null, success: false, errors: ["Password hashing error"]});
+                            }else{
+                                if(success){
+                                    console.log("Correct credentials")
+                                    let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ"
+                                    resp.json({data: {token: token, user: user}, success: true, errors: []});
+                                }else{
+                                    resp.json({data: null, success: false, errors: ["Hashing password error"]});
+                                }
+                            }
+                        });
+                    }else{
+                        resp.json({data: null, success: false, errors: ["No such user found"]});
+                    }
+                }
+
+                client.end()
+            }
+        )
+    })
+
+    //======================================================= Items
 
     // index - show list of items                     GET /items  - view
     // show - show single item                        GET /items/1  - view

@@ -1,0 +1,72 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <!-- content -->
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <!-- title -->
+                    Login
+                </div>
+                <div class="panel-body">
+                    <form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value, myForm)">
+
+                        <!-- email -->
+                        <div 
+                            class="form-group"
+                            [class.has-success]="myForm.controls.email.valid"
+                            [class.has-error]="!myForm.controls.email.valid">
+                            <label for="email">Email</label>
+                            <input 
+                                class="form-control input-sm" 
+                                id="email"
+                                formControlName="email"
+                                name="email"
+                                type="email" 
+                                placeholder="Email">
+
+                            <!-- validation -->
+                            <div 
+                                class="alert alert-danger"
+                                *ngIf="myForm.get('email').touched && myForm.get('email').invalid">
+                                <div *ngIf="myForm.get('email').errors.required">
+                                    email is required
+                                </div>
+                                <div *ngIf="myForm.get('email').errors.minlength">
+                                    email should have a minimum of {{myForm.get('email').errors.minlength.requiredLength}} characters
+                                 </div>
+                            </div>
+                        </div>
+
+                        <!-- password -->
+                        <div 
+                            class="form-group"
+                            [class.has-success]="myForm.controls.password.valid"
+                            [class.has-error]="!myForm.controls.password.valid">
+                            <label for="password">Password</label>
+                            <input 
+                                type="password" 
+                                class="form-control input-sm" 
+                                id="password" 
+                                formControlName="password"
+                                name="password"
+                                placeholder="Password">
+                        </div>
+
+                        
+
+                        <!-- submit -->
+                        <button 
+                            type="submit" 
+                            class="btn btn-sm btn-primary"
+                            [disabled]="!myForm.valid">
+                            Login
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
