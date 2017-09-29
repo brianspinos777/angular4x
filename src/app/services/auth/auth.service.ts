@@ -3,7 +3,7 @@ import { JwtHelper } from 'angular2-jwt'
 import { Http } from '@angular/http';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/map';
-import { environment } from '../../environments/environment'; // for ENV
+import { environment } from '../../../environments/environment'; // for ENV
 
 @Injectable()
 export class AuthService {

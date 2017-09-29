@@ -1,9 +1,7 @@
 import { Routes }   from '@angular/router';
 
 import { AppComponent } from '../app.component';
-// import { LoginComponent } from '../components/login/login.component';
 import { LoginComponent } from '../pages/login/login.component';
-// import { HomeComponent } from '../components/home/home.component';
 import { HomeComponent } from '../pages/home/home.component';
 import { UsersComponent } from '../components/users/users.component';
 import { GroupsComponent } from '../components/groups/groups.component';
@@ -15,7 +13,7 @@ import { ShowItemComponent } from '../pages/items/show-item/show-item.component'
 import { NewItemComponent } from '../pages/items/new-item/new-item.component';
 import { EditItemComponent } from '../pages/items/edit-item/edit-item.component'
 
-import { AuthGuard } from '../guards/auth.guard';
+import { AuthGuard } from '../guards/auth/auth.guard';
 
 
 export const appRoutes:Routes = [
