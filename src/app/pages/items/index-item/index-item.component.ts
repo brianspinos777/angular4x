@@ -22,12 +22,46 @@ export class IndexItemComponent implements OnInit {
         .subscribe(
             (res) => {
                 console.log(res)
-                this.items = res.data
+                
+                if(res.success){
+                    this.items = res.data
+                }else{
+                    //...
+                }
+
             }, 
             (error:Response) => {
                 console.log("ERROR:", error)
             }
         )
+    }
+
+    deleteItem(item){
+        let answer = confirm("Are you sure?")
+
+        if(answer === true){
+            // delete item
+            this.itemService.delete(item.id)
+            .subscribe(
+                (res) => {
+                    console.log(res)
+
+                    if(res.success){
+                        this.items = this.items.filter(i => (i as {id:number}).id !== item.id); // TODO: use Redux
+                        alert('Item successfully deleted!')
+                    }else{
+                        //...
+                    }
+                    
+                }, 
+                (error:Response) => {
+                    console.log("ERROR:", error)
+                }
+            )
+
+        }else{
+            //...
+        }
     }
 
 }

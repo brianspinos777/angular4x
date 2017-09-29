@@ -1,5 +1,6 @@
 ================================ TODO:
 - delete items
+- use REDUX to remove item
 - complete the forms
 - Guard subfolders
 - custom pipes

@@ -26,7 +26,12 @@ export class EditItemComponent implements OnInit {
         .subscribe(
             (res) => {
                 console.log(res)
-                this.item = res.data[0]
+
+                if(res.success){
+                    this.item = res.data[0]
+                }else{
+                    //...
+                }
             }, 
             (error:Response) => {
                 console.log("ERROR:", error)
@@ -42,6 +47,11 @@ export class EditItemComponent implements OnInit {
         .subscribe(
             (res) => {
                 console.log(res)
+                if(res.success){
+                    alert('Item successfully updated')
+                }else{
+                    //...
+                }
             }, 
             (error:Response) => {
                 console.log("ERROR:", error)

@@ -26,7 +26,12 @@ export class ShowItemComponent implements OnInit {
         .subscribe(
             (res) => {
                 console.log(res)
-                this.item = res.data[0]
+                
+                if(res.success){
+                    this.item = res.data[0]
+                }else{
+                    //...
+                }
             }, 
             (error:Response) => {
                 console.log("ERROR:", error)

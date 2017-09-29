@@ -46,6 +46,12 @@ export class NewItemComponent implements OnInit {
         .subscribe(
             (res) => {
                 console.log(res)
+                if(res.success){
+                    //...
+                    alert('Item was successfuly created!')
+                }else{
+                    //...
+                }
             }, 
             (error:Response) => {
                 console.log("ERROR:", error)
@@ -56,6 +62,5 @@ export class NewItemComponent implements OnInit {
     goBack(){
         this.location.back()
     }
-
 
 }
