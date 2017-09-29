@@ -1,4 +1,5 @@
 ================================ TODO:
+- modules?
 - bootstrap navbar with dropdown
 - ngClass
 - ngStyle

@@ -1,8 +1,8 @@
 ==================================================================== How to start the app:
 
 $ cd /c/Users/prg/Desktop/BRIAN/PROJECTS/ANGULAR_4/second_app/blog
-$ nodemon app.js  # type: rs   (to restart)
-$ ng build serve
+$ nodemon app.js  # type: rs   (to restart) // localhost:5000
+$ ng build serve                            // localhost:4200
 
 
 

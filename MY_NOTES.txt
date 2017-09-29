@@ -45,7 +45,6 @@ $ npm i bcrypt # for hashing passwords
 $ npm i node-uuid # for ids
 
 //==================================================== What to implement
-@ViewChild
 child routes
 
 //==================================================== folders:
@@ -58,11 +57,14 @@ child routes
     - routes
     - components
     - constants
+    - directives
     - models
     - guards
     - models
     - pages
+    - pipes
     - services
+    - validators
     - redux 
         - actions
         - reducers
@@ -147,10 +149,11 @@ getUsers(){
 
 // Item crud
 
-$ ng g c pages/items/IndexItem
-$ ng g c pages/items/ShowItem
-$ ng g c pages/items/NewItem
-$ ng g c pages/items/EditItem
+// components
+$ ng g c pages/items/IndexItem # list
+$ ng g c pages/items/ShowItem  # single item
+$ ng g c pages/items/NewItem   # form
+$ ng g c pages/items/EditItem  # form
 
 $ ng g s services/items/Item # remember to pass it to the providers array
 
@@ -165,9 +168,3 @@ destroy - delete item                          DELETE /items/1
 
 
 -> add endpoint in express
-
--> create component: 
-    page/items/IndexItemComponent - list
-    page/items/ShowItemComponent - singe item
-    page/items/NewItemComponent - form
-    page/items/EditItemComponent - form
