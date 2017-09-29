@@ -8,13 +8,13 @@ import { INITIAL_STATE, IAppState } from '../../redux/app.state'
 import { NgRedux, select } from 'ng2-redux';  //========================= REDUX
 
 
-@Component({
-    selector: 'app-users',
-    templateUrl: './users.component.html',
-    styleUrls: ['./users.component.css']
-})
-export class UsersComponent implements OnInit {
 
+@Component({
+    selector: 'app-features',
+    templateUrl: './features.component.html',
+    styleUrls: ['./features.component.css']
+})
+export class FeaturesComponent implements OnInit {
     // keys of the state object!
     @select() counter: Observable<number>; //========================= REDUX
     @select() users: Observable<Array<object>>; //========================= REDUX
@@ -256,5 +256,4 @@ export class UsersComponent implements OnInit {
         })
 
     }
-
 }

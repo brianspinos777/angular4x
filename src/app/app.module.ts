@@ -11,7 +11,6 @@ import { ItemService } from './services/items/item.service';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
 import { HomeComponent } from './pages/home/home.component';
-import { UsersComponent } from './components/users/users.component';
 import { GroupsComponent } from './components/groups/groups.component';
 
 // Items CRUD
@@ -41,7 +40,8 @@ import { MyChildComponent } from './components/my-child/my-child.component';
 import { MyFormExampleComponent } from './components/my-form-example/my-form-example.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { MyInputFormatterDirective } from './directives/my-input-formatter/my-input-formatter.directive';
-import { MySummaryPipe } from './pipes/my-summary/my-summary.pipe'
+import { MySummaryPipe } from './pipes/my-summary/my-summary.pipe';
+import { FeaturesComponent } from './pages/features/features.component'
 
 
 @NgModule({
@@ -49,7 +49,6 @@ import { MySummaryPipe } from './pipes/my-summary/my-summary.pipe'
         AppComponent,
         LoginComponent,
         HomeComponent,
-        UsersComponent,
         GroupsComponent,
         IndexItemComponent,
         ShowItemComponent,
@@ -59,7 +58,8 @@ import { MySummaryPipe } from './pipes/my-summary/my-summary.pipe'
         MyFormExampleComponent,
         NavbarComponent,
         MyInputFormatterDirective,
-        MySummaryPipe
+        MySummaryPipe,
+        FeaturesComponent
     ],
     imports: [
         BrowserModule,
