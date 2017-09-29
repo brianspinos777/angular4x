@@ -8,18 +8,24 @@ import { AuthService } from '../../services/auth/auth.service'
 })
 export class HomeComponent implements OnInit {
 
+    currentUser:object
+
     constructor(
         private authService:AuthService
     ){
         //...
     }
 
-    ngOnInit(){}
+    ngOnInit(){
+        let currentUser = this.authService.currentUser
+        this.currentUser = currentUser
+    }
 
-
+    verifyToken(){
+        this.authService.verifyToken()
+    }
 
     logout(){
         this.authService.logout()
     }
-
 }

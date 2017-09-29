@@ -1,14 +1,14 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core'
 import { JwtHelper } from 'angular2-jwt'
-import { Http } from '@angular/http';
-import { Router } from '@angular/router';
-import 'rxjs/add/operator/map';
-import { environment } from '../../../environments/environment'; // for ENV
+import { Http, Response, RequestOptions, Headers } from '@angular/http'
+import { Router } from '@angular/router'
+import 'rxjs/add/operator/map'
+import { environment } from '../../../environments/environment' // for ENV
 
 @Injectable()
 export class AuthService {
 
-    apiUrl = environment.apiUrl;
+    apiUrl:string = environment.apiUrl
 
     constructor(
         private http: Http,
@@ -52,7 +52,7 @@ export class AuthService {
     authenticate(credentials){
         return this.http.post(this.apiUrl + 'auth', credentials)
         .map(res => res.json())
-        .subscribe((res)=>{
+        .subscribe((res) => {
             console.log(res)
 
             if(res.success){
@@ -69,4 +69,18 @@ export class AuthService {
         this.router.navigate(['/login'])
     }
 
+    verifyToken(){
+        let token = localStorage.getItem('token')
+
+        let headers = new Headers()
+        headers.append('Authorization', `Bearer ${token}`)
+        let opts = new RequestOptions()
+        opts.headers = headers
+
+        return this.http.get(this.apiUrl + 'verify', opts)
+        .map(res => res.json())
+        .subscribe((res) => {
+            console.log(res)
+        })
+    }
 }

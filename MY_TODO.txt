@@ -1,9 +1,10 @@
 ================================ TODO:
+- bootstrap navbar with dropdown
+- ngClass
+- ngStyle
 - create a DataService as a base class!
 - ElementRef
 - ng-template
-- ngClass
-- ngStyle
 - toast notifications
 - FormBuilder  (less code!)
 - custom form validators
@@ -11,7 +12,6 @@
 - add bootstrap alerts to give users feedback
 - use REDUX to remove item
 - complete the forms
-- jwt
 - add form validation
 - add state to localStorage
 - use an ORM
@@ -43,3 +43,4 @@
 - custom pipes
 - add CRUD forms
 - custom directives // example of use case: massaging input on form
+- jwt

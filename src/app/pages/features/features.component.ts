@@ -24,7 +24,7 @@ export class FeaturesComponent implements OnInit {
     myVarA:any = ""
     myVarB:any = ""
     myVarC:any = ""
-    myVarD:any = ""
+    myVarD:object = {password: "", hash: ""}
     myVarE:any = ""
     myVarF:any = ""
     myVarG:any = ""
@@ -99,8 +99,8 @@ export class FeaturesComponent implements OnInit {
         this.myVarC = state
     }
 
-    generatepasswordHash(){
-        this.http.get(this.apiUrl + "pass") 
+    generatepasswordHash(password){
+        this.http.post(this.apiUrl + "pass", {password: password}) 
         .map(res => res.json())
         .subscribe(res => {
             console.log(res)

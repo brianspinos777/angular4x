@@ -3,7 +3,6 @@ import { Routes }   from '@angular/router'
 import { AppComponent } from '../app.component'
 import { LoginComponent } from '../pages/login/login.component'
 import { HomeComponent } from '../pages/home/home.component'
-import { UsersComponent } from '../components/users/users.component'
 import { GroupsComponent } from '../components/groups/groups.component'
 import { MyFormExampleComponent } from '../components/my-form-example/my-form-example.component'
 

@@ -8,6 +8,7 @@ let bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
+//-------
 
 // CORS middleware
 //
@@ -21,11 +22,25 @@ let allowCrossDomain = (req, res, next) => {
     let client = 'http://localhost:4200'
     res.header('Access-Control-Allow-Origin', client); // allow 'localhost:4200' to access this API
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization'); // we need to allow custom headers
     next();
 }
 
 app.use(allowCrossDomain);
+
+//-------
+
+let inspectRequest = (req, res, next) => {
+    console.log(`-------------------- ${req.method} ${req.url}`)
+    // console.log("HEADERS", req.headers)
+    console.log("Authorization: ", req.headers.authorization)
+    console.log("PARAMS: ", req.params)
+    console.log("BODY: ", req.body)
+    console.log("\n\n")
+    next()
+}
+
+app.use(inspectRequest)
 
 //------------------------------------------ postgres
 // $ npm i pg
@@ -79,7 +94,7 @@ app.get('/pg', (req, res) => {
 // // client.connect();
 // // let query = client.query('CREATE TABLE items(id SERIAL PRIMARY KEY, text VARCHAR(40) not null, complete BOOLEAN)');
 // // query.on('end', () => {
-// // 	client.end();
+// //   client.end();
 // // });
 
 // const pg = require('pg');

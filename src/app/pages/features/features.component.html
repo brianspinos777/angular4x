@@ -12,40 +12,49 @@
         <div class="col-md-4">
             <!-- content -->
             <hr>
-            <p>initialData.myObj.hash: {{initialData.myObj.hash}}</p>
+            <p><strong>Get data from http call when component initializes</strong></p>
+            <p>initialData.myObj.hash:</p> 
+            <p>{{initialData.myObj.hash}}</p>
         </div>
         <div class="col-md-4">
             <!-- content -->
             <hr>
-            <p>URL example: http://localhost:5000/users/123</p>
+            <p><strong>Get params from url</strong></p>
+            <p>URL example: http://localhost:4200/features/123</p>
             <button class="btn btn-sm btn-default" (click)="getParams()">getParams</button>
             <p>myVarA: {{myVarA}}</p>
         </div>
         <div class="col-md-4">
             <!-- content -->
             <hr>
+            <p><strong>Get data from http call</strong></p>
             <button class="btn btn-sm btn-default" (click)="makeHttpGetCall()">makeHttpGetCall</button>
-            <p>myVarB: {{myVarB}}</p>
+            <p>myVarB: {{ myVarB | json }}</p>
         </div>
     </div>
     <div class="row">
         <div class="col-md-4">
             <!-- content -->
             <hr>
+            <p><strong>Increment using REDUX</strong></p>
             <button class="btn btn-sm btn-default" (click)="increment_5()">increment_5</button>
             <p>counter | async: {{counter | async}}</p> 
         </div>
         <div class="col-md-4">
-            <!-- content -->
+            <!-- content --> 
             <hr>
-            <button class="btn btn-sm btn-default" (click)="getStateFromRedux()">getStateFromRedux</button> 
-            <p>myVarC: {{myVarC}}</p> 
+            <p><strong>Increment with REDUX</strong></p>
+            <button class="btn btn-sm btn-default" (click)="increment_1()">increment_1</button>
+            <p>counter | async: {{counter | async}}</p> 
         </div>
+        
         <div class="col-md-4">
             <!-- content -->
             <hr>
-            <button class="btn btn-sm btn-default" (click)="generatepasswordHash()">generatepasswordHash</button>
-            <p>myVarD: {{myVarD}}</p> 
+            <input [(ngModel)]="myVarD.password" name="myPassword" type="text" placeholder="Type password here...">
+            <button class="btn btn-sm btn-default" (click)="generatepasswordHash(myVarD.password)">generatepasswordHash</button>
+            <p>hash: {{ myVarD.hash }}</p>
+            <p>password: {{ myVarD.password }}</p>
         </div>
     </div>
     <div class="row">
@@ -53,25 +62,28 @@
             <!-- content -->
             <hr>
             <button class="btn btn-sm btn-default" (click)="checkpasswordHash()">checkpasswordHash</button>
-            <p>myVarE: {{myVarE}}</p>
+            <p>myVarE: {{ myVarE | json }}</p>
         </div>
         <div class="col-md-4">
             <!-- content -->
             <hr>
+            <p><strong>Get Angular env variables</strong></p>
             <button class="btn btn-sm btn-default" (click)="logEnv()">logEnv</button>
-            <p>myVarF: {{myVarF}}</p> 
+            <p>myVarF: {{ myVarF | json }}</p> 
         </div>
         <div class="col-md-4">
             <!-- content -->
             <hr>
+            <p><strong>Get state chunck with REDUX</strong></p>
             <button class="btn btn-sm btn-default" (click)="getUsersFromState()">getUsersFromState</button>
-            <p>myVarG: {{myVarG}}</p> 
+            <p>myVarG: {{ myVarG | json }}</p> 
         </div>
     </div>
     <div class="row">
         <div class="col-md-4">
             <!-- content -->
             <hr>
+            <p><strong>Get state chunck with REDUX</strong></p>
             <button class="btn btn-sm btn-default" (click)="addUser()">addUser</button>
             <p>Users from state:</p>
             <!-- The async pipe gets the latest value of an Observable variable! -->
@@ -80,26 +92,26 @@
         <div class="col-md-4">
             <!-- content -->
             <hr>
+            <p><strong>HTTP with REDUX</strong></p>
             <button class="btn btn-sm btn-default" (click)="useReduxWithHttp()">useReduxWithHttp</button>
-            <p>httpResults: {{httpResults | async}}</p>
+            <p>httpResults: {{httpResults | async | json }}</p>
 
             <p>---</p>
             <!-- The async pipe gets the latest value of an Observable variable! -->
-            <p *ngFor="let x of httpResults | async">{{ x }}</p> 
+            <p *ngFor="let x of httpResults | async">{{ x | json }}</p> 
         </div>
         <div class="col-md-4">
-            <!-- content --> 
+            <!-- content -->
             <hr>
-            <button class="btn btn-sm btn-default" (click)="increment_1()">increment_1</button>
-            <p>counter | async: {{counter | async}}</p> 
-
+            <button class="btn btn-sm btn-default" (click)="getStateFromRedux()">getStateFromRedux</button> 
+            <p>myVarC: {{ myVarC | json }}</p> 
         </div>
     </div>
     <div class="row">
         <div class="col-md-4">
             <!-- content -->
             <hr>
-            <p>ng-template example:</p>
+            <p><strong>ng-template example:</strong></p>
             <button class="btn btn-sm btn-default" (click)="changeMyVarI()">changeMyVarI</button>
             <div *ngIf="myVarI; then myTemplateA else myTemplateB"></div>
             <ng-template #myTemplateA>
@@ -112,7 +124,7 @@
         <div class="col-md-4">
             <!-- content -->
             <hr>
-            <p>ngSwitch example:</p>
+            <p><strong>ngSwitch example:</strong></p>
 
             <div [ngSwitch]="'three'"> 
                 <p *ngSwitchCase="'one'">This is one</p>
@@ -150,7 +162,7 @@
         <div class="col-md-4">
             <!-- content -->
             <hr>
-            <p>@ViewChild</p>
+            <p><strong>@ViewChild</strong></p>
             <input type="text" name="myFirstViewChildVar" #myFirstViewChildVar>
 
             <button class="btn btn-sm btn-default" 
@@ -161,7 +173,7 @@
         <div class="col-md-4">
             <!-- content -->
             <hr>
-            <p>*ngFor with index</p>
+            <p><strong>*ngFor with index</strong></p>
 
             <p *ngFor="let x of ['a', 'b', 'c']; index as i">
                 {{i}} - {{x}}
@@ -170,7 +182,7 @@
         <div class="col-md-4">
             <!-- content -->
             <hr>
-            <p>*ngFor with trackBy (we need a function...)</p>
+            <p><strong>*ngFor with trackBy (we need a function...)</strong></p>
 
             <p *ngFor="let user of myCollection; trackBy: trackCollection">
                 {{user.id}} - {{user.name}}
@@ -181,13 +193,13 @@
         <div class="col-md-4">
             <!-- content -->
             <hr>
-            <p>Safe Traversal Operator (foo?.bar)</p>
+            <p><strong>Safe Traversal Operator (foo?.bar)</strong></p>
             <p>nonExistantVar: {{nonExistantVar?.age?.even}}
         </div>
         <div class="col-md-4">
             <!-- content -->
             <hr>
-            <p>Custom Directives</p>
+            <p><strong>Custom Directives</strong></p>
 
             <p>Make Uppercase</p>
             <input type="text" appMyInputFormatter [myFormat]="'uppercase'">
@@ -198,7 +210,7 @@
         <div class="col-md-4">
             <!-- content -->
             <hr>
-            <p>Custom Pipes</p>
+            <p><strong>Custom Pipes</strong></p>
             <p>{{ 'Lorem ipsum dolor sit amet' | mySummary:9 }}</p>
         </div>
     </div>

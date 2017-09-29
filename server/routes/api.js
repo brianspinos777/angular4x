@@ -1,6 +1,12 @@
-var express = require('express');
-var router = express.Router();
-var bcrypt = require('bcrypt');
+let express = require('express');
+let router = express.Router();
+let bcrypt = require('bcrypt');
+let jwt = require('jsonwebtoken');
+
+// to be changed and added to an ENV variable
+const MY_SECRET_JWT_TOKEN = "YWEzOGJlOWMyNjIxZGNlMzJjM2MzNWRi"; // $ date +%s | sha256sum | base64 | head -c 32 ; echo
+
+
 
 router.route('/')
     .get((req, res) => {
@@ -10,28 +16,29 @@ router.route('/')
 
 router.route('/foo/:id')
     .get((req, res) => {
-        var myId = req.params.id;
+        let myId = req.params.id;
         res.json({id: myId, success: true});
     })
     // .post(...)
 
 router.route('/foo')
     .get((req, res) => {
-        var myData = {name: 'brian', age: 27};
+        let myData = {name: 'brian', age: 27};
         res.json(myData);
     })
     // .post(...)
 
 router.route('/pass') // like a signup url
-    .get((req, res) => {
+    .post((req, res) => {
+
+        let password = req.body.password
 
         const saltRounds = 10;
-        const myPlaintextPassword = 's0m3P4$$w0rD';
-        const hash = "$2a$10$eAZroHTbos/rceLg6oPLiepu80pEEybrXiJCALw./Gsnlg3Q5yubu";
+        const myPlaintextPassword = password;
 
         bcrypt.hash(myPlaintextPassword, saltRounds, (err, hash) => {
             // Store hash in your password DB.
-            var myData = {hash: hash, password: myPlaintextPassword};
+            let myData = {hash: hash, password: myPlaintextPassword};
             res.json(myData);
         });
 
@@ -39,31 +46,30 @@ router.route('/pass') // like a signup url
     })
     // .post(...)
 
-router.route('/checkpass')
+router.route('/checkpass') // check if password is correct
     .get((req, resp) => {
 
-        const myPlaintextPassword = 's0m3P4$$w0rD';
-        const someOtherPlaintextPassword = 'not_bacon';
+        const password = 's0m3P4$$w0rD';
+        const otherPassword = 'not_bacon';
         const hash = "$2a$10$eAZroHTbos/rceLg6oPLiepu80pEEybrXiJCALw./Gsnlg3Q5yubu";
 
         // Load hash from your password DB.
        
-        // bcrypt.compare(myPlaintextPassword, hash, (err, res) => {
+        // bcrypt.compare(password, hash, (err, res) => {
         //     // res == true
-        //     // res.json({success: res, pass: myPlaintextPassword});
-
-        //     console.log('hash', {success: res, pass: myPlaintextPassword});
+        //     // res.json({success: res, pass: password});
+        //     console.log('hash', {success: res, pass: password});
         // });
 
-        var myObj = {};
+        let myObj = {};
 
-        bcrypt.compare(someOtherPlaintextPassword, hash, (err, res) => {
+        bcrypt.compare(otherPassword, hash, (err, res) => {
             // res == false
-            // res.json({success: res, pass: someOtherPlaintextPassword});
+            // res.json({success: res, pass: otherPassword});
 
             myObj = {
                 success: res, 
-                pass: someOtherPlaintextPassword,
+                pass: otherPassword,
                 hash: hash
             };
 
@@ -73,13 +79,11 @@ router.route('/checkpass')
         }); 
 
         // resp.json({test: true, myObj: myObj})
-
-            
     })
     // .post(...)
 
 
-    //======================================================= POSTGRES
+    //======================================================= Postgresql
 
     // https://node-postgres.com/features/connecting
     const { Pool, Client } = require('pg')
@@ -89,22 +93,18 @@ router.route('/checkpass')
       connectionString: connectionString,
     })
 
-
     //======================================================= Login with credentials
 
     router.route('/auth')
     .post((req, resp) => {
-        console.log("--------------------- POST /api/auth:");
-        console.log("PARAMS", req.params)
-        console.log("BODY", req.body)
 
         //======================================================= get credentials
         let email = req.body.email;
         let password = req.body.password;
 
         // email = "brian@hotmail.com"
-        // password = "s0m3P4$$w0rD";
-        // password_digest = "$2a$10$eAZroHTbos/rceLg6oPLiepu80pEEybrXiJCALw./Gsnlg3Q5yubu";
+        // password = "password";
+        // password_digest = "$2a$10$kuM1Tuxbu5cfNkgeBAX4yupgC8dMQkQVXUhtwTsj1d9gPnJxHdF7q";
 
         //=========================================== Find user with email
         const client = new Client({
@@ -136,8 +136,14 @@ router.route('/checkpass')
                             }else{
                                 if(success){
                                     console.log("Correct credentials")
-                                    let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ"
-                                    resp.json({data: {token: token, user: user}, success: true, errors: []});
+                                    
+                                    // Generate JWT token:
+                                    let token = jwt.sign({
+                                        name: user.name,
+                                        email: user.email
+                                    }, MY_SECRET_JWT_TOKEN);
+
+                                    resp.json({data: {token: token}, success: true, errors: []});
                                 }else{
                                     resp.json({data: null, success: false, errors: ["Hashing password error"]});
                                 }
@@ -153,6 +159,25 @@ router.route('/checkpass')
         )
     })
 
+    //======================================================= verify jwt token
+    router.route('/verify')
+    .get((req, resp) => { // verify jwt token
+        let token = req.headers.authorization.split(" ")[1];
+
+        jwt.verify(token, MY_SECRET_JWT_TOKEN, (err, decoded) => {
+            if(err){
+                console.log("ERROR: ", "JWT error");
+                resp.json({data: null, success: false, errors: ["JWT error"]});
+            }else{
+                if(decoded){
+                    resp.json({data: decoded, success: true, errors: []});
+                }else{
+                    resp.json({data: null, success: false, errors: ["Bad JWT token"]});
+                }
+            }
+        });
+    })
+
     //======================================================= Items
 
     // index - show list of items                     GET /items  - view
@@ -164,10 +189,7 @@ router.route('/checkpass')
     // destroy - delete item                          DELETE /items/1 - form
 
     router.route('/items')
-    .get((req, resp) => {
-        console.log("--------------------- GET /api/items:"); // get a collection
-        console.log("PARAMS", req.params)
-        console.log("BODY", req.body)
+    .get((req, resp) => { // get a collection
 
         const client = new Client({
             connectionString: connectionString,
@@ -186,14 +208,11 @@ router.route('/checkpass')
             client.end()
         })
     })
-    .post((req, resp) => {
-        console.log("--------------------- POST /api/items:"); // save item
-        console.log("PARAMS", req.params)
-        console.log("BODY", req.body)
+    .post((req, resp) => { // save item
 
-        // var id = req.body.id;
-        var text = req.body.text;
-        var is_done = req.body.is_done;
+        // let id = req.body.id;
+        let text = req.body.text;
+        let is_done = req.body.is_done;
 
         const client = new Client({
             connectionString: connectionString,
@@ -219,11 +238,8 @@ router.route('/checkpass')
 
     router.route('/items/:id')
     .get((req, resp) => {
-        console.log("--------------------- GET /api/items/:id:");
-        console.log("PARAMS", req.params)
-        console.log("BODY", req.body)
 
-        var id = req.params.id;
+        let id = req.params.id;
 
         const client = new Client({
             connectionString: connectionString,
@@ -242,14 +258,10 @@ router.route('/checkpass')
             client.end()
         })
     })
-    .put((req, resp) => {
-        console.log("--------------------- PUT /api/items/:id:"); // update item
-        console.log("PARAMS", req.params)
-        console.log("BODY", req.body)
-
-        var id = req.params.id;
-        var text = req.body.text;
-        var is_done = req.body.is_done;
+    .put((req, resp) => { // update item
+        let id = req.params.id;
+        let text = req.body.text;
+        let is_done = req.body.is_done;
 
         const client = new Client({
             connectionString: connectionString,
@@ -275,12 +287,8 @@ router.route('/checkpass')
             }
         )
     })
-    .delete((req, resp) => {
-        console.log("--------------------- DELETE /api/items/:id:"); // delete item
-        console.log("PARAMS", req.params)
-        console.log("BODY", req.body)
-
-        var id = req.params.id;
+    .delete((req, resp) => { // delete item
+        let id = req.params.id;
 
         const client = new Client({
             connectionString: connectionString,
@@ -310,15 +318,12 @@ router.route('/checkpass')
     //     //...
     // })
 
-
     // // THIS IS JUST FOR THE FRONT END
     // router.route('/items/:id/edit')
     // .get((req, resp) => {
     //     //...
     // })
 
-
     //=======================================================
-
 
 module.exports = router;
