@@ -23,7 +23,6 @@ import { MyFormExampleComponent }           from './components/my-form-example/m
 import { NavbarComponent }                  from './components/navbar/navbar.component';
 import { GroupsComponent }                  from './components/groups/groups.component';
 
-
 // Pages
 import { LoginComponent }                   from './pages/login/login.component';
 import { HomeComponent }                    from './pages/home/home.component';
@@ -82,7 +81,7 @@ import { appRoutes } from './routes/appRoutes';
         RouterModule.forRoot(appRoutes),
         NgReduxModule  //========================================================= REDUX
     ],
-    providers: [
+    providers: [ // Services, Guards
         AuthGuard,
         AuthService,
         ItemService
