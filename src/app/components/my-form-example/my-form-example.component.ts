@@ -41,7 +41,7 @@ export class MyFormExampleComponent implements OnInit {
         //         Validators.minLength(3),
         //         Validators.pattern('[a-zA-Z]+'),
         //     ])),
-        //     'lastName': new FormControl('', this.textValidator), // custom validator
+        //     'lastName': new FormControl('', this.myCustomMin6Validator), // custom validator
         //     'languages': new FormControl('', Validators.compose([
         //         Validators.required,
         //         Validators.minLength(3),
@@ -54,7 +54,7 @@ export class MyFormExampleComponent implements OnInit {
         // });
     }
 
-    textValidator(control){
+    myCustomMin6Validator(control){
         if (control.value.length < 6){
             return {
                 'lastName': true, // myForm.get('lastName').errors.lastName
@@ -101,9 +101,9 @@ export class MyFormExampleComponent implements OnInit {
             ], [/* async validators*/]],
             'lastName': ['', [
                 Validators.required,
+                this.myCustomMin6Validator, // custom validator
                 // Validators.minLength(3),
                 Validators.pattern('[a-zA-Z]+'),
-                this.textValidator // custom validator
             ], [/* async validators*/]],
             'languages': ['', [
                 Validators.required
