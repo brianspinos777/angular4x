@@ -1,16 +1,13 @@
 ================================ TODO:
+- add api version: /api/v1/items
 - modules?
 - bootstrap navbar with dropdown
-- ngClass
-- ngStyle
 - create a DataService as a base class!
 - ElementRef
 - ng-template
 - toast notifications
-- FormBuilder  (less code!)
 - custom form validators
-- add api version: /api/v1/items
-- add bootstrap alerts to give users feedback
+- add bootstrap alerts to give users feedback, or use toast notifications!
 - use REDUX to remove item
 - complete the forms
 - add form validation
@@ -20,15 +17,14 @@
 - data associations
 - use redis for caching
 - add return types to functions, and arguments
-- create a filter
 - ngModelGroup // to combine fields into a nested object within the form?
-- ngForm // example: <form #f="ngForm" (ngSubmit)="mySubmit(f)">...</form>
-  <option value="">--Choose--</option>
+- empty option: <option value="">--Choose--</option>
 - <option *ngFor="let opt in myOptions" [value]="opt.id">{{ opt.name }}</option>
-- display message while async function is pending in the form:  <div *ngIf="username.pending">Pending...</div> // .pending is NOT a custom function
+- async validators:
+  display message while async function is pending in the form:  <div *ngIf="username.pending">Pending...</div> // .pending is NOT a custom function
 - this.myForm.setErrors({myInvalidLogin: true}) // if the login didnt work, we can set errors on the form!
   <div *ngIf="myForm.errors" class="alert alert-danger">ERRORS!!!</div>   
-- FormArray 
+- FormArray - so we can work a collection of js objects in a html form
 - from POST, get the object back in the response?
 - what if a user deletes an item, than another user tries to delete the same item? (since the data is cached in the client)
 - catch http errors in the service, with 'rxjs/add/operator/catch' .catch  
@@ -45,3 +41,6 @@
 - add CRUD forms
 - custom directives // example of use case: massaging input on form
 - jwt
+- ngClass
+- ngStyle
+- FormBuilder (less code!)
