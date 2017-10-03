@@ -27,28 +27,28 @@ import { GroupsComponent }                  from './components/groups/groups.com
 import { LoginComponent }                   from './pages/login/login.component';
 import { HomeComponent }                    from './pages/home/home.component';
 import { FeaturesComponent }                from './pages/features/features.component';
-import { PageNotFoundComponent }            from './pages/page-not-found/page-not-found.component'
+import { PageNotFoundComponent }            from './pages/page-not-found/page-not-found.component';
 
 // Items CRUD
 import { IndexItemComponent }               from './pages/items/index-item/index-item.component';
 import { ShowItemComponent }                from './pages/items/show-item/show-item.component';
 import { NewItemComponent }                 from './pages/items/new-item/new-item.component';
-import { EditItemComponent }                from './pages/items/edit-item/edit-item.component'
+import { EditItemComponent }                from './pages/items/edit-item/edit-item.component';
 
 import { AppComponent }                     from './app.component';
 
 //========================================================= REDUX
 import { NgRedux, NgReduxModule } from 'ng2-redux';
-import thunkMiddleware from 'redux-thunk' // for dispatching functions! (dispatch)=>{...}
+import thunkMiddleware from 'redux-thunk'; // for dispatching functions! (dispatch)=>{...}
 // import thunk from 'redux-thunk';
 // import promiseMiddleware from 'redux-promise-middleware';
 
-// Logger with default options 
-import logger from 'redux-logger' // npm i redux-logger
+// Logger with default options
+import logger from 'redux-logger'; // npm i redux-logger
 
 
-import { INITIAL_STATE, IAppState } from './redux/app.state'
-import { rootReducer } from './redux/reducers/rootReducer'
+import { INITIAL_STATE, IAppState } from './redux/app.state';
+import { rootReducer } from './redux/reducers/rootReducer';
 //=========================================================
 import { appRoutes } from './routes/appRoutes';
 
@@ -92,19 +92,19 @@ export class AppModule {
     //========================================================= REDUX
     constructor(ngRedux: NgRedux<IAppState>){
 
-        let middlewares = [
-            logger, 
+        const middlewares = [
+            logger,
             thunkMiddleware
         ];
 
-        let enhancers = [];
-        
+        const enhancers = [];
+
         ngRedux.configureStore(
-            rootReducer, 
-            INITIAL_STATE, 
-            middlewares, 
+            rootReducer,
+            INITIAL_STATE,
+            middlewares,
             enhancers
-        ); 
+        );
     }
     //=========================================================
 }

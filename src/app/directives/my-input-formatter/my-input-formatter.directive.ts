@@ -1,4 +1,4 @@
-import { Directive, HostListener, ElementRef, Input } from '@angular/core'
+import { Directive, HostListener, ElementRef, Input } from '@angular/core';
 
 // $ ng g d directives/my-input-formatter/my-input-formatter
 // <input type="text" appMyInputFormatter [myFormat]="'uppercase'">
@@ -9,10 +9,10 @@ import { Directive, HostListener, ElementRef, Input } from '@angular/core'
 })
 export class MyInputFormatterDirective {
 
-    @Input('myFormat') myFormat
+    @Input('myFormat') myFormat;
 
     constructor(
-        private elementRef:ElementRef
+        private elementRef: ElementRef
     ){
         //...
     }
@@ -24,14 +24,14 @@ export class MyInputFormatterDirective {
     @HostListener('blur') onBlur(){
         // alert('blur')
 
-        let value:string = this.elementRef.nativeElement.value
+        const value: string = this.elementRef.nativeElement.value;
 
-        if(this.myFormat === 'uppercase'){
-            this.elementRef.nativeElement.value = value.toUpperCase()
+        if (this.myFormat === 'uppercase'){
+            this.elementRef.nativeElement.value = value.toUpperCase();
         }else{
-            this.elementRef.nativeElement.value = value.toLowerCase()
+            this.elementRef.nativeElement.value = value.toLowerCase();
         }
-        
+
     }
 
 }

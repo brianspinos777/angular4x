@@ -10,16 +10,16 @@ import { Location } from '@angular/common';
 })
 export class NewItemComponent implements OnInit {
 
-    item:object = {
+    item: object = {
         id: null,
-        text: "",
+        text: '',
         is_done: false
     };
 
     constructor(
-        private itemService:ItemService,
-        private activatedRoute: ActivatedRoute, 
-        private location: Location, 
+        private itemService: ItemService,
+        private activatedRoute: ActivatedRoute,
+        private location: Location,
     ){
         //...
     }
@@ -31,7 +31,7 @@ export class NewItemComponent implements OnInit {
         //     (res) => {
         //         console.log(res)
         //         this.item = res.data[0]
-        //     }, 
+        //     },
         //     (error:Response) => {
         //         console.log("ERROR:", error)
         //     }
@@ -39,28 +39,28 @@ export class NewItemComponent implements OnInit {
     }
 
     saveItem(item){
-        console.log(item)
+        console.log(item);
 
         // let id = this.activatedRoute.snapshot.params.id
         this.itemService.save(item)
         .subscribe(
             (res) => {
-                console.log(res)
-                if(res.success){
+                console.log(res);
+                if (res.success){
                     //...
-                    alert('Item was successfuly created!')
+                    alert('Item was successfuly created!');
                 }else{
                     //...
                 }
-            }, 
-            (error:Response) => {
-                console.log("ERROR:", error)
+            },
+            (error: Response) => {
+                console.log('ERROR:', error);
             }
-        )
+        );
     }
 
     goBack(){
-        this.location.back()
+        this.location.back();
     }
 
 }

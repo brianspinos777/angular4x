@@ -1,18 +1,18 @@
-import { Injectable } from '@angular/core'
-import { JwtHelper } from 'angular2-jwt'
-import { Http, Response, RequestOptions, Headers } from '@angular/http'
-import { Router } from '@angular/router'
-import 'rxjs/add/operator/map'
-import { environment } from '../../../environments/environment' // for ENV
+import { Injectable } from '@angular/core';
+import { JwtHelper } from 'angular2-jwt';
+import { Http, Response, RequestOptions, Headers } from '@angular/http';
+import { Router } from '@angular/router';
+import 'rxjs/add/operator/map';
+import { environment } from '../../../environments/environment'; // for ENV
 
 @Injectable()
 export class AuthService {
 
-    apiUrl:string = environment.apiUrl
+    apiUrl: string = environment.apiUrl;
 
     constructor(
         private http: Http,
-        private router:Router
+        private router: Router
     ){
         //...
     }
@@ -20,30 +20,30 @@ export class AuthService {
     isLoggedIn(){
         // return tokenNotExpired()
 
-        let jwtHelper = new JwtHelper()
-        let token = localStorage.getItem('token')
+        const jwtHelper = new JwtHelper();
+        const token = localStorage.getItem('token');
 
-        if(!token)
+        if (!token)
             return false;
 
-        let expirationDate = jwtHelper.getTokenExpirationDate(token)
-        let isExpired = jwtHelper.isTokenExpired(token)
+        const expirationDate = jwtHelper.getTokenExpirationDate(token);
+        const isExpired = jwtHelper.isTokenExpired(token);
 
-        return !isExpired
+        return !isExpired;
     }
 
     get currentUser(){
-        let token = localStorage.getItem('token')
+        const token = localStorage.getItem('token');
 
-        if(!token)
-            return null
+        if (!token)
+            return null;
 
-        let jwtHelper = new JwtHelper()
-        return jwtHelper.decodeToken(token)
+        const jwtHelper = new JwtHelper();
+        return jwtHelper.decodeToken(token);
     }
 
     saveTokenToLocalStorage(token){
-        localStorage.setItem('token', token)
+        localStorage.setItem('token', token);
     }
 
 
@@ -53,34 +53,34 @@ export class AuthService {
         return this.http.post(this.apiUrl + 'auth', credentials)
         .map(res => res.json())
         .subscribe((res) => {
-            console.log(res)
+            console.log(res);
 
-            if(res.success){
-                this.saveTokenToLocalStorage(res.data.token)
-                this.router.navigate(['/'])
+            if (res.success){
+                this.saveTokenToLocalStorage(res.data.token);
+                this.router.navigate(['/']);
             }
-            
-        })
+
+        });
     }
 
     // usage: this.authService.logout()
     logout(){
-        localStorage.setItem('token', null)
-        this.router.navigate(['/login'])
+        localStorage.setItem('token', null);
+        this.router.navigate(['/login']);
     }
 
     verifyToken(){
-        let token = localStorage.getItem('token')
+        const token = localStorage.getItem('token');
 
-        let headers = new Headers()
-        headers.append('Authorization', `Bearer ${token}`)
-        let opts = new RequestOptions()
-        opts.headers = headers
+        const headers = new Headers();
+        headers.append('Authorization', `Bearer ${token}`);
+        const opts = new RequestOptions();
+        opts.headers = headers;
 
         return this.http.get(this.apiUrl + 'verify', opts)
         .map(res => res.json())
         .subscribe((res) => {
-            console.log(res)
-        })
+            console.log(res);
+        });
     }
 }

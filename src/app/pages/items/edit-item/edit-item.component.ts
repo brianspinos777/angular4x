@@ -10,57 +10,57 @@ import { Location } from '@angular/common';
 })
 export class EditItemComponent implements OnInit {
 
-    item:any
+    item: any;
 
     constructor(
-        private itemService:ItemService,
-        private activatedRoute: ActivatedRoute, 
-        private location: Location, 
+        private itemService: ItemService,
+        private activatedRoute: ActivatedRoute,
+        private location: Location,
     ){
         //...
     }
 
     ngOnInit(){
-        let id = this.activatedRoute.snapshot.params.id
+        const id = this.activatedRoute.snapshot.params.id;
         this.itemService.find(id)
         .subscribe(
             (res) => {
-                console.log(res)
+                console.log(res);
 
-                if(res.success){
-                    this.item = res.data[0]
+                if (res.success){
+                    this.item = res.data[0];
                 }else{
                     //...
                 }
-            }, 
-            (error:Response) => {
-                console.log("ERROR:", error)
+            },
+            (error: Response) => {
+                console.log('ERROR:', error);
             }
-        )
+        );
     }
 
     updateItem(item){
-        console.log(item)
+        console.log(item);
 
-        let id = this.activatedRoute.snapshot.params.id
+        const id = this.activatedRoute.snapshot.params.id;
         this.itemService.update(item)
         .subscribe(
             (res) => {
-                console.log(res)
-                if(res.success){
-                    alert('Item successfully updated')
+                console.log(res);
+                if (res.success){
+                    alert('Item successfully updated');
                 }else{
                     //...
                 }
-            }, 
-            (error:Response) => {
-                console.log("ERROR:", error)
+            },
+            (error: Response) => {
+                console.log('ERROR:', error);
             }
-        )
+        );
     }
 
     goBack(){
-        this.location.back()
+        this.location.back();
     }
 
 }

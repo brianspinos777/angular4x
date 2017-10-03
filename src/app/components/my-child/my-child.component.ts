@@ -20,19 +20,19 @@ export class MyChildComponent implements OnInit {
 	 * <!-- MyChildComponent view: -->
 	 * <p>myVarFromParent: {{_myVarFromParent}}</p>
 	 */
-	@Input('myVarFromParent') _myVarFromParent: string
+	@Input('myVarFromParent') _myVarFromParent: string;
 
 
-	@Output() myEvent:EventEmitter<string> = new EventEmitter()
-	toBeSentToParent:string = " C"
-    toBeSetByParent:string = "" // = myVarFromParent
+	@Output() myEvent: EventEmitter<string> = new EventEmitter();
+	toBeSentToParent = ' C';
+    toBeSetByParent = ''; // = myVarFromParent
 
     constructor(){}
 
     ngOnInit(){}
 
     sendDataToParentComponent(){
-    	this.myEvent.emit(this.toBeSentToParent)
+    	this.myEvent.emit(this.toBeSentToParent);
     }
 
 }

@@ -4,7 +4,7 @@ export interface IAppState {
     groups: object[];
     todos: object[];
     httpResults: string[];
-};
+}
 
 // Initial whole app state
 // these values are what the app will see initially!

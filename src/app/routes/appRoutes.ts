@@ -1,28 +1,27 @@
-import { Routes }   from '@angular/router'
-
-import { AppComponent } from '../app.component'
+import { AppComponent } from '../app.component';
+import { Routes } from '@angular/router';
 
 // Components
-import { GroupsComponent } from '../components/groups/groups.component'
-import { MyFormExampleComponent } from '../components/my-form-example/my-form-example.component'
-
+import { GroupsComponent } from '../components/groups/groups.component';
+import { MyFormExampleComponent } from '../components/my-form-example/my-form-example.component';
 
 // Items CRUD
-import { IndexItemComponent } from '../pages/items/index-item/index-item.component'
-import { ShowItemComponent } from '../pages/items/show-item/show-item.component'
-import { NewItemComponent } from '../pages/items/new-item/new-item.component'
-import { EditItemComponent } from '../pages/items/edit-item/edit-item.component'
+import { IndexItemComponent } from '../pages/items/index-item/index-item.component';
+import { ShowItemComponent } from '../pages/items/show-item/show-item.component';
+import { NewItemComponent } from '../pages/items/new-item/new-item.component';
+import { EditItemComponent } from '../pages/items/edit-item/edit-item.component';
 
 // Pages
-import { FeaturesComponent } from '../pages/features/features.component'
-import { PageNotFoundComponent } from '../pages/page-not-found/page-not-found.component'
-import { LoginComponent } from '../pages/login/login.component'
-import { HomeComponent } from '../pages/home/home.component'
+import { FeaturesComponent } from '../pages/features/features.component';
+import { PageNotFoundComponent } from '../pages/page-not-found/page-not-found.component';
+import { LoginComponent } from '../pages/login/login.component';
+import { HomeComponent } from '../pages/home/home.component';
 
+// Guards
 import { AuthGuard } from '../guards/auth/auth.guard';
 
 
-export const appRoutes:Routes = [
+export const appRoutes: Routes = [
     {
         path: 'login',
         component: LoginComponent
@@ -54,7 +53,7 @@ export const appRoutes:Routes = [
     },
 
     // Items CRUD
-    
+
     {
         path: 'items',
         canActivate: [AuthGuard],
@@ -65,14 +64,14 @@ export const appRoutes:Routes = [
         // because it is more specific
         path: 'items/new',
         canActivate: [AuthGuard],
-        component: NewItemComponent 
+        component: NewItemComponent
     },
     {
         path: 'items/:id',
         canActivate: [AuthGuard],
         component: ShowItemComponent
     },
-    
+
     {
         path: 'items/:id/edit',
         canActivate: [AuthGuard],
@@ -83,4 +82,4 @@ export const appRoutes:Routes = [
         canActivate: [AuthGuard],
         component: PageNotFoundComponent
     },
-]
+];

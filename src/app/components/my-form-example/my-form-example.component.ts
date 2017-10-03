@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 
-// Dont forget to include ReactiveFormsModule in your module: 
+// Dont forget to include ReactiveFormsModule in your module:
 // import { FormsModule, ReactiveFormsModule }    from '@angular/forms';
 
 @Component({
@@ -11,7 +11,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 })
 export class MyFormExampleComponent implements OnInit {
 
-    myForm:FormGroup;
+    myForm: FormGroup;
 
     constructor(fb: FormBuilder){
         /*
@@ -43,38 +43,38 @@ export class MyFormExampleComponent implements OnInit {
             // keys here should match the 'formControlName' attributes in the form, in the view.
 
             // 'someComplexObject': new FormGroup({}), // FormGroup is nestable! remember to use 'formGroupName' in the template though.
-            'firstName': new FormControl("", Validators.compose([
+            'firstName': new FormControl('', Validators.compose([
                 Validators.required,
                 Validators.minLength(3),
                 Validators.pattern('[\\w\\-\\s\\/]+'),
             ])),
-            'lastName': new FormControl("", this.textValidator), // custom validator
-            'languages': new FormControl("", Validators.compose([
+            'lastName': new FormControl('', this.textValidator), // custom validator
+            'languages': new FormControl('', Validators.compose([
                 Validators.required,
                 Validators.minLength(3),
                 Validators.pattern('[\\w\\-\\s\\/]+'),
             ])),
-            'checkbox_a': new FormControl("", Validators.compose([])),
-            'checkbox_b': new FormControl("", Validators.compose([])),
-            'email': new FormControl("", Validators.compose([])),
-            'password': new FormControl("", Validators.compose([])),
-        })
+            'checkbox_a': new FormControl('', Validators.compose([])),
+            'checkbox_b': new FormControl('', Validators.compose([])),
+            'email': new FormControl('', Validators.compose([])),
+            'password': new FormControl('', Validators.compose([])),
+        });
     }
 
     textValidator(control){
-        if(control.value.length < 3){
-            return {'lastName': true}
+        if (control.value.length < 3){
+            return {'lastName': true};
         }
     }
 
     onSubmit(data, myForm){
-        console.log(data) // {firstName: "brian", lastName: "spinos", languages: "PHP"}
+        console.log(data); // {firstName: "brian", lastName: "spinos", languages: "PHP"}
 
-        console.log(myForm) // FormGroup obj
+        console.log(myForm); // FormGroup obj
     }
 
     log(data){
-        console.log(data)
+        console.log(data);
     }
 
 

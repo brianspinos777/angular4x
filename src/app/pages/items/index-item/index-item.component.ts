@@ -8,11 +8,11 @@ import { ItemService } from '../../../services/items/item.service';
 })
 export class IndexItemComponent implements OnInit {
 
-    items:Array<object>
+    items: Array<object>;
 
     constructor(
         //...
-        private itemService:ItemService
+        private itemService: ItemService
     ){
         //...
     }
@@ -21,43 +21,43 @@ export class IndexItemComponent implements OnInit {
         this.itemService.all()
         .subscribe(
             (res) => {
-                console.log(res)
-                
-                if(res.success){
-                    this.items = res.data
+                console.log(res);
+
+                if (res.success){
+                    this.items = res.data;
                 }else{
                     //...
                 }
 
-            }, 
-            (error:Response) => {
-                console.log("ERROR:", error)
+            },
+            (error: Response) => {
+                console.log('ERROR:', error);
             }
-        )
+        );
     }
 
     deleteItem(item){
-        let answer = confirm("Are you sure?")
+        const answer = confirm('Are you sure?');
 
-        if(answer === true){
+        if (answer === true){
             // delete item
             this.itemService.delete(item.id)
             .subscribe(
                 (res) => {
-                    console.log(res)
+                    console.log(res);
 
-                    if(res.success){
-                        this.items = this.items.filter(i => (i as {id:number}).id !== item.id); // TODO: use Redux
-                        alert('Item successfully deleted!')
+                    if (res.success){
+                        this.items = this.items.filter(i => (i as {id: number}).id !== item.id); // TODO: use Redux
+                        alert('Item successfully deleted!');
                     }else{
                         //...
                     }
-                    
-                }, 
-                (error:Response) => {
-                    console.log("ERROR:", error)
+
+                },
+                (error: Response) => {
+                    console.log('ERROR:', error);
                 }
-            )
+            );
 
         }else{
             //...

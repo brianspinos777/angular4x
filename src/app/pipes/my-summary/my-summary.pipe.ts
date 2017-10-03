@@ -10,12 +10,12 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class MySummaryPipe implements PipeTransform {
 
     transform(value: any, args?: any): any {
-        if(!value)
+        if (!value)
             return null;
 
-        let actalLimit = (args) ? args : 50
+        const actalLimit = (args) ? args : 50;
 
-        return value.substr(0, actalLimit) + '...'
+        return value.substr(0, actalLimit) + '...';
   }
 
 }

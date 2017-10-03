@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms'
-import { AuthService } from '../../services/auth/auth.service'
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
     selector: 'app-login',
@@ -9,10 +9,10 @@ import { AuthService } from '../../services/auth/auth.service'
 })
 export class LoginComponent implements OnInit {
 
-    myForm:FormGroup;
+    myForm: FormGroup;
 
     constructor(
-        private authService:AuthService
+        private authService: AuthService
     ){
         //...
     }
@@ -34,28 +34,28 @@ export class LoginComponent implements OnInit {
 
             // 'someComplexObject': new FormGroup({}), // FormGroup is nestable! remember to use 'formGroupName' in the template though.
 
-            'email': new FormControl("", Validators.compose([])),
-            'password': new FormControl("", Validators.compose([])),
-        })
+            'email': new FormControl('', Validators.compose([])),
+            'password': new FormControl('', Validators.compose([])),
+        });
     }
 
     textValidator(control){
-        if(control.value.length < 3){
-            return {'lastName': true}
+        if (control.value.length < 3){
+            return {'lastName': true};
         }
     }
 
     onSubmit(credentials, myForm){
-        console.log(credentials) // {userName: "brian", lastName: "spinos", languages: "PHP"}
-        console.log(myForm) // FormGroup obj
+        console.log(credentials); // {userName: "brian", lastName: "spinos", languages: "PHP"}
+        console.log(myForm); // FormGroup obj
 
         this.authService
-        .authenticate({email: credentials.email, password: credentials.password})
-        
+        .authenticate({email: credentials.email, password: credentials.password});
+
     }
 
     log(credentials){
-        console.log(credentials)
+        console.log(credentials);
     }
 
 }
