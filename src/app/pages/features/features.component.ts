@@ -4,6 +4,7 @@ import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { environment } from '../../../environments/environment'; // for ENV
 import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 import { INITIAL_STATE, IAppState } from '../../redux/app.state';
 import { NgRedux, select } from 'ng2-redux';  //========================= REDUX
 
@@ -20,6 +21,7 @@ export class FeaturesComponent implements OnInit {
     @select() users: Observable<Array<object>>; //========================= REDUX
     @select() httpResults: Observable<Array<string>>; //========================= REDUX
 
+    mySubscriptions: Subscription[] = [];
 
     myVarA: any = '';
     myVarB: any = '';
@@ -63,12 +65,14 @@ export class FeaturesComponent implements OnInit {
 
         // Make http calls here to get data for component initialization,
         // and set class fields from the result of the http call.
+        const subscription = 
         this.http.get(this.apiUrl + 'checkpass')
             .map(res => res.json())
             .subscribe(res => {
                 console.log(res);
                 this.initialData = res;
             });
+        this.mySubscriptions.push(subscription)
 
         this.seeMyParamMap();
     }
@@ -79,12 +83,14 @@ export class FeaturesComponent implements OnInit {
     }
 
     makeHttpGetCall(){
+        const subscription = 
         this.http.get(this.apiUrl + 'foo')
         .map(res => res.json())
         .subscribe(res => {
             console.log(res);
             this.myVarB = res;
         });
+        this.mySubscriptions.push(subscription)
     }
 
     increment_5(){
@@ -100,21 +106,25 @@ export class FeaturesComponent implements OnInit {
     }
 
     generatepasswordHash(password){
+        const subscription = 
         this.http.post(this.apiUrl + 'pass', {password: password})
         .map(res => res.json())
         .subscribe(res => {
             console.log(res);
             this.myVarD = res;
         });
+        this.mySubscriptions.push(subscription)
     }
 
     checkpasswordHash(){
+        const subscription = 
         this.http.get(this.apiUrl + 'checkpass')
         .map(res => res.json())
         .subscribe(res => {
             console.log(res);
             this.myVarE = res;
         });
+        this.mySubscriptions.push(subscription)
     }
 
     logEnv(){
@@ -141,6 +151,7 @@ export class FeaturesComponent implements OnInit {
         this.ngRedux.dispatch<any>((dispatch) => {
             dispatch({type: 'FOO_PENDING', payload: 'p'});
 
+            const subscription = 
             this.http.get(this.apiUrl + 'checkpass')
             .map(res => res.json())
             .subscribe(
@@ -159,6 +170,7 @@ export class FeaturesComponent implements OnInit {
                     });
                 }
             );
+            this.mySubscriptions.push(subscription)
         });
     }
 
@@ -216,6 +228,13 @@ export class FeaturesComponent implements OnInit {
         // Use this hook to unsubscribe observables and detach event handlers to avoid memory leaks.
         // e.g.: this.subscription.unsubscribe()
         // the async pipe unsubscribes automatically to avoid potential memory leaks.
+
+        // prevent memory leak when component destroyed
+        for (let subscription of this.mySubscriptions) {
+            console.log("Unsubscribe", subscription);
+            subscription.unsubscribe();
+        }
+
         alert('Bye');
     }
 
@@ -250,10 +269,12 @@ export class FeaturesComponent implements OnInit {
     //
 
     seeMyParamMap(){
+        const subscription = 
         this.activatedRoute.paramMap // ActivatedRoute
         .subscribe((params) => {
             console.log('this.activatedRoute.paramMap', params);
         });
+        this.mySubscriptions.push(subscription)
 
     }
 }
