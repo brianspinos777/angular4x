@@ -13,7 +13,19 @@ export class MyFormExampleComponent implements OnInit {
 
     myForm:FormGroup;
 
-    constructor(){}
+    constructor(fb: FormBuilder){
+        /*
+        // FormBuilder example:
+        this.myForm = fb.group({
+            name: [initialValue, validators, asyncValidators],
+            contact: fb.group({
+                email: [initialValue, validators, asyncValidators],
+                phone: [initialValue, validators, asyncValidators]
+            }),
+            topics: fb.array([])
+        })
+        */
+    }
 
     ngOnInit(){
 
