@@ -61,6 +61,8 @@ export const appRoutes:Routes = [
         component: IndexItemComponent
     },
     {
+        // 'items/new' should go on top of 'items/:id',
+        // because it is more specific
         path: 'items/new',
         canActivate: [AuthGuard],
         component: NewItemComponent 

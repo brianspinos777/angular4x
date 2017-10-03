@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms'
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 
 // Dont forget to include ReactiveFormsModule in your module: 
 // import { FormsModule, ReactiveFormsModule }    from '@angular/forms';
