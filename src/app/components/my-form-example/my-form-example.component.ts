@@ -98,28 +98,28 @@ export class MyFormExampleComponent implements OnInit {
                 Validators.required,
                 Validators.minLength(3),
                 Validators.pattern('[a-zA-Z]+')
-            ], []],
+            ], [/* async validators*/]],
             'lastName': ['', [
                 Validators.required,
                 // Validators.minLength(3),
                 Validators.pattern('[a-zA-Z]+'),
                 this.textValidator // custom validator
-            ], []],
+            ], [/* async validators*/]],
             'languages': ['', [
                 Validators.required
-            ], []],
+            ], [/* async validators*/]],
             'checkbox_a': ['', [
                 Validators.required
-            ], []],
+            ], [/* async validators*/]],
             'checkbox_b': ['', [
                 Validators.required
-            ], []],
+            ], [/* async validators*/]],
             'email': ['', [
                 Validators.required
-            ], []],
+            ], [/* async validators*/]],
             'password': ['', [
                 Validators.required
-            ], []],
+            ], [/* async validators*/]],
         }) 
     }
 
