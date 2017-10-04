@@ -63,10 +63,10 @@ const pool = new Pool({
   connectionString: connectionString,
 })
 
-pool.query('SELECT NOW()', (err, res) => {
-  console.log(err, res)
-  pool.end()
-})
+// pool.query('SELECT NOW()', (err, res) => {
+//   console.log(err, res)
+//   pool.end()
+// })
 
 app.get('/pg', (req, res) => {
   console.log("--------------------- PG:");
@@ -242,7 +242,7 @@ app.use(express.static(path.join(__dirname, 'dist')));
 
 //------------------------------------------ routes
 let apiRoute = require('./server/routes/api');
-app.use('/api', apiRoute)
+app.use('/api/v1', apiRoute)
 // curl -i http://localhost:5000/api/
 // curl -i http://localhost:5000/api/foo
 

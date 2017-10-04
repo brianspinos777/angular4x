@@ -1,5 +1,4 @@
 ================================ TODO:
-- add api version: /api/v1/items
 - modules?
 - bootstrap navbar with dropdown
 - create a DataService as a base class!
@@ -44,3 +43,4 @@
 - ngClass
 - ngStyle
 - FormBuilder (less code!)
+- add api version: /api/v1/items
