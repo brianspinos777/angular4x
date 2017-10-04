@@ -77,6 +77,17 @@ export const appRoutes: Routes = [
         canActivate: [AuthGuard],
         component: EditItemComponent
     },
+
+
+
+    {
+        // http://localhost:4200/lazy/something - lazy loading another module
+        path: 'lazy',
+        canActivate: [AuthGuard],
+        loadChildren: '../modules/my-module/my-module.module#MyModuleModule'
+    },
+
+
     {
         path: '**', // the 'catch al' route!
         canActivate: [AuthGuard],

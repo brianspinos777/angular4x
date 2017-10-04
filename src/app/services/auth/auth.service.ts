@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { JwtHelper } from 'angular2-jwt';
 import { Http, Response, RequestOptions, Headers } from '@angular/http';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import 'rxjs/add/operator/map';
 import { environment } from '../../../environments/environment'; // for ENV
 
@@ -12,7 +12,8 @@ export class AuthService {
 
     constructor(
         private http: Http,
-        private router: Router
+        private router: Router,
+        private activatedRoute: ActivatedRoute
     ){
         //...
     }
@@ -57,15 +58,21 @@ export class AuthService {
 
             if (res.success){
                 this.saveTokenToLocalStorage(res.data.token);
-                this.router.navigate(['/']);
-            }
 
+                const url = this.activatedRoute.snapshot.queryParams.returnUrl;
+
+                if(url){
+                    this.router.navigate([url]); // If user tried to go straight to the link, but was not authenticated
+                }else{
+                    this.router.navigate(['/']);
+                }
+            }
         });
     }
 
     // usage: this.authService.logout()
     logout(){
-        localStorage.setItem('token', null);
+        localStorage.setItem('token', ''); // null does not work well...
         this.router.navigate(['/login']);
     }
 
