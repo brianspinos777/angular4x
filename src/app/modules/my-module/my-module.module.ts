@@ -36,3 +36,5 @@ export class MyModuleModule { }
 // $ ng g m modules/my-module
 // $ ng g c modules/my-module/components/lazy-parent -- module my-module
 // $ ng g c modules/my-module/components/lazy-child -- module my-module
+
+// $ ng g m modules/my-module --routing

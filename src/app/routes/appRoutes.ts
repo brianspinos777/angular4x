@@ -78,13 +78,40 @@ export const appRoutes: Routes = [
         component: EditItemComponent
     },
 
-
+    //
+    // Sub Modules
+    //
 
     {
         // http://localhost:4200/lazy/something - lazy loading another module
         path: 'lazy',
         canActivate: [AuthGuard],
         loadChildren: '../modules/my-module/my-module.module#MyModuleModule'
+    },
+    {
+        path: 'lions',
+        // canActivate: [AuthGuard],
+        loadChildren: '../modules/lions/lions.module#LionsModule'
+    },
+    {
+        path: 'zebras',
+        // canActivate: [AuthGuard],
+        loadChildren: '../modules/zebras/zebras.module#ZebrasModule'
+    },
+    {
+        path: 'tigers',
+        // canActivate: [AuthGuard],
+        loadChildren: '../modules/tigers/tigers.module#TigersModule'
+    },
+    {
+        path: 'dogs',
+        // canActivate: [AuthGuard],
+        loadChildren: '../modules/dogs/dogs.module#DogsModule'
+    },
+    {
+        path: 'widgets',
+        // canActivate: [AuthGuard],
+        loadChildren: '../modules/widgets/widgets.module#WidgetsModule'
     },
 
 

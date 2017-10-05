@@ -37,6 +37,16 @@ import { EditItemComponent }                from './pages/items/edit-item/edit-i
 
 import { AppComponent }                     from './app.component';
 
+
+
+//========================================================= sub-modules
+
+import { LionsModule }                      from './modules/lions/lions.module';
+import { TigersModule }                     from './modules/tigers/tigers.module';
+import { ZebrasModule }                     from './modules/zebras/zebras.module';
+import { DogsModule }                       from './modules/dogs/dogs.module';
+import { WidgetsModule }                    from './modules/widgets/widgets.module';
+
 //========================================================= REDUX
 import { NgRedux, NgReduxModule } from 'ng2-redux';
 import thunkMiddleware from 'redux-thunk'; // for dispatching functions! (dispatch)=>{...}
@@ -79,7 +89,13 @@ import { appRoutes } from './routes/appRoutes';
         HttpModule,
         ReactiveFormsModule,
         RouterModule.forRoot(appRoutes),
-        NgReduxModule  //========================================================= REDUX
+        NgReduxModule,  //========================================================= REDUX
+
+        LionsModule, // Not lazy-loaded
+        TigersModule, // Not lazy-loaded
+        // ZebrasModule, // lazy-loaded
+        // DogsModule, // lazy-loaded
+        // WidgetsModule // lazy-loaded
     ],
     providers: [ // Services, Guards
         AuthGuard,
