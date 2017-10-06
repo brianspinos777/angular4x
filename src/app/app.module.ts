@@ -39,13 +39,16 @@ import { AppComponent }                     from './app.component';
 
 
 
-//========================================================= sub-modules
+//========================================================= sub-modules (lazy-loaded)
 
-import { LionsModule }                      from './modules/lions/lions.module';
-import { TigersModule }                     from './modules/tigers/tigers.module';
-import { ZebrasModule }                     from './modules/zebras/zebras.module';
-import { DogsModule }                       from './modules/dogs/dogs.module';
-import { WidgetsModule }                    from './modules/widgets/widgets.module';
+// ATTENTION: No need to import lazy modules
+
+// import { MyModuleModule }                   from './modules/my-module/my-module.module';
+// import { LionsModule }                      from './modules/lions/lions.module';
+// import { TigersModule }                     from './modules/tigers/tigers.module';
+// import { ZebrasModule }                     from './modules/zebras/zebras.module';
+// import { DogsModule }                       from './modules/dogs/dogs.module';
+// import { WidgetsModule }                    from './modules/widgets/widgets.module';
 
 //========================================================= REDUX
 import { NgRedux, NgReduxModule } from 'ng2-redux';
@@ -91,8 +94,10 @@ import { appRoutes } from './routes/appRoutes';
         RouterModule.forRoot(appRoutes),
         NgReduxModule,  //========================================================= REDUX
 
-        LionsModule, // Not lazy-loaded
-        TigersModule, // Not lazy-loaded
+        // If a module is not here, then we can assume it is lazy-loaded
+
+        // LionsModule, // lazy-loaded
+        // TigersModule, // lazy-loaded
         // ZebrasModule, // lazy-loaded
         // DogsModule, // lazy-loaded
         // WidgetsModule // lazy-loaded

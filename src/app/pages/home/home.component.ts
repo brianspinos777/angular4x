@@ -8,7 +8,7 @@ import { AuthService } from '../../services/auth/auth.service';
 })
 export class HomeComponent implements OnInit {
 
-    currentUser: object;
+    currentUser: any;
 
     constructor(
         private authService: AuthService

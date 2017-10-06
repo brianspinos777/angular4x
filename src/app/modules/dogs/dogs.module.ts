@@ -9,10 +9,10 @@ import { TestService } from './services/test.service';
 @NgModule({
   imports: [
     CommonModule,
-    DogsRoutingModule
+    DogsRoutingModule,
   ],
   declarations: [TestComponent],
-  exports: [TestComponent],
+  // exports: [TestComponent],
   providers: [TestService]
 })
 export class DogsModule { }

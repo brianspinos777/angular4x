@@ -26,7 +26,7 @@ export class FeaturesComponent implements OnInit {
     myVarA: any = '';
     myVarB: any = '';
     myVarC: any = '';
-    myVarD: object = {password: '', hash: ''};
+    myVarD: any = {password: '', hash: ''};
     myVarE: any = '';
     myVarF: any = '';
     myVarG: any = '';

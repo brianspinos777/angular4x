@@ -22,6 +22,31 @@ import { AuthGuard } from '../guards/auth/auth.guard';
 
 
 export const appRoutes: Routes = [
+    // {
+    //     path: 'somePathHereWithChildren',
+    //     children: [
+    //         {
+    //             path: '',
+    //             component: BazComponent
+    //         },
+    //         {
+    //             path: ':id',
+    //             canActivate: [SomeGuardHere?]
+    //             component: BazComponent
+    //         },
+    //         {
+    //             path: 'foo',
+    //             component: FooComponent
+    //         },
+    //         {
+    //             path: 'bar',
+    //             component: BarComponent,
+    //             redirectTo: '/otherPath',
+    //             pathMatch: 'full'
+    //         },
+    //     ]
+    // },
+
     {
         path: 'login',
         component: LoginComponent
@@ -56,62 +81,68 @@ export const appRoutes: Routes = [
 
     {
         path: 'items',
-        canActivate: [AuthGuard],
-        component: IndexItemComponent
-    },
-    {
-        // 'items/new' should go on top of 'items/:id',
-        // because it is more specific
-        path: 'items/new',
-        canActivate: [AuthGuard],
-        component: NewItemComponent
-    },
-    {
-        path: 'items/:id',
-        canActivate: [AuthGuard],
-        component: ShowItemComponent
-    },
+        children: [
+            {
+                path: '', // /items
+                canActivate: [AuthGuard],
+                component: IndexItemComponent
+            },
+            {
+                // 'items/new' should go on top of 'items/:id',
+                // because it is more specific
+                path: 'new', // /items/new
+                canActivate: [AuthGuard],
+                component: NewItemComponent
+            },
+            {
+                path: ':id', // /items/:id
+                canActivate: [AuthGuard],
+                component: ShowItemComponent
+            },
 
-    {
-        path: 'items/:id/edit',
-        canActivate: [AuthGuard],
-        component: EditItemComponent
+            {
+                path: ':id/edit', // /items/:id/edit
+                canActivate: [AuthGuard],
+                component: EditItemComponent
+            }
+        ]
     },
 
     //
     // Sub Modules
+    // ATTENTION: for lazy modules to work in production, you need to use the absolute path, not a relative path.
     //
 
     {
         // http://localhost:4200/lazy/something - lazy loading another module
         path: 'lazy',
         canActivate: [AuthGuard],
-        loadChildren: '../modules/my-module/my-module.module#MyModuleModule'
+        loadChildren: 'app/modules/my-module/my-module.module#MyModuleModule' // need absolute path
     },
     {
         path: 'lions',
         // canActivate: [AuthGuard],
-        loadChildren: '../modules/lions/lions.module#LionsModule'
+        loadChildren: 'app/modules/lions/lions.module#LionsModule' // need absolute path
     },
     {
         path: 'zebras',
         // canActivate: [AuthGuard],
-        loadChildren: '../modules/zebras/zebras.module#ZebrasModule'
+        loadChildren: 'app/modules/zebras/zebras.module#ZebrasModule' // need absolute path
     },
     {
         path: 'tigers',
         // canActivate: [AuthGuard],
-        loadChildren: '../modules/tigers/tigers.module#TigersModule'
+        loadChildren: 'app/modules/tigers/tigers.module#TigersModule' // need absolute path
     },
     {
         path: 'dogs',
         // canActivate: [AuthGuard],
-        loadChildren: '../modules/dogs/dogs.module#DogsModule'
+        loadChildren: 'app/modules/dogs/dogs.module#DogsModule' // need absolute path
     },
     {
         path: 'widgets',
         // canActivate: [AuthGuard],
-        loadChildren: '../modules/widgets/widgets.module#WidgetsModule'
+        loadChildren: 'app/modules/widgets/widgets.module#WidgetsModule' // need absolute path
     },
 
 
