@@ -5,6 +5,9 @@ import { LazyChildComponent } from './components/lazy-child/lazy-child.component
 
 import { Routes, RouterModule } from '@angular/router'; // add this
 
+// sub-modules
+import { SharedModule } from '../../modules/shared/shared.module';
+
 const routes: Routes = [
     {
         path: '', // also 'lazy-parent'
@@ -23,6 +26,7 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
+    SharedModule,
     RouterModule.forChild(routes) // add this
   ],
   declarations: [

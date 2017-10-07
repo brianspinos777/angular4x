@@ -20,8 +20,6 @@ import { AuthGuard }                        from './guards/auth/auth.guard';
 // Components
 import { MyChildComponent }                 from './components/my-child/my-child.component';
 import { MyFormExampleComponent }           from './components/my-form-example/my-form-example.component';
-import { NavbarComponent }                  from './components/navbar/navbar.component';
-import { GroupsComponent }                  from './components/groups/groups.component';
 
 // Pages
 import { LoginComponent }                   from './pages/login/login.component';
@@ -34,6 +32,9 @@ import { IndexItemComponent }               from './pages/items/index-item/index
 import { ShowItemComponent }                from './pages/items/show-item/show-item.component';
 import { NewItemComponent }                 from './pages/items/new-item/new-item.component';
 import { EditItemComponent }                from './pages/items/edit-item/edit-item.component';
+
+// sub-modules
+import { SharedModule } from './modules/shared/shared.module';
 
 import { AppComponent }                     from './app.component';
 
@@ -73,14 +74,12 @@ import { appRoutes } from './routes/appRoutes';
         AppComponent,
         LoginComponent,
         HomeComponent,
-        GroupsComponent,
         IndexItemComponent,
         ShowItemComponent,
         NewItemComponent,
         EditItemComponent,
         MyChildComponent,
         MyFormExampleComponent,
-        NavbarComponent,
         MyInputFormatterDirective,
         MySummaryPipe,
         FeaturesComponent,
@@ -92,6 +91,7 @@ import { appRoutes } from './routes/appRoutes';
         HttpModule,
         ReactiveFormsModule,
         RouterModule.forRoot(appRoutes),
+        SharedModule,
         NgReduxModule,  //========================================================= REDUX
 
         // If a module is not here, then we can assume it is lazy-loaded

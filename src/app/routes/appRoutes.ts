@@ -2,7 +2,6 @@ import { AppComponent } from '../app.component';
 import { Routes } from '@angular/router';
 
 // Components
-import { GroupsComponent } from '../components/groups/groups.component';
 import { MyFormExampleComponent } from '../components/my-form-example/my-form-example.component';
 
 // Items CRUD
@@ -55,11 +54,6 @@ export const appRoutes: Routes = [
         path: '',
         canActivate: [AuthGuard],
         component: HomeComponent
-    },
-    {
-        path: 'groups',
-        canActivate: [AuthGuard],
-        component: GroupsComponent
     },
     {
         path: 'myformexample',

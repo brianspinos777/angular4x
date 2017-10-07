@@ -6,10 +6,14 @@ import { TestComponent } from './components/test/test.component';
 
 import { TestService } from './services/test.service';
 
+// sub-modules
+import { SharedModule } from '../../modules/shared/shared.module';
+
 @NgModule({
   imports: [
     CommonModule,
-    LionsRoutingModule
+    LionsRoutingModule,
+    SharedModule
   ],
   declarations: [TestComponent],
   exports: [TestComponent],
