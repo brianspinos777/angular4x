@@ -64,9 +64,7 @@ import logger from 'redux-logger'; // npm i redux-logger
 import { INITIAL_STATE, IAppState } from './redux/app.state';
 import { rootReducer } from './redux/reducers/rootReducer';
 //=========================================================
-import { appRoutes } from './routes/appRoutes';
-
-
+import { AppRoutingModule } from './app-routing.module';
 
 
 @NgModule({
@@ -87,10 +85,10 @@ import { appRoutes } from './routes/appRoutes';
     ],
     imports: [
         BrowserModule,
+        AppRoutingModule,
         FormsModule,
         HttpModule,
         ReactiveFormsModule,
-        RouterModule.forRoot(appRoutes),
         SharedModule,
         NgReduxModule,  //========================================================= REDUX
 

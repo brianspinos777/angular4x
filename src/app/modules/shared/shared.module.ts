@@ -21,6 +21,10 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     ],
     declarations: [
         NavbarComponent
-    ]
+    ],
+    providers: [ // Services, Guards
+        // ATTENTION: this module is NOT designed to use providers, because it will create a child INJECTOR
+        // and possibly duplicate all the providers... NOT GOOD... 
+    ],
 })
 export class SharedModule { }

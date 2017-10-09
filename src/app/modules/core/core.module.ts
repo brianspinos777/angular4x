@@ -5,9 +5,14 @@ import { CommonModule } from '@angular/common';
 //            DO NOT add declarations here!
 
 @NgModule({
-  imports: [
-    CommonModule
-  ],
-  declarations: []
+    imports: [
+      CommonModule
+    ],
+    declarations: [ // Components, Pipes, Directives
+        // ATTENTION: this module is NOT designed to use declarations (Components, Pipes, Directives)
+    ],
+    providers: [ // Services, Guards
+        //...
+    ],
 })
 export class CoreModule { }

@@ -1,26 +1,25 @@
-import { AppComponent } from '../app.component';
-import { Routes } from '@angular/router';
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 
 // Components
-import { MyFormExampleComponent } from '../components/my-form-example/my-form-example.component';
+import { MyFormExampleComponent } from 'app/components/my-form-example/my-form-example.component';
 
 // Items CRUD
-import { IndexItemComponent } from '../pages/items/index-item/index-item.component';
-import { ShowItemComponent } from '../pages/items/show-item/show-item.component';
-import { NewItemComponent } from '../pages/items/new-item/new-item.component';
-import { EditItemComponent } from '../pages/items/edit-item/edit-item.component';
+import { IndexItemComponent } from 'app/pages/items/index-item/index-item.component';
+import { ShowItemComponent } from 'app/pages/items/show-item/show-item.component';
+import { NewItemComponent } from 'app/pages/items/new-item/new-item.component';
+import { EditItemComponent } from 'app/pages/items/edit-item/edit-item.component';
 
 // Pages
-import { FeaturesComponent } from '../pages/features/features.component';
-import { PageNotFoundComponent } from '../pages/page-not-found/page-not-found.component';
-import { LoginComponent } from '../pages/login/login.component';
-import { HomeComponent } from '../pages/home/home.component';
+import { FeaturesComponent } from 'app/pages/features/features.component';
+import { PageNotFoundComponent } from 'app/pages/page-not-found/page-not-found.component';
+import { LoginComponent } from 'app/pages/login/login.component';
+import { HomeComponent } from 'app/pages/home/home.component';
 
 // Guards
-import { AuthGuard } from '../guards/auth/auth.guard';
+import { AuthGuard } from 'app/guards/auth/auth.guard';
 
-
-export const appRoutes: Routes = [
+const routes: Routes = [
     // {
     //     path: 'somePathHereWithChildren',
     //     children: [
@@ -146,3 +145,9 @@ export const appRoutes: Routes = [
         component: PageNotFoundComponent
     },
 ];
+
+@NgModule({
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
+})
+export class AppRoutingModule { }
