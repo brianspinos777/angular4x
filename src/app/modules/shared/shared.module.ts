@@ -25,6 +25,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     providers: [ // Services, Guards
         // ATTENTION: this module is NOT designed to use providers, because it will create a child INJECTOR
         // and possibly duplicate all the providers... NOT GOOD... 
+        // I you want to use shared providers, use the "CoreModule"
     ],
 })
 export class SharedModule { }

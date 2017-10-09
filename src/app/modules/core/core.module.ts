@@ -9,7 +9,8 @@ import { CommonModule } from '@angular/common';
       CommonModule
     ],
     declarations: [ // Components, Pipes, Directives
-        // ATTENTION: this module is NOT designed to use declarations (Components, Pipes, Directives)
+        // ATTENTION: this module is NOT designed to use declarations (Components, Pipes, Directives),
+        // I you want to use shared declarations, use the "SharedModule"
     ],
     providers: [ // Services, Guards
         //...
