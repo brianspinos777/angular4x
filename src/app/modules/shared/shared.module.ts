@@ -15,9 +15,25 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     imports: [
         CommonModule,
         RouterModule
+
+        /** 
+         * This way, the modules that import the 'SharedModule' 
+         * do not need to import FormsModule and HttpModule again!
+         * That is why we should export modules
+         */
+        // FormsModule, 
+        // HttpModule
     ],
     exports: [
         NavbarComponent
+
+        /** 
+         * This way, the modules that import the 'SharedModule' 
+         * do not need to import FormsModule and HttpModule again!
+         * That is why we should export modules
+         */
+        // FormsModule, 
+        // HttpModule
     ],
     declarations: [
         NavbarComponent
@@ -28,4 +44,26 @@ import { NavbarComponent } from './components/navbar/navbar.component';
         // I you want to use shared providers, use the "CoreModule"
     ],
 })
-export class SharedModule { }
+export class SharedModule {
+
+    // use `SharedModule.forRoot()` when importing SharedModule into AppModule.
+    // use `SharedModule` when importing SharedModule into a lazy loaded module.
+
+    //
+    // An argument for not using forRoot in the SharedModule:
+    //     - The `forRoot()` function is designed to return this current module (SharedModule) WITH providers,
+    //       but we will NOT be using providers here.
+    //
+
+    //
+    // So any module can import the SharedModule, to access its declarations.
+    //
+
+
+    // static forRoot() : ModuleWithProviders { 
+    //     return {
+    //         ngModule: SharedModule,
+    //         providers: [FooService]
+    //     }
+    // }
+}

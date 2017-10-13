@@ -1,15 +1,12 @@
 ================================ TODO:
-- modules?
+
 - bootstrap navbar with dropdown
 - create a DataService as a base class!
 - ElementRef
-- ng-template
 - toast notifications
 - custom form validators
 - add bootstrap alerts to give users feedback, or use toast notifications!
 - use REDUX to remove item
-- complete the forms
-- add form validation
 - add state to localStorage
 - use an ORM
 - create models for data // as services?
@@ -44,3 +41,7 @@
 - ngStyle
 - FormBuilder (less code!)
 - add api version: /api/v1/items
+- modules
+- complete the forms
+- add form validation
+- ng-template

@@ -235,7 +235,15 @@ app.post('/deleteUser', (req, res, next) => {
 
 //---------------------------------------
 
-app.set('port', (process.env.PORT || 5002));
+
+//
+// http://localhost:5000/api/v1
+//
+//  // Kill process using port 5000 on Windows:
+//  $ netstat -abon | findstr ":5000"
+//  $ taskkill /F /PID 123456
+//
+app.set('port', (process.env.PORT || 5000));
 
 app.use(express.static(path.join(__dirname, 'dist')));
 
